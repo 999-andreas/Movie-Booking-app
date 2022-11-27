@@ -3,4 +3,4 @@
  
 ### Full Java
 
-![airplane](/irst-gif.gif?raw=true "airplane")
+![JAVA](/JAVA.gif?raw=true "JAVA")
