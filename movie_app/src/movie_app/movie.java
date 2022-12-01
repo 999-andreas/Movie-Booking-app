@@ -4,6 +4,7 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -72,11 +73,17 @@ public class movie {
     public void saveMovie() // bien mettre les test d'execption
     {
         //update le fichier avec une nouvelle ligne
+        
     }
     
     public movie getMovie(int id)
     {
         //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
+    }
+    
+    public ArrayList<movie> getMovies()
+    {
+        // vaq chercher tout les films dans le fichier
     }
     
     /*
