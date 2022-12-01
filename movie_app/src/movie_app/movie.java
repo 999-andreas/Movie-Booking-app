@@ -6,6 +6,8 @@ package movie_app;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  *
@@ -70,27 +72,60 @@ public class movie {
         return discount;
     }
     
-    public void saveMovie() // bien mettre les test d'execption
+    public void saveMovie() throws IOException // bien mettre les test d'execption
     {
         //update le fichier avec une nouvelle ligne
+        FileWriter fw = new FileWriter("Movies.txt", true);
+        
+        PrintWriter outputFile = new PrintWriter(fw);
+        outputFile.println(id + "," + genre + "," + title + "," + date + "," + duration + "," + price + "," + availability + "," + nb_place + "," + discount); 
+        outputFile.close(); 
         
     }
     
+    public ArrayList<movie> getMovies() throws FileNotFoundException
+    {
+        // vaq chercher tout les films dans le fichier
+        
+        
+        
+        
+        
+        File file = new File("Movie.txt");
+        Scanner inputFile = new Scanner(file);
+        
+        int nb_line =
+        
+        ArrayList<movie> list = new ArrayList<movie>();
+        
+        while (inputFile.hasNext())
+        {
+           String str = inputFile.nextLine();
+           System.out.println(str);
+        }
+        
+        
+    }
+    
+    /*
     public movie getMovie(int id)
     {
         //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
-    }
+    }*/
     
-    public ArrayList<movie> getMovies()
-    {
-        // vaq chercher tout les films dans le fichier
-    }
     
     /*
     problématique : 
     comment avoir des id unique, sachant que on peut pas savoir le num de la dernière ligne 
     
     peut etre mettre des trucs aleatoire en fonction du temps
+    
+    comment je peux savoir le nombre de ligne dans un fichier, parce que j'en ai besoin pour déclarer la bonne taille de tab
     */
+
+    @Override
+    public String toString() {
+        return "movie{" + "id=" + id + ", genre=" + genre + ", title=" + title + ", date=" + date + ", duration=" + duration + ", price=" + price + ", availability=" + availability + ", nb_place=" + nb_place + ", discount=" + discount + '}';
+    }
 }
 
