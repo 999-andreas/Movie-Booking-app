@@ -99,6 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
         CreateAccount createForm= new CreateAccount();
+       
         createForm.setVisible(true);
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 

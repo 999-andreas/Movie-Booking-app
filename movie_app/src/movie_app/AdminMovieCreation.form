@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblCreateMovie" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblDiscount" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNumTickets" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPrice" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblReleaseDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDuration" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGenre" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMovieTitle" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAvailability" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="tfGenre" max="32767" attributes="0"/>
+                      <Component id="tfMovieTitle" max="32767" attributes="0"/>
+                      <Component id="tfDuration" max="32767" attributes="0"/>
+                      <Component id="tfReleaseDate" max="32767" attributes="0"/>
+                      <Component id="tfPrice" max="32767" attributes="0"/>
+                      <Component id="tfDiscount" max="32767" attributes="0"/>
+                      <Component id="tfNumTickets" pref="299" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rbAvailable" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="btnAddMovie" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rbNotAvailable" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="btnCancel" min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="189" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="lblCreateMovie" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMovieTitle" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="tfMovieTitle" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblGenre" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="tfGenre" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDuration" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="tfDuration" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblReleaseDate" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="tfReleaseDate" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPrice" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="tfPrice" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDiscount" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="tfDiscount" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNumTickets" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="tfNumTickets" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="rbAvailable" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbNotAvailable" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAvailability" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnAddMovie" pref="64" max="32767" attributes="0"/>
+                  <Component id="btnCancel" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblMovieTitle">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Title : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfMovieTitle">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblGenre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Genre :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDuration">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Duration :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblReleaseDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Release Date :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPrice">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ticket Price :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDiscount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Discount (amount) :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfGenre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCreateMovie">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="New Movie"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumTickets">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Number of tickets available :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfDuration">
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfReleaseDate">
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfPrice">
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfDiscount">
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfNumTickets">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbAvailable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Available "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbNotAvailable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Not Available"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAvailability">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Availability :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAddMovie">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Movie"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCancel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
