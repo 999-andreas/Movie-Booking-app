@@ -1,1 +1,5 @@
-1,SF,Star wars,Sat Feb 01 00:00:00 CET 3902,120,7.0,true,40,0.2
+4
+0;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2
+1;SF;testtest;02/02/2002;120;7.0;true;40;0.2
+2;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2
+3;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2

@@ -17,15 +17,14 @@ public class movie {
     private int id;
     private String genre;
     private String title;
-    private Date date;
+    private String date;
     private int duration;
     private double price;
     private boolean availability;
     private int nb_place;
     private double discount;
 
-    public movie(int id, String genre, String title, Date date, int duration, double price, boolean availability, int nb_place, double discount) {
-        this.id = id;
+    public movie(String genre, String title, String date, int duration, double price, boolean availability, int nb_place, double discount) {
         this.genre = genre;
         this.title = title;
         this.date = date;
@@ -48,7 +47,7 @@ public class movie {
         return title;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -74,37 +73,63 @@ public class movie {
     
     public void saveMovie() throws IOException // bien mettre les test d'execption
     {
-        //update le fichier avec une nouvelle ligne
-        FileWriter fw = new FileWriter("Movies.txt", true);
+        //we rewrite all the file because it size is xritten at the beginning, maybe chage that in the futur
+        ArrayList<movie> list = getMovies();
         
-        PrintWriter outputFile = new PrintWriter(fw);
-        outputFile.println(id + "," + genre + "," + title + "," + date + "," + duration + "," + price + "," + availability + "," + nb_place + "," + discount); 
-        outputFile.close(); 
-        
+        try
+        {
+            PrintWriter pw = new PrintWriter("Movies.txt");
+            PrintWriter outputFile = new PrintWriter(pw);
+            
+            outputFile.println(list.size()+1); 
+            
+            for (movie a : list)
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount); 
+            
+            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";" + price + ";" + availability + ";" + nb_place + ";" + discount); 
+                
+            outputFile.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File not found.");
+        }
     }
     
-    public ArrayList<movie> getMovies() throws FileNotFoundException
+    public static ArrayList<movie> getMovies() 
     {
         // vaq chercher tout les films dans le fichier
         
-        
-        
-        
-        
-        File file = new File("Movie.txt");
-        Scanner inputFile = new Scanner(file);
-        
-        int nb_line =
-        
-        ArrayList<movie> list = new ArrayList<movie>();
-        
-        while (inputFile.hasNext())
+        try
         {
-           String str = inputFile.nextLine();
-           System.out.println(str);
+            File file = new File ("Movies.txt");
+            Scanner inputFile = new Scanner(file);
+
+            String nb_line = inputFile.nextLine();
+        
+        
+            ArrayList<movie> list = new ArrayList<movie>(Integer.parseInt(nb_line));
+
+            while (inputFile.hasNext())
+            {
+               String line = inputFile.nextLine();
+               //System.out.println(line);  
+
+               String[] info = line.split(";");
+
+               list.add(new movie(info[1], info[2], info[3], Integer.parseInt(info[4]), Double.parseDouble(info[5]), Boolean.parseBoolean(info[6]), Integer.parseInt(info[7]), Double.parseDouble(info[8])));
+
+               //System.out.println(id+genre+date);
+            }
+            inputFile.close();
+          
+            return list;
         }
-        
-        
+        catch (FileNotFoundException e)
+        {
+          System.out.println("File not found.");
+        }
+        return null;
     }
     
     /*
@@ -112,6 +137,41 @@ public class movie {
     {
         //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
     }*/
+    
+    public void modif_movie()
+    {   
+        ArrayList<movie> list = getMovies();
+        
+        for (int k=0;k<list.size();k++)
+        {
+            if(id == list.get(k).id)
+            {
+                list.set(id, new movie(genre, title, date, duration, price, availability, nb_place, discount));
+            }
+        }
+        
+        try
+        {
+            PrintWriter pw = new PrintWriter("Movies.txt");
+            PrintWriter outputFile = new PrintWriter(pw);
+            
+            outputFile.println(list.size()); 
+            
+            for (movie a : list)
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount); 
+                
+            outputFile.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File not found.");
+        }
+        
+
+            
+    }
+    
+    
     
     
     /*
