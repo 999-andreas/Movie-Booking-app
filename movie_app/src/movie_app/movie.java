@@ -105,12 +105,12 @@ public class movie {
             File file = new File ("Movies.txt");
             Scanner inputFile = new Scanner(file);
 
-            String nb_line = inputFile.nextLine();
+            String str_nb = inputFile.nextLine();
+            int nb_line = Integer.parseInt(str_nb);
         
-        
-            ArrayList<movie> list = new ArrayList<movie>(Integer.parseInt(nb_line));
+            ArrayList<movie> list = new ArrayList<movie>(nb_line);
 
-            while (inputFile.hasNext())
+            for(int k=0;k<nb_line;k++)
             {
                String line = inputFile.nextLine();
                //System.out.println(line);  
@@ -118,7 +118,8 @@ public class movie {
                String[] info = line.split(";");
 
                list.add(new movie(info[1], info[2], info[3], Integer.parseInt(info[4]), Double.parseDouble(info[5]), Boolean.parseBoolean(info[6]), Integer.parseInt(info[7]), Double.parseDouble(info[8])));
-
+               
+               list.get(k).setId(k);
                //System.out.println(id+genre+date);
             }
             inputFile.close();
@@ -169,6 +170,10 @@ public class movie {
         
 
             
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     
