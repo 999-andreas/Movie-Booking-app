@@ -31,15 +31,15 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="lblWelcomeAdmin" alignment="1" min="-2" pref="189" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnDeleteMovie" max="32767" attributes="0"/>
-                              <Component id="btnModifyMovie" pref="209" max="32767" attributes="0"/>
-                              <Component id="btnCreateMovie" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnDeleteMovie" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnModifyMovie" alignment="0" pref="209" max="32767" attributes="0"/>
+                          <Component id="btnCreateMovie" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnViewUsers" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnViewRecords" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="87" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -58,8 +58,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnDeleteMovie" min="-2" pref="56" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnViewUsers" min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnViewRecords" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Component id="btnDisconnect" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,26 +73,54 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create a movie!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateMovieActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnModifyMovie">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modify a Movie!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModifyMovieActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDeleteMovie">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete a Movie!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteMovieActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDisconnect">
       <Properties>
         <Property name="text" type="java.lang.String" value="Disconnect"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDisconnectActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblWelcomeAdmin">
       <Properties>
         <Property name="text" type="java.lang.String" value="Welcome admin!"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnViewUsers">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View the Users"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewUsersActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnViewRecords">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Film Records"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewRecordsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -42,6 +42,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnLogIn.setText("Log In");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInActionPerformed(evt);
+            }
+        });
 
         btnCreateAccount.setText("No Account? Create one");
         btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -63,9 +68,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(311, 311, 311)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnContinueGuest, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnContinueGuest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCreateAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
@@ -94,14 +98,26 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnContinueGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueGuestActionPerformed
         // TODO add your handling code here:
+        MoviesFrames theMovies= new MoviesFrames(); //Creates the frame for the movies
+        
+        theMovies.setVisible(true);//sets visible the frame to load the movies
+        this.dispose(); //disposes of the actual frame
     }//GEN-LAST:event_btnContinueGuestActionPerformed
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
-        CreateAccount createForm= new CreateAccount();
+        CreateAccount createForm= new CreateAccount(); //new form to create an account
        
-        createForm.setVisible(true);
+        createForm.setVisible(true); //sets to visible the form
+        this.dispose(); // disposes of the actual form
     }//GEN-LAST:event_btnCreateAccountActionPerformed
+
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        // TODO add your handling code here:
+        LoginFrame theLoginFrame= new LoginFrame();
+        theLoginFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogInActionPerformed
 
     /**
      * @param args the command line arguments

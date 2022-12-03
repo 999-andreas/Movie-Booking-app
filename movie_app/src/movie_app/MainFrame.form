@@ -28,10 +28,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnContinueGuest" pref="154" max="32767" attributes="0"/>
-                              <Component id="btnLogIn" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnContinueGuest" max="32767" attributes="0"/>
+                          <Component id="btnLogIn" max="32767" attributes="0"/>
                           <Component id="btnCreateAccount" max="32767" attributes="0"/>
                           <Component id="btnCreateAdmin" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -76,6 +74,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log In"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogInActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreateAccount">
       <Properties>

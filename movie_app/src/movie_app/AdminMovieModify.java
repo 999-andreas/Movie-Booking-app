@@ -26,6 +26,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lblMovieTitle = new javax.swing.JLabel();
         tfMovieTitle = new javax.swing.JTextField();
         lblGenre = new javax.swing.JLabel();
@@ -65,8 +66,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         lblNumTickets.setText("Number of tickets available :");
 
+        buttonGroup1.add(rbAvailable);
         rbAvailable.setText("Available ");
 
+        buttonGroup1.add(rbNotAvailable);
         rbNotAvailable.setText("Not Available");
 
         lblAvailability.setText("Availability :");
@@ -203,6 +206,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnModifyMovie;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblDuration;

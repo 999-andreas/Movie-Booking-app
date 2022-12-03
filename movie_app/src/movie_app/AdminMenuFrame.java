@@ -10,10 +10,12 @@ package movie_app;
  */
 public class AdminMenuFrame extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form AdminMenuFrame
      */
     public AdminMenuFrame() {
+        
         initComponents();
     }
 
@@ -31,18 +33,54 @@ public class AdminMenuFrame extends javax.swing.JFrame {
         btnDeleteMovie = new javax.swing.JButton();
         btnDisconnect = new javax.swing.JButton();
         lblWelcomeAdmin = new javax.swing.JLabel();
+        btnViewUsers = new javax.swing.JButton();
+        btnViewRecords = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnCreateMovie.setText("Create a movie!");
+        btnCreateMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateMovieActionPerformed(evt);
+            }
+        });
 
         btnModifyMovie.setText("Modify a Movie!");
+        btnModifyMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyMovieActionPerformed(evt);
+            }
+        });
 
         btnDeleteMovie.setText("Delete a Movie!");
+        btnDeleteMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteMovieActionPerformed(evt);
+            }
+        });
 
         btnDisconnect.setText("Disconnect");
+        btnDisconnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisconnectActionPerformed(evt);
+            }
+        });
 
         lblWelcomeAdmin.setText("Welcome admin!");
+
+        btnViewUsers.setText("View the Users");
+        btnViewUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewUsersActionPerformed(evt);
+            }
+        });
+
+        btnViewRecords.setText("View Film Records");
+        btnViewRecords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewRecordsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,13 +93,14 @@ public class AdminMenuFrame extends javax.swing.JFrame {
                         .addComponent(btnDisconnect))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblWelcomeAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnDeleteMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnModifyMovie, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                                .addComponent(btnCreateMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 87, Short.MAX_VALUE)))
+                            .addComponent(btnDeleteMovie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModifyMovie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                            .addComponent(btnCreateMovie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewUsers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewRecords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 91, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -76,12 +115,59 @@ public class AdminMenuFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnDeleteMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnViewUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnDisconnect)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUsersActionPerformed
+        // TODO add your handling code here:
+        AdminViewUsers theView= new AdminViewUsers();
+        theView.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnViewUsersActionPerformed
+
+    private void btnDeleteMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMovieActionPerformed
+        // TODO add your handling code here:
+        AdminDeleteMovie theDeleteMenu= new AdminDeleteMovie();
+        theDeleteMenu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDeleteMovieActionPerformed
+
+    private void btnViewRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRecordsActionPerformed
+        // TODO add your handling code here:
+        AdminViewRecords theViewRecord= new AdminViewRecords();
+        theViewRecord.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnViewRecordsActionPerformed
+
+    private void btnCreateMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMovieActionPerformed
+        // TODO add your handling code here:
+        AdminMovieCreation aNewMovieFrame= new AdminMovieCreation();
+        aNewMovieFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCreateMovieActionPerformed
+
+    private void btnModifyMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyMovieActionPerformed
+        // TODO add your handling code here:
+        AdminMovieModify aMovieFrame= new AdminMovieModify();
+        aMovieFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnModifyMovieActionPerformed
+
+    private void btnDisconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisconnectActionPerformed
+        // TODO add your handling code here:
+        MainFrame theMainFrame= new MainFrame();
+        theMainFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDisconnectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +209,8 @@ public class AdminMenuFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteMovie;
     private javax.swing.JButton btnDisconnect;
     private javax.swing.JButton btnModifyMovie;
+    private javax.swing.JButton btnViewRecords;
+    private javax.swing.JButton btnViewUsers;
     private javax.swing.JLabel lblWelcomeAdmin;
     // End of variables declaration//GEN-END:variables
 }
