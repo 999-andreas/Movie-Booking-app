@@ -96,6 +96,51 @@ public class Member
         }
         return null;
     }
+
+    public void modifMember()
+    {
+        ArrayList<Member> list = getMembers();
+        
+        for (int k=0;k<list.size();k++)
+        {
+            if(id == list.get(k).id)
+            {
+                list.set(id, new Member(first_name, last_name, pw));
+            }
+        }
+        
+        try
+        {
+            PrintWriter pw = new PrintWriter("Members.txt");
+            PrintWriter outputFile = new PrintWriter(pw);
+            
+            outputFile.println(list.size()); 
+            
+            for (Member a : list)
+                outputFile.println(a.id + ";" + a.first_name + ";" + a.last_name + ";" + a.pw); 
+                
+            outputFile.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File not found.");
+        } 
+    }
+    
+    public static Member getMember(int id) // not sure if we're ever going to use it 
+    {
+        ArrayList<Member> list = getMembers();
+        
+        for (int k=0;k<list.size();k++)
+        {
+            if(id == list.get(k).id)
+            {
+                return list.get(k);
+            }
+        }
+        return null;
+    }
+    
     
     public void setId(int id) {
         this.id = id;
