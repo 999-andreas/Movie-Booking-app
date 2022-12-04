@@ -97,6 +97,18 @@ public class Member
         return null;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
     public void modifMember()
     {
         ArrayList<Member> list = getMembers();
