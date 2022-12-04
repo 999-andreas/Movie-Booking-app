@@ -4,17 +4,24 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
+import static movie_app.Member.getMembers;
+
+
+
 /**
  *
  * @author Antoine
  */
 public class LoginFrame extends javax.swing.JFrame {
 
+    private ArrayList<Member> theMembers= new ArrayList<Member>();
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
+        theMembers=getMembers();
     }
 
     /**
@@ -33,6 +40,7 @@ public class LoginFrame extends javax.swing.JFrame {
         tfPwd = new javax.swing.JTextField();
         btnConnect = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        lblCheck = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +87,8 @@ public class LoginFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfUsername)
-                                    .addComponent(tfPwd, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
+                                    .addComponent(tfPwd, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(lblCheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(176, 176, 176))))
         );
         layout.setVerticalGroup(
@@ -95,11 +104,13 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPwd)
                     .addComponent(tfPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
+                .addComponent(lblCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,19 +118,29 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         // TODO add your handling code here:
-        //try{
+        
         String theUsername= tfUsername.getText();
         String thePwd= tfPwd.getText();
         
+        for (int i=0; i<theMembers.size();i++){
+            if (theUsername.equalsIgnoreCase(theMembers.get(i).first_name)){
+                if (thePwd.equalsIgnoreCase(theMembers.get(i).pw)){
+                    MoviesFrames theMovies= new MoviesFrames(theMembers.get(i)); //Creates the frame for the movies
         
-        MoviesFrames theMovies= new MoviesFrames(); //Creates the frame for the movies
-        
-        theMovies.setVisible(true);//sets visible the frame to load the movies
-        this.dispose(); //disposes of the actual frame
-        /*}
-        catch(Exception e){
+                    theMovies.setVisible(true);//sets visible the frame to load the movies
+                    this.dispose(); //disposes of the actual frame
+                }
+                else{
+                    lblCheck.setText("Username or Password doesn't match");
+                }
+            }
             
-        }*/
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnConnectActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -169,6 +190,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnConnect;
+    private javax.swing.JLabel lblCheck;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblUsername;

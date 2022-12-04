@@ -37,7 +37,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnCancel" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lblPwd" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Component id="lblUsername" min="-2" pref="75" max="-2" attributes="0"/>
@@ -46,6 +46,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="tfUsername" max="32767" attributes="0"/>
                                   <Component id="tfPwd" pref="178" max="32767" attributes="0"/>
+                                  <Component id="lblCheck" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -70,12 +71,14 @@
                   <Component id="lblPwd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfPwd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblCheck" min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancel" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="btnConnect" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <EmptySpace pref="102" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,6 +118,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCheck">
     </Component>
   </SubComponents>
 </Form>
