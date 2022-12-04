@@ -11,9 +11,15 @@ import java.util.ArrayList;
  * @author andre
  */
 public interface user {
-    public ArrayList<superUser> getUsers();
+
+    /**
+     *
+     * @param admin
+     * @return
+     */
+    //public static ArrayList<Member> getUsers(boolean admin);
     
-    public superUser saveUser();
+    public void saveUser(boolean admin);
     
-    public superUser getUser();
+    //public Member getUser(int id, boolean admin);
 }
