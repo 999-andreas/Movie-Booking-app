@@ -7,6 +7,8 @@ package movie_app;
 import java.io.IOException;
 import java.util.ArrayList;
 import static movie_app.Member.*;
+import static movie_app.biling.*;
+import static movie_app.movie.*;
 import static movie_app.superUser.*;
 
 /**
@@ -27,10 +29,18 @@ public class Movie_app {
         //M1.saveUser(false);
         
         ArrayList<Member> list = getUsers(false);
+        ArrayList<Member> list2 = getUsers(true);
+        ArrayList<movie> list3 = getMovies();
         
-        deleteMember(6,false);
+        biling B1 = new biling(list3.get(1), list2.get(0),2);
         
-        System.out.println(list.get(0)); // to have juste one movie select using the index==id
+        B1.computeBill();
+        
+        String[][] list4 = getBills();
+        
+        //deleteMember(6,false);
+        
+        //System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
         
         /*
