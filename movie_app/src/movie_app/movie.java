@@ -5,7 +5,6 @@
 package movie_app;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.io.*;
 import java.util.Scanner;
 
@@ -81,7 +80,7 @@ public class movie {
             PrintWriter pw = new PrintWriter("Movies.txt");
             PrintWriter outputFile = new PrintWriter(pw);
             
-            outputFile.println(list.size()+1); 
+            outputFile.println(list.size()+1);
             
             for (movie a : list)
                 outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount); 

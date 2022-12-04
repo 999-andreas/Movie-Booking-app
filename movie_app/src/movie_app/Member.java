@@ -55,11 +55,6 @@ public class Member
         }
     }
     
-    /*
-    public Member getMember()
-    {
-        
-    }*/
     
     public static ArrayList<Member> getMembers()
     {
@@ -169,8 +164,4 @@ public class Member
     public void setPw(String pw) {
         this.pw = pw;
     }
-    
-    
-    
-    
 }
