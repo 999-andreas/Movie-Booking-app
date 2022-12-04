@@ -6,8 +6,8 @@ package movie_app;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import static movie_app.Member.getMembers;
-import static movie_app.movie.getMovies;
+import static movie_app.Member.*;
+import static movie_app.superUser.*;
 
 /**
  *
@@ -22,13 +22,15 @@ public class Movie_app {
         // TODO code application logic here
 
              
-        Member M1 = new Member("SF", "ce_est_un_test", "super");
+        Member M1 = new Member("jean", "castre","yes", "BBBBBBB");
         
-        M1.saveMember();
+        //M1.saveUser(false);
         
-        ArrayList<Member> list = getMembers();
+        ArrayList<Member> list = getUsers(false);
         
-        System.out.println(list.get(1)); // to have juste one movie select using the index==id
+        deleteMember(6,false);
+        
+        System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
         
         /*
