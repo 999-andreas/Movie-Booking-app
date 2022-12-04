@@ -24,3 +24,6 @@ hs_err_pid*
 replay_pid*
 /movie_app/build/
 /movie_app/dist/
+/GUI/nbproject/private/
+/GUI/build/
+/movie_app/build/
