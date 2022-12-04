@@ -14,17 +14,21 @@ import java.util.Scanner;
  */
 public class biling {
 
-    public void setId(int id) {
-        this.id = id;
-    }
         private int id;
+        private movie Movie;
+        private Member member;
+        private int nb_tickets;
+        private String time;
+    
+    
+        /*
         private double price;
         private int nb_place;
         private int id_person;
         private int id_film;
         private double discount;
         private double total;
-        private String time;
+        */
 
     public biling(double price, int nb_place, int id_person, int id_film, double discount, double total, String time) {
         this.price = price;
@@ -35,20 +39,25 @@ public class biling {
         this.total = total;
         this.time = time;
     }
-
+    
+    
+    public void setId(int id) {
+        this.id = id;
+    }
 
         
     public void computeBill()
     {
         //calcule le total avec discount
         // envoie tout dans le fichier texte
+        
     }
     
     public ArrayList<biling> getBills()
     {
         try
         {
-            File file = new File ("Bills.txt");
+            File file = new File ("Bills    .txt");
             Scanner inputFile = new Scanner(file);
 
             String str_nb = inputFile.nextLine();
