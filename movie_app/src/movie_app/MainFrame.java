@@ -30,7 +30,6 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogIn = new javax.swing.JButton();
         btnCreateAccount = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
-        btnCreateAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,8 +56,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblWelcome.setText("Welcome to our Cinema! Come book a ticket!");
 
-        btnCreateAdmin.setText("Create an admin account");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,8 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnContinueGuest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(269, 269, 269)
                         .addComponent(lblWelcome)))
@@ -88,9 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnCreateAccount)
-                .addGap(30, 30, 30)
-                .addComponent(btnCreateAdmin)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,9 +100,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
-        CreateAccount createForm= new CreateAccount(); //new form to create an account
+        CreateAccount createAccForm= new CreateAccount(); //new form to create an account
        
-        createForm.setVisible(true); //sets to visible the form
+        createAccForm.setVisible(true); //sets to visible the form
         this.dispose(); // disposes of the actual form
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
@@ -157,7 +151,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinueGuest;
     private javax.swing.JButton btnCreateAccount;
-    private javax.swing.JButton btnCreateAdmin;
     private javax.swing.JButton btnLogIn;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables

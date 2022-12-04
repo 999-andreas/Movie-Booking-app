@@ -10,6 +10,7 @@ package movie_app;
  */
 public class MoviesFrames extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form MoviesFrames
      */
@@ -35,6 +36,11 @@ public class MoviesFrames extends javax.swing.JFrame {
         btnDisconnect.setText("Disconnect");
 
         btnGoToLogin.setText("Login");
+        btnGoToLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoToLoginActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(22, 242, 22));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -79,6 +85,14 @@ public class MoviesFrames extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGoToLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToLoginActionPerformed
+        // TODO add your handling code here:
+        LoginFrame theLoginFrame= new LoginFrame();
+        theLoginFrame.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnGoToLoginActionPerformed
 
     /**
      * @param args the command line arguments

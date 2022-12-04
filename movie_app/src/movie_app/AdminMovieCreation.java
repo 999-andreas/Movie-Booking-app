@@ -26,6 +26,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lblMovieTitle = new javax.swing.JLabel();
         tfMovieTitle = new javax.swing.JTextField();
         lblGenre = new javax.swing.JLabel();
@@ -51,6 +52,12 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
         lblMovieTitle.setText("Title : ");
 
+        tfMovieTitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMovieTitleActionPerformed(evt);
+            }
+        });
+
         lblGenre.setText("Genre :");
 
         lblDuration.setText("Duration :");
@@ -65,15 +72,27 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
         lblNumTickets.setText("Number of tickets available :");
 
+        buttonGroup1.add(rbAvailable);
         rbAvailable.setText("Available ");
 
+        buttonGroup1.add(rbNotAvailable);
         rbNotAvailable.setText("Not Available");
 
         lblAvailability.setText("Availability :");
 
         btnAddMovie.setText("Add Movie");
+        btnAddMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddMovieActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,6 +183,23 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfMovieTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMovieTitleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMovieTitleActionPerformed
+
+    private void btnAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMovieActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAddMovieActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        AdminMenuFrame theAdminFrame = new AdminMenuFrame();
+        theAdminFrame.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +238,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMovie;
     private javax.swing.JButton btnCancel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblCreateMovie;
     private javax.swing.JLabel lblDiscount;
