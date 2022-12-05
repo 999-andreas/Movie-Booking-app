@@ -21,7 +21,7 @@ public class biling {
     private String time;
     private double total;
     
-    public biling(movie Movie, Member member, int nb_tickets, String time) {
+    public biling(movie Movie, Member member, int nb_tickets) {
         this.Movie = Movie;
         this.member = member;
         this.nb_tickets = nb_tickets;
@@ -36,6 +36,7 @@ public class biling {
     public void computeBill()  
     {
 
+        
         if(member.getId()== -1) // -1 as id when its a guest
         {
             total = Movie.getPrice()*nb_tickets;
@@ -43,22 +44,29 @@ public class biling {
         else
             total = (Movie.getPrice()-(Movie.getPrice()*Movie.getDiscount()*nb_tickets));
         
+        String[][] list = getBills();
+        
         try
         {
-            FileWriter pw = new FileWriter("Bills.txt", true);
-            PrintWriter outputFile = new PrintWriter(pw);
-                        
-            outputFile.println(member.getFirst_name() + ";" + member.getLast_name() + ";" + Movie.getTitle() + ";" + Movie.getPrice() + ";" + nb_tickets + ";" + total); 
+            PrintWriter pW = new PrintWriter("Bills.txt");
+            PrintWriter outputFile = new PrintWriter(pW);
+            
+            outputFile.println((list.length)+1); 
+            
+            for (String[] a : list)
+                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]); 
+            
+            outputFile.println(list.length + ";" + member.first_name + ";" + member.last_name + ";" +member.username+ ";" + member.pw); 
                 
             outputFile.close();
         }
-        catch(IOException e)
+        catch(FileNotFoundException e)
         {
             System.out.println("File not found.");
         }
     }
     
-    public String[][] getBills()
+    public static String[][] getBills()
     {
         try
         {
