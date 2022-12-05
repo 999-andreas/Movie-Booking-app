@@ -4,6 +4,12 @@
  */
 package movie_app;
 
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+import static movie_app.movie.getMovies;
+
 
 
 /**
@@ -13,22 +19,52 @@ package movie_app;
 public class MoviesFrames extends javax.swing.JFrame {
 
     private Member aMember;
+    private ArrayList<movie> theMovies;
+    
     /**
      * Creates new form MoviesFrames
      * @param theMember
      */
     
-    
     public MoviesFrames(Member theMember) {
         initComponents();
-        aMember= theMember;
+        aMember= theMember;//Retrieves the user from previous page
+        theMovies= getMovies();// Retrieves the list of movies on txt file
         
         lblWelcome.setText("Welcome "+aMember.first_name+"!"); //Welcomes the user
+        
+        
+        for (int i=0; i <theMovies.size(); i++){
+            if (theMovies.get(i).isAvailability()==true){
+                
+                panelMovie.setLayout(new GridLayout(6,1, 5, 10));
+            
+            
+                JLabel lblTitle =new JLabel(theMovies.get(i).getTitle());
+                JLabel lblGenre= new JLabel(theMovies.get(i).getGenre());
+                JLabel lblDate= new JLabel(theMovies.get(i).getDate());
+                JLabel lblDuration= new JLabel("Duration: "+theMovies.get(i).getDuration());
+                JLabel lblPrice= new JLabel("Price: "+theMovies.get(i).getPrice());
+                
+
+
+                panelMovie.add(lblTitle);
+                panelMovie.add(lblGenre);
+                panelMovie.add(lblDate);
+                panelMovie.add(lblDuration);
+                panelMovie.add(lblPrice);
+                
+            
+            }
+            
+        }
+        
         
     }
     
     public MoviesFrames(){
         initComponents();
+        
     }
 
     /**
@@ -42,10 +78,8 @@ public class MoviesFrames extends javax.swing.JFrame {
 
         btnDisconnect = new javax.swing.JButton();
         btnGoToLogin = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listUsers = new javax.swing.JList<>();
         lblWelcome = new javax.swing.JLabel();
+        panelMovie = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,41 +97,36 @@ public class MoviesFrames extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(22, 242, 22));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(listUsers);
-
         lblWelcome.setText("Welcome Guest!");
+
+        panelMovie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout panelMovieLayout = new javax.swing.GroupLayout(panelMovie);
+        panelMovie.setLayout(panelMovieLayout);
+        panelMovieLayout.setHorizontalGroup(
+            panelMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 142, Short.MAX_VALUE)
+        );
+        panelMovieLayout.setVerticalGroup(
+            panelMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(422, Short.MAX_VALUE)
-                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGoToLogin)
+                .addContainerGap(261, Short.MAX_VALUE)
+                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDisconnect)
                 .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(panelMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,14 +134,12 @@ public class MoviesFrames extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDisconnect)
-                    .addComponent(btnGoToLogin)
-                    .addComponent(lblWelcome))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(382, Short.MAX_VALUE))
+                    .addComponent(btnDisconnect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(panelMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,9 +199,7 @@ public class MoviesFrames extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDisconnect;
     private javax.swing.JButton btnGoToLogin;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JList<String> listUsers;
+    private javax.swing.JPanel panelMovie;
     // End of variables declaration//GEN-END:variables
 }

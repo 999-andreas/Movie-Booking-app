@@ -24,12 +24,11 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="139" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="lblWarning" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblUsername" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace pref="132" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="lblWarning" max="32767" attributes="0"/>
+                      <Component id="lblUsername" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnOK" min="-2" pref="115" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -38,6 +37,10 @@
                       <Component id="lblLastName" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       <Component id="lblPwdFirst" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -116,14 +119,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfUsername">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Enter a Username *"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfPwdFirst">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Enter your password"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPwdFirst">
       <Properties>
@@ -132,13 +129,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Confirm :"/>
+        <Property name="text" type="java.lang.String" value="Confirm Pwd:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfConfPwd">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Confirm your password"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnOK">
       <Properties>
@@ -157,9 +151,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfLastName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Enter Last Name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastName">
       <Properties>
@@ -172,9 +163,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfFirstName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Enter First Name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblWarning">
     </Component>
