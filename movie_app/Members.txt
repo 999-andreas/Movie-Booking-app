@@ -1,7 +1,3 @@
-6
-0;Andreas;Chatel;securepw
-1;SF;ce_est_un_test;super
-2;jean;castre;batman
-3;jean;castre;BBBBBBB
-4;jean;castre;BBBBBBB
-5;jean;castre;BBBBBBB
+2
+0;Andreas;Chatel;ouioui;securepw
+1;Antoine;Wellers;AntoineW;YES

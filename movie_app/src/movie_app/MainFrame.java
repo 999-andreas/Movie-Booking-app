@@ -92,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnContinueGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueGuestActionPerformed
         // TODO add your handling code here:
-        Member theGuest= new Member("guest","guest","guest");
+        Member theGuest= new Member("guest","guest","guest","guest");
         MoviesFrames theMovies= new MoviesFrames(theGuest); //Creates the frame for the movies
         
         theMovies.setVisible(true);//sets visible the frame to load the movies

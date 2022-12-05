@@ -10,12 +10,19 @@ package movie_app;
  */
 public class AdminMenuFrame extends javax.swing.JFrame {
 
+    private Member theAdmin;
     
     /**
      * Creates new form AdminMenuFrame
+     * @param theAdmin
      */
-    public AdminMenuFrame() {
+    public AdminMenuFrame(Member theAdmin) {
         
+        initComponents();
+        this.theAdmin=theAdmin;
+    }
+    
+    public AdminMenuFrame(){
         initComponents();
     }
 

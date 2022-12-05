@@ -163,16 +163,21 @@ public class CreateAccount extends javax.swing.JFrame {
         
             if (!tfLastName.getText().isBlank()){//if the Last name text field is not empty
                 
-                if (!tfPwdFirst.getText().isBlank() && tfPwdFirst.getText().equals(tfConfPwd.getText())){//checks if passwords match
-                    Member theMember= new Member(tfFirstName.getText(),tfLastName.getText(),tfPwdFirst.getText());//Creates the member object with all the fields
+                if (!tfUsername.getText().isBlank() && tfUsername.getText().length()>3){//checks if username is long enough
+                    if (!tfPwdFirst.getText().isBlank() && tfPwdFirst.getText().equals(tfConfPwd.getText())){//checks if passwords match
+                        Member theMember= new Member(tfFirstName.getText(),tfLastName.getText(), tfUsername.getText(),tfPwdFirst.getText());//Creates the member object with all the fields
 
-                    theMember.saveMember();//saves the member object in a text file     
-                    MainFrame theMainFrame= new MainFrame();//creates a JFrame for main menu             
-                    theMainFrame.setVisible(true);//shows the main menu
-                    this.dispose(); //exits the account creation page
+                        theMember.saveUser(false);//saves the member object in a text file     
+                        MainFrame theMainFrame= new MainFrame();//creates a JFrame for main menu             
+                        theMainFrame.setVisible(true);//shows the main menu
+                        this.dispose(); //exits the account creation page
+                    }
+                    else{
+                        lblWarning.setText("either passwords don't match, either it is blank");
+                    }
                 }
                 else{
-                    lblWarning.setText("either passwords don't match, either it is blank");
+                    lblWarning.setText("Your username is too short! at least 3 characters");
                 }
             }
             else{

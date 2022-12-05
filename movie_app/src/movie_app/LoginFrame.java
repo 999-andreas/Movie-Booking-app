@@ -5,7 +5,7 @@
 package movie_app;
 
 import java.util.ArrayList;
-import static movie_app.Member.getMembers;
+import static movie_app.superUser.getUsers;
 
 
 
@@ -16,12 +16,14 @@ import static movie_app.Member.getMembers;
 public class LoginFrame extends javax.swing.JFrame {
 
     private ArrayList<Member> theMembers= new ArrayList<Member>();
+    private ArrayList<Member> theAdmins= new ArrayList<Member>();
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
-        theMembers=getMembers();
+        theMembers=getUsers(false);
+        theAdmins=getUsers(true);
     }
 
     /**
@@ -123,11 +125,25 @@ public class LoginFrame extends javax.swing.JFrame {
         String thePwd= tfPwd.getText();
         
         for (int i=0; i<theMembers.size();i++){
-            if (theUsername.equalsIgnoreCase(theMembers.get(i).first_name)){
+            if (theUsername.equals(theMembers.get(i).username)){
                 if (thePwd.equalsIgnoreCase(theMembers.get(i).pw)){
                     MoviesFrames theMovies= new MoviesFrames(theMembers.get(i)); //Creates the frame for the movies
         
                     theMovies.setVisible(true);//sets visible the frame to load the movies
+                    this.dispose(); //disposes of the actual frame
+                }
+                else{
+                    lblCheck.setText("Username or Password doesn't match");
+                }
+            }
+            
+        }
+        for (int i=0; i<theAdmins.size();i++){
+            if (theUsername.equals(theAdmins.get(i).username)){
+                if (thePwd.equals(theAdmins.get(i).pw)){
+                    AdminMenuFrame theAdminFrame= new AdminMenuFrame(theAdmins.get(i)); //Creates the frame for the movies
+        
+                    theAdminFrame.setVisible(true);//sets visible the frame to load the movies
                     this.dispose(); //disposes of the actual frame
                 }
                 else{
