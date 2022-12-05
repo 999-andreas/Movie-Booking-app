@@ -4,12 +4,17 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
+import static movie_app.superUser.getUsers;
+
 /**
  *
  * @author Antoine
  */
 public class CreateAccount extends javax.swing.JFrame {
 
+    private ArrayList<Member> theMembers= getUsers(false);
+    private ArrayList<Member> theAdmin= getUsers(true);
     
     /**
      * Creates new form CreateAccount
@@ -154,8 +159,19 @@ public class CreateAccount extends javax.swing.JFrame {
         if (!tfFirstName.getText().isBlank()){ //if the first name text field is not empty
         
             if (!tfLastName.getText().isBlank()){//if the Last name text field is not empty
-                
-                if (!tfUsername.getText().isBlank() && tfUsername.getText().length()>3){//checks if username is long enough
+                int flag=0;// Num of instances of the username in the text files, to check if the username already exists or not
+                    for(int i=0; i<theMembers.size();i++){
+                        if (theMembers.get(i).username.equals(tfUsername.getText())){//Checks in the Member list
+                            flag+=1;
+                        }
+                    }
+                    for (int j=0; j<theAdmin.size();j++){
+                        if (theAdmin.get(j).username.equals(tfUsername.getText())){//checks in the admin list
+                            flag+=1;
+                        }
+                    }
+                if (!tfUsername.getText().isBlank() && tfUsername.getText().length()>3 && flag==0){//checks if username is long enough AND if the "flag" is still at 0
+                    
                     if (!tfPwdFirst.getText().isBlank() && tfPwdFirst.getText().equals(tfConfPwd.getText())){//checks if passwords match
                         Member theMember= new Member(tfFirstName.getText(),tfLastName.getText(), tfUsername.getText(),tfPwdFirst.getText());//Creates the member object with all the fields
 
@@ -166,6 +182,9 @@ public class CreateAccount extends javax.swing.JFrame {
                     }
                     else{
                         lblWarning.setText("either passwords don't match, either it is blank");
+                        if (flag!=0){
+                            lblWarning.setText("Username is already taken!");
+                        }
                     }
                 }
                 else{

@@ -47,6 +47,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         lblAvailability = new javax.swing.JLabel();
         btnAddMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        lblWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +101,8 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCreateMovie)
                 .addGap(317, 317, 317))
             .addGroup(layout.createSequentialGroup()
@@ -134,13 +137,18 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblCreateMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCreateMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -189,6 +197,31 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
     private void btnAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMovieActionPerformed
         // TODO add your handling code here:
+        if(!tfMovieTitle.getText().isBlank()){
+            if(!tfGenre.getText().isBlank()){
+                 
+                if(!tfDuration.getText().isBlank()||  Integer.parseInt(tfDuration.getText())<1){
+                    if(!tfReleaseDate.getText().isBlank()){
+                        
+                    }
+                    else{
+                        
+                    }
+                }
+                else{
+                    lblWarning.setText("Enter a valid time!");
+                }
+                
+            }
+            else{
+                lblWarning.setText("You need to enter the 'Genres'");
+            }
+            
+            
+        } 
+        else {
+            lblWarning.setText("You need to enter a Title.");
+        }
         
     }//GEN-LAST:event_btnAddMovieActionPerformed
 
@@ -248,6 +281,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumTickets;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblReleaseDate;
+    private javax.swing.JLabel lblWarning;
     private javax.swing.JRadioButton rbAvailable;
     private javax.swing.JRadioButton rbNotAvailable;
     private javax.swing.JTextField tfDiscount;
