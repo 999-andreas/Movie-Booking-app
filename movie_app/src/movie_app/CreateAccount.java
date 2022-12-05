@@ -181,14 +181,14 @@ public class CreateAccount extends javax.swing.JFrame {
                         this.dispose(); //exits the account creation page
                     }
                     else{
-                        lblWarning.setText("either passwords don't match, either it is blank");
-                        if (flag!=0){
-                            lblWarning.setText("Username is already taken!");
-                        }
+                        lblWarning.setText("either passwords don't match, either it is blank");                        
                     }
                 }
                 else{
                     lblWarning.setText("Your username is too short! at least 3 characters");
+                    if (flag!=0){
+                            lblWarning.setText("Username is already taken!");
+                        }
                 }
             }
             else{
