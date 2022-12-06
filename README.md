@@ -5,4 +5,6 @@
 
 ![JAVA](/JAVA.gif?raw=true "JAVA")
 
+### UML diagram
+
 ![SCHEMA](/archi.png?raw=true "schema")
