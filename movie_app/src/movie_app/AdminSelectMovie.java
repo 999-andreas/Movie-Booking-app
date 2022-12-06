@@ -13,7 +13,9 @@ import static movie_app.movie.getMovies;
  */
 public class AdminSelectMovie extends javax.swing.JFrame {
 
-    private ArrayList<movie> theMovies= getMovies();
+    private ArrayList<movie> theMovies= getMovies();//retrieves the list of movies
+    private movie theSelectedMovie;
+    
     /**
      * Creates new form AdminSelectMovie
      */
@@ -37,10 +39,16 @@ public class AdminSelectMovie extends javax.swing.JFrame {
         btnSelectMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         cbMovies = new javax.swing.JComboBox<>();
+        lblTest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnSelectMovie.setText("Select the movie");
+        btnSelectMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectMovieActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +63,8 @@ public class AdminSelectMovie extends javax.swing.JFrame {
             }
         });
 
+        lblTest.setText("Test");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,7 +76,8 @@ public class AdminSelectMovie extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSelectMovie)
                         .addGap(62, 62, 62)
-                        .addComponent(btnCancel)))
+                        .addComponent(btnCancel))
+                    .addComponent(lblTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +85,9 @@ public class AdminSelectMovie extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(cbMovies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addGap(36, 36, 36)
+                .addComponent(lblTest)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelectMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -95,6 +108,20 @@ public class AdminSelectMovie extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSelectMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectMovieActionPerformed
+        // TODO add your handling code here:
+        lblTest.setText(cbMovies.getSelectedItem().toString());
+        for(int i=0; i<theMovies.size();i++){
+            if(cbMovies.getSelectedItem().toString().equals(theMovies.get(i).getTitle())){
+                AdminMovieModify theModifyFrame= new AdminMovieModify(theMovies.get(i));
+                theModifyFrame.setVisible(true);
+                
+                this.dispose();
+            }
+        }
+        
+    }//GEN-LAST:event_btnSelectMovieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,5 +162,6 @@ public class AdminSelectMovie extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSelectMovie;
     private javax.swing.JComboBox<String> cbMovies;
+    private javax.swing.JLabel lblTest;
     // End of variables declaration//GEN-END:variables
 }

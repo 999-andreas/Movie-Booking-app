@@ -10,10 +10,32 @@ package movie_app;
  */
 public class AdminMovieModify extends javax.swing.JFrame {
 
+    private movie aMovieToModify;
     /**
      * Creates new form AdminMovieCreation
+     * @param theMovie
      */
-    public AdminMovieModify() {
+    public AdminMovieModify(movie theMovie) {
+        initComponents();
+        aMovieToModify=theMovie;//retrieve the movie data
+        //set all the text fields with the corresponding data to prefill
+        tfMovieTitle.setText(aMovieToModify.getTitle());
+        tfGenre.setText(aMovieToModify.getGenre());
+        tfDuration.setText(Integer.toString(aMovieToModify.getDuration()));
+        tfReleaseDate.setText(aMovieToModify.getDate());
+        tfPrice.setText(Double.toString(aMovieToModify.getPrice()));
+        tfDiscount.setText(Double.toString(aMovieToModify.getDiscount()));
+        tfNumTickets.setText(Integer.toString(aMovieToModify.getNb_place()));
+        if(aMovieToModify.isAvailability()==true){
+            rbAvailable.setSelected(true);
+        }
+        else{
+            rbNotAvailable.setSelected(true);
+        }
+        
+    }
+    
+    public AdminMovieModify(){
         initComponents();
     }
 
