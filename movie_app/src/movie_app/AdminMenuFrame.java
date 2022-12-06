@@ -164,7 +164,7 @@ public class AdminMenuFrame extends javax.swing.JFrame {
 
     private void btnModifyMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyMovieActionPerformed
         // TODO add your handling code here:
-        AdminMovieModify aMovieFrame= new AdminMovieModify();
+        AdminSelectMovie aMovieFrame= new AdminSelectMovie();
         aMovieFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnModifyMovieActionPerformed
