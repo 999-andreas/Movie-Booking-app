@@ -5,4 +5,4 @@
 
 ![JAVA](/JAVA.gif?raw=true "JAVA")
 
-![SCHEMA](/architecture_projet.drawio(1).png?raw=true "schema")
+![SCHEMA](/architecture_projet.drawio (1).png?raw=true "schema")
