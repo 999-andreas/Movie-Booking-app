@@ -149,6 +149,46 @@ public class movie {
         }
         return null;
     }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public void setNb_place(int nb_place) {
+        this.nb_place = nb_place;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public void setTimes(String[] times) {
+        this.times = times;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
     
     /*
     public movie getMovie(int id)

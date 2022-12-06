@@ -97,8 +97,18 @@ public class AdminMovieModify extends javax.swing.JFrame {
         lblAvailability.setText("Availability :");
 
         btnModifyMovie.setText("Modify Movie");
+        btnModifyMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyMovieActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,6 +198,23 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnModifyMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyMovieActionPerformed
+        // TODO add your handling code here:
+        aMovieToModify.setTitle(tfMovieTitle.getText());
+        aMovieToModify.setGenre(tfGenre.getText());
+          
+        
+                
+        aMovieToModify.modif_movie();
+    }//GEN-LAST:event_btnModifyMovieActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        AdminSelectMovie backToSelect= new AdminSelectMovie();
+        backToSelect.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
