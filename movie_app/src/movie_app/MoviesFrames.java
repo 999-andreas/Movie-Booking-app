@@ -37,7 +37,7 @@ public class MoviesFrames extends javax.swing.JFrame {
         for (int i=0; i <theMovies.size(); i++){
             if (theMovies.get(i).isAvailability()==true){
                 
-                panelMovie.setLayout(new GridLayout(6,1, 5, 10));
+                panelMovie.setLayout(new GridLayout(theMovies.size(),6, 5, 10));
             
             
                 JLabel lblTitle =new JLabel(theMovies.get(i).getTitle());
@@ -45,6 +45,7 @@ public class MoviesFrames extends javax.swing.JFrame {
                 JLabel lblDate= new JLabel(theMovies.get(i).getDate());
                 JLabel lblDuration= new JLabel("Duration: "+theMovies.get(i).getDuration());
                 JLabel lblPrice= new JLabel("Price: "+theMovies.get(i).getPrice());
+                
                 
 
 
@@ -80,6 +81,8 @@ public class MoviesFrames extends javax.swing.JFrame {
         btnGoToLogin = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
         panelMovie = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listMovies = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,19 +108,21 @@ public class MoviesFrames extends javax.swing.JFrame {
         panelMovie.setLayout(panelMovieLayout);
         panelMovieLayout.setHorizontalGroup(
             panelMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 823, Short.MAX_VALUE)
         );
         panelMovieLayout.setVerticalGroup(
             panelMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+            .addGap(0, 288, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setViewportView(listMovies);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140)
                 .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,6 +132,8 @@ public class MoviesFrames extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,9 +144,14 @@ public class MoviesFrames extends javax.swing.JFrame {
                     .addComponent(btnDisconnect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addComponent(panelMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(panelMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,7 +211,9 @@ public class MoviesFrames extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDisconnect;
     private javax.swing.JButton btnGoToLogin;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JList<String> listMovies;
     private javax.swing.JPanel panelMovie;
     // End of variables declaration//GEN-END:variables
 }
