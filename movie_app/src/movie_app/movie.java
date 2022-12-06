@@ -7,6 +7,7 @@ package movie_app;
 import java.util.ArrayList;
 import java.io.*;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -74,6 +75,7 @@ public class movie {
         return discount;
     }
     
+    // save a new movie in the file text
     public void saveMovie() throws IOException 
     {
         //we rewrite all the file because it size is xritten at the beginning
@@ -112,6 +114,7 @@ public class movie {
         }
     }
     
+    // get all the movies from the text file
     public static ArrayList<movie> getMovies() 
     {
         // vaq chercher tout les films dans le fichier
@@ -135,7 +138,8 @@ public class movie {
                String[] tab_times = info[9].split(",");
 
                list.add(new movie(info[1], info[2], info[3], Integer.parseInt(info[4]), Double.parseDouble(info[5]), Boolean.parseBoolean(info[6]), Integer.parseInt(info[7]), Double.parseDouble(info[8]), tab_times, info[10]));
-               
+
+                
                list.get(k).setId(k);
                //System.out.println(id+genre+date);
             }
@@ -149,13 +153,8 @@ public class movie {
         }
         return null;
     }
-    
-    /*
-    public movie getMovie(int id)
-    {
-        //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
-    }*/
-    
+
+    // modification of a movie in the text file
     public void modif_movie()
     {   
         ArrayList<movie> list = getMovies();

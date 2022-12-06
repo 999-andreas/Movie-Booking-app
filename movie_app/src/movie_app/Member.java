@@ -34,6 +34,7 @@ public class Member extends superUser
         return last_name;
     }
 
+    // modification to the text file
     public void modifMember(boolean admin)
     {
         ArrayList<Member> list = getUsers(admin);
@@ -64,6 +65,7 @@ public class Member extends superUser
         } 
     }
     
+    // delete a member from the text file
     public static void deleteMember(int id, boolean admin)
     {
         ArrayList<Member> list = getUsers(admin);
@@ -92,10 +94,6 @@ public class Member extends superUser
         {
             System.out.println("File not found.");
         } 
-    }
-    
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setFirst_name(String first_name) {
