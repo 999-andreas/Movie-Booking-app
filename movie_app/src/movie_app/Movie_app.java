@@ -46,7 +46,7 @@ public class Movie_app {
         //movie M1 = new movie("Adventure", "TEST", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
         //M1.saveMovie();
         
-        deleteMovie(8);
+        //deleteMovie(8);
         //deleteMember(3,false);
         
         

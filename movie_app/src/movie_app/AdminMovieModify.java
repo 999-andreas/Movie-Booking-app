@@ -26,6 +26,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         tfPrice.setText(Double.toString(aMovieToModify.getPrice()));
         tfDiscount.setText(Double.toString(aMovieToModify.getDiscount()));
         tfNumTickets.setText(Integer.toString(aMovieToModify.getNb_place()));
+        tfImageUrl.setText(aMovieToModify.getUrl());
         if(aMovieToModify.isAvailability()==true){
             rbAvailable.setSelected(true);
         }
@@ -69,7 +70,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         lblAvailability = new javax.swing.JLabel();
         btnModifyMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        tfImageUrl = new javax.swing.JTextField();
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,7 +142,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addComponent(tfPrice)
                             .addComponent(tfDiscount)
                             .addComponent(tfNumTickets)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +191,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
                     .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -264,7 +265,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnModifyMovie;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblDuration;
@@ -280,6 +280,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JTextField tfDiscount;
     private javax.swing.JTextField tfDuration;
     private javax.swing.JTextField tfGenre;
+    private javax.swing.JTextField tfImageUrl;
     private javax.swing.JTextField tfMovieTitle;
     private javax.swing.JTextField tfNumTickets;
     private javax.swing.JTextField tfPrice;

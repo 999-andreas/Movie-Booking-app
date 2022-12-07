@@ -51,7 +51,7 @@
                           <Component id="tfPrice" max="32767" attributes="0"/>
                           <Component id="tfDiscount" max="32767" attributes="0"/>
                           <Component id="tfNumTickets" max="32767" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="299" max="-2" attributes="0"/>
+                          <Component id="tfImageUrl" min="-2" pref="299" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnModifyMovie" min="-2" pref="116" max="-2" attributes="0"/>
@@ -116,7 +116,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="tfImageUrl" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="lblImage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="100" max="32767" attributes="0"/>
@@ -227,7 +227,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="tfImageUrl">
     </Component>
     <Component class="javax.swing.JLabel" name="lblImage">
       <Properties>
