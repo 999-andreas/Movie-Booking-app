@@ -15,7 +15,7 @@ import static movie_app.movie.getMovies;
  */
 public class AdminSelectMovie extends javax.swing.JFrame {
 
-    private ArrayList<movie> theMovies= getMovies();//retrieves the list of movies
+    private final ArrayList<movie> theMovies= getMovies();//retrieves the list of movies
     private movie theSelectedMovie;
     DefaultListModel listModel;
     
