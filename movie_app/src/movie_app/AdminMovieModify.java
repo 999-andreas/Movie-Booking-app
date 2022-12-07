@@ -45,8 +45,8 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         
         listModel= new DefaultListModel();
-        for (int i=0; i<aMovieToModify.getTimes().length;i++){
-            listModel.addElement(aMovieToModify.getTimes()[i]);
+        for (int i=0; i<(aMovieToModify.getTimes().length);i++){
+            listModel.addElement((aMovieToModify.getTimes())[i]);
         }
          
         
@@ -305,14 +305,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
         }
         
         String[] times= new String[theTimes.size()];
+        
         for (int i=0; i<theTimes.size();i++){
             times[i]= theTimes.get(i);
             System.out.println(times[i]);
         }
         
-        
         aMovieToModify.setTimes(times);
-        
                 
         aMovieToModify.modif_movie();
     }//GEN-LAST:event_btnModifyMovieActionPerformed
