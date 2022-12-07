@@ -223,7 +223,7 @@ public class movie {
                     file_times+=time+",";
                 }
                 
-                outputFile.println(k + ";" + list.get(k).genre + ";" + list.get(k).title + ";" + list.get(k).date+";" + list.get(k).duration+";" + list.get(k).price+";" + list.get(k).availability+";" + list.get(k).discount+";" + file_times+";" + list.get(k).url); 
+                outputFile.println(k + ";" + list.get(k).genre + ";" + list.get(k).title + ";" + list.get(k).date+";" + list.get(k).duration+";" + list.get(k).price+";" + list.get(k).availability+";"+ list.get(k).nb_place + ";"+list.get(k).discount+";" + file_times+";" + list.get(k).url); 
                 
             }
                 
