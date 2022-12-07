@@ -35,8 +35,6 @@ public class biling {
         
     public void computeBill()  
     {
-
-        
         if(member.getId()== -1) // -1 as id when its a guest
         {
             total = Movie.getPrice()*nb_tickets;
