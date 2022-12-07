@@ -1,7 +1,5 @@
-6
-0;Andreas;Chatel;securepw;t
-1;SF;ce_est_un_test;super;t
-2;jean;castre;batman;t
-3;jean;castre;BBBBBBB;t
-4;jean;castre;BBBBBBB;t
-5;jean;castre;BBBBBBB;t
+4
+0;Andreas;Chatel;t
+1;SF;ce_est_un_test;t
+2;jean;castre;t
+3;jean;castre;t

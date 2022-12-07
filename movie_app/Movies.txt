@@ -1,11 +1,10 @@
-10
-0;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-1;SF;testtest;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-2;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-3;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-4;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-5;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
-6;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20:00,20:30,;twitter.com
-7;Adventure;Indiana Johns;02/02/2002;120;7.0;true;40;0.2;20:00,20:30,;twitter.com
-8;Adventure;Indiana Johns;02/02/2002;120;7.0;true;40;0.2;20:00,20:30,;twitter.com
-9;sqdf;sdf;dfgd;120;1.0;true;50;1.0;20/20/20@15@00,20/20/21@15@00,20/20/22@15@00,;bientot
+9
+0;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+1;SF;testtest;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+2;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+3;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+4;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+5;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,19:00,;twitter.com
+6;SF;ce_est_un_test;02/02/2002;120;7.0;true;0.2;20:00,20:30,;twitter.com
+7;Adventure;Indiana Johns;02/02/2002;120;7.0;true;0.2;20:00,20:30,;twitter.com
+8;Adventure;TEST;02/02/2002;120;7.0;true;0.2;20:00,20:30,;twitter.com

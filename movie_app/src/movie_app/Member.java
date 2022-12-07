@@ -85,8 +85,8 @@ public class Member extends superUser
             
             outputFile.println(list.size()); 
             
-            for (Member a : list)
-                outputFile.println(a.id + ";" + a.first_name + ";" + a.last_name + ";" + a.pw); 
+            for(int k=0;k<list.size();k++)
+                outputFile.println(k + ";" + list.get(k).first_name + ";" + list.get(k).last_name + ";" + list.get(k).pw); 
                 
             outputFile.close();
         }

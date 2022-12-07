@@ -38,20 +38,21 @@ public class Movie_app {
         
         String[][] list4 = getBills();*/
         
-        //deleteMember(6,false);
         
         //System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
-        String[] file = {"20:00","20:30"};
+        //String[] file = {"20:00","20:30"};
         
-        movie M1 = new movie("Adventure", "Indiana Johns", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
-        
-        
+        //movie M1 = new movie("Adventure", "TEST", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
         //M1.saveMovie();
         
-        ArrayList<movie> list = getMovies();
+        deleteMovie(8);
+        //deleteMember(3,false);
         
-        System.out.println(list.get(6).getTimes()[0]); // to have juste one movie select using the index==id
+        
+        //ArrayList<movie> list = getMovies();
+        
+        //System.out.println(list.get(6).getTimes()[0]); // to have juste one movie select using the index==id
         
         
     }

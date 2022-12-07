@@ -132,7 +132,7 @@ public class movie {
             for(int k=0;k<nb_line;k++)
             {
                String line = inputFile.nextLine();
-               //System.out.println(line);  
+               System.out.println(line);  
 
                String[] info = line.split(";");
                String[] tab_times = info[9].split(",");
@@ -194,7 +194,46 @@ public class movie {
         }     
     }
 
-    
+    public static void deleteMovie(int id)
+    {
+        ArrayList<movie> list = getMovies();
+        
+        for (int k=0;k<list.size();k++)
+        {
+            if(id == list.get(k).id)
+            {
+                list.remove(k);
+            }
+        }
+   
+        try
+        {
+            PrintWriter pw = new PrintWriter("Movies.txt");
+            PrintWriter outputFile = new PrintWriter(pw);
+            
+            outputFile.println(list.size()); 
+            String file_times;
+            
+            for(int k=0;k<list.size();k++)
+            {
+                file_times = "";
+            
+                for(String time :list.get(k).times)
+                {
+                    file_times+=time+",";
+                }
+                
+                outputFile.println(k + ";" + list.get(k).genre + ";" + list.get(k).title + ";" + list.get(k).date+";" + list.get(k).duration+";" + list.get(k).price+";" + list.get(k).availability+";" + list.get(k).discount+";" + file_times+";" + list.get(k).url); 
+                
+            }
+                
+            outputFile.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File not found.");
+        } 
+    }
     
     public void setId(int id) {
         this.id = id;
