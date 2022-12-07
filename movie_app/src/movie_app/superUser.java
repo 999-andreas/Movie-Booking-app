@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author andre
  */
-public class superUser implements user{
+public class superUser{
     
     protected int id;
     protected String first_name;
@@ -28,6 +28,7 @@ public class superUser implements user{
     this.pw = pw;
     }
     
+    //get all the users (admin or member)
     public static ArrayList<Member> getUsers(boolean admin)
     {
         String path;
@@ -81,7 +82,7 @@ public class superUser implements user{
 
 
     
-    
+    // put a new user in the text file (admin or member)
     public void saveUser(boolean admin)
     {
         String path;
@@ -115,6 +116,7 @@ public class superUser implements user{
         }
     }
     
+    // get one user from the text file
     public static Member getUser(int id, boolean admin)
     {
         ArrayList<Member> list = getUsers(admin);

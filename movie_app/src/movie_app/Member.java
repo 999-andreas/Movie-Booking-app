@@ -34,6 +34,7 @@ public class Member extends superUser
         return last_name;
     }
 
+    // modification to the text file
     public void modifMember(boolean admin)
     {
         ArrayList<Member> list = getUsers(admin);
@@ -64,6 +65,7 @@ public class Member extends superUser
         } 
     }
     
+    // delete a member from the text file
     public static void deleteMember(int id, boolean admin)
     {
         ArrayList<Member> list = getUsers(admin);
@@ -83,8 +85,8 @@ public class Member extends superUser
             
             outputFile.println(list.size()); 
             
-            for (Member a : list)
-                outputFile.println(a.id + ";" + a.first_name + ";" + a.last_name + ";" + a.pw); 
+            for(int k=0;k<list.size();k++)
+                outputFile.println(k + ";" + list.get(k).first_name + ";" + list.get(k).last_name + ";" + list.get(k).pw); 
                 
             outputFile.close();
         }
@@ -92,10 +94,6 @@ public class Member extends superUser
         {
             System.out.println("File not found.");
         } 
-    }
-    
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setFirst_name(String first_name) {
