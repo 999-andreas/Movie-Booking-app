@@ -4,6 +4,7 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
@@ -14,6 +15,9 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private movie aMovieToModify;
     DefaultListModel listModel;
+    private ArrayList <String> theTimes= new ArrayList<String>();
+    private int nbTimes;
+    private static int MAX=8;
     /**
      * Creates new form AdminMovieCreation
      * @param theMovie
@@ -36,8 +40,15 @@ public class AdminMovieModify extends javax.swing.JFrame {
         else{
             rbNotAvailable.setSelected(true);
         }
+        
+        nbTimes=aMovieToModify.getTimes().length;
+        
+        
         listModel= new DefaultListModel();
-        listModel.addElement(aMovieToModify.getTimes());
+        for (int i=0; i<aMovieToModify.getTimes().length;i++){
+            listModel.addElement(aMovieToModify.getTimes()[i]);
+        }
+         
         
         listTimings.setModel(listModel);
         
@@ -133,9 +144,19 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         lblTimings.setText("Timings :");
 
+        listTimings.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "item 2" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(listTimings);
 
         btnAddTime.setText("Add");
+        btnAddTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTimeActionPerformed(evt);
+            }
+        });
 
         tfDate.setText("DD/MM/YY");
 
@@ -283,6 +304,15 @@ public class AdminMovieModify extends javax.swing.JFrame {
             aMovieToModify.setAvailability(false);
         }
         
+        String[] times= new String[theTimes.size()];
+        for (int i=0; i<theTimes.size();i++){
+            times[i]= theTimes.get(i);
+            System.out.println(times[i]);
+        }
+        
+        
+        aMovieToModify.setTimes(times);
+        
                 
         aMovieToModify.modif_movie();
     }//GEN-LAST:event_btnModifyMovieActionPerformed
@@ -293,6 +323,20 @@ public class AdminMovieModify extends javax.swing.JFrame {
         backToSelect.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTimeActionPerformed
+        // TODO add your handling code here:
+        String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
+        
+        if(nbTimes<MAX)
+        {
+            listModel.addElement(timing);
+            listTimings.setModel(listModel);
+            theTimes.add(timing);
+        }
+            
+        nbTimes++;
+    }//GEN-LAST:event_btnAddTimeActionPerformed
 
     /**
      * @param args the command line arguments
