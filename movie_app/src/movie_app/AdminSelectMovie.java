@@ -24,14 +24,11 @@ public class AdminSelectMovie extends javax.swing.JFrame {
      */
     public AdminSelectMovie() {
         initComponents();
-        listModel= new DefaultListModel();
+        listModel= new DefaultListModel(); //new model for the list
         for (int i=0; i<theMovies.size();i++){
-            cbMovies.addItem(theMovies.get(i).getTitle());//adds an item to the combo box
-            listModel.addElement(theMovies.get(i).getId()+"|"+theMovies.get(i).getTitle());
-            
-            
+            listModel.addElement(theMovies.get(i).getId()+"   |   "+theMovies.get(i).getTitle());//gets the id and the title of the movie, adds it to the model             
         }
-        listMovies.setModel(listModel);
+        listMovies.setModel(listModel);//set the model to the list of movies we passed to the model
         
         
     }
@@ -47,10 +44,10 @@ public class AdminSelectMovie extends javax.swing.JFrame {
 
         btnSelectMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        cbMovies = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         listMovies = new javax.swing.JList<>();
         lblWarningSelect = new javax.swing.JLabel();
+        lblSelectAMovie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,42 +65,42 @@ public class AdminSelectMovie extends javax.swing.JFrame {
             }
         });
 
-        cbMovies.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbMoviesActionPerformed(evt);
-            }
-        });
-
         jScrollPane1.setViewportView(listMovies);
+
+        lblSelectAMovie.setText("Select a Movie!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addComponent(cbMovies, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnSelectMovie)
-                            .addGap(62, 62, 62)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblWarningSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnSelectMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblWarningSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(lblSelectAMovie)))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(cbMovies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(lblSelectAMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelectMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblWarningSelect)
                 .addGap(64, 64, 64))
@@ -111,10 +108,6 @@ public class AdminSelectMovie extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMoviesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbMoviesActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
@@ -176,8 +169,8 @@ public class AdminSelectMovie extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSelectMovie;
-    private javax.swing.JComboBox<String> cbMovies;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblSelectAMovie;
     private javax.swing.JLabel lblWarningSelect;
     private javax.swing.JList<String> listMovies;
     // End of variables declaration//GEN-END:variables
