@@ -25,15 +25,19 @@ public class Movie_app {
 
              
         //Member M1 = new Member("jean", "castre","yes", "BBBBBBB");
-     
+        
+        //M1.setId(2);
+        
+        //M1.modifMember(false);
+        
         
         //M1.saveUser(false);
         
-        //ArrayList<Member> list = getUsers(false);
+       // ArrayList<Member> list = getUsers(false);
         //ArrayList<Member> list2 = getUsers(true);
         //ArrayList<movie> list3 = getMovies();
         
-        //biling B1 = new biling(list3.get(1), list2.get(0),2);
+       // biling B1 = new biling(list3.get(1), list2.get(0),2);
         
         //B1.computeBill();
         
@@ -42,13 +46,15 @@ public class Movie_app {
         
         //System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
-        String[] file = {"sd/fs/d@20@00","sd/f/s@20@30"};
+        String[] file = {"20:00","20:30"};
         
-        movie M2 = new movie("Adventure", "TEST", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
+        movie M1 = new movie("Adventure", "TEST2", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
         
-        M2.setId(7);
+        M1.setId(7);
         
-        M2.modif_movie();
+        M1.modif_movie();
+        
+        //getMovies();
 
         //M1.saveMovie();
         
