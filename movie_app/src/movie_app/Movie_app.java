@@ -23,27 +23,39 @@ public class Movie_app {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
 
-             /*
-        Member M1 = new Member("jean", "castre","yes", "BBBBBBB");
+             
+        //Member M1 = new Member("jean", "castre","yes", "BBBBBBB");
+        
+        //M1.setId(2);
+        
+        //M1.modifMember(false);
+        
         
         //M1.saveUser(false);
         
-        ArrayList<Member> list = getUsers(false);
-        ArrayList<Member> list2 = getUsers(true);
-        ArrayList<movie> list3 = getMovies();
+       // ArrayList<Member> list = getUsers(false);
+        //ArrayList<Member> list2 = getUsers(true);
+        //ArrayList<movie> list3 = getMovies();
         
-        biling B1 = new biling(list3.get(1), list2.get(0),2);
+       // biling B1 = new biling(list3.get(1), list2.get(0),2);
         
-        B1.computeBill();
+        //B1.computeBill();
         
-        String[][] list4 = getBills();*/
+        //String[][] list4 = getBills();
         
         
         //System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
-        //String[] file = {"20:00","20:30"};
+        String[] file = {"20:00","20:30"};
         
-        //movie M1 = new movie("Adventure", "TEST", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
+        movie M1 = new movie("Adventure", "TEST2", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
+        
+        M1.setId(7);
+        
+        M1.modif_movie();
+        
+        //getMovies();
+
         //M1.saveMovie();
         
         //deleteMovie(8);

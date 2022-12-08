@@ -210,29 +210,30 @@ public class movie {
             if(id == list.get(k).id)
             {
                 list.set(id, new movie(genre, title, date, duration, price, availability, nb_place, discount, times, url));
+                list.get(k).setId(k);
             }
         }
         
         try
         {
             PrintWriter pw = new PrintWriter("Movies.txt");
-            PrintWriter outputFile = new PrintWriter(pw);
-            
-            outputFile.println(list.size()); 
-            String file_times;
-            
-            for (movie a : list)
-            {
-                file_times = "";
-                for(String time :a.times)
+            try (PrintWriter outputFile = new PrintWriter(pw)) {
+                outputFile.println(list.size());
+                String file_times;
+                
+                
+                for (movie a : list)
                 {
-                    file_times+=time+",";
+                    file_times = "";
+                    for(int k=0;k<a.times.length;k++)
+                    {
+                        file_times+=times[k];
+                        file_times+=",";
+                    }
+                    
+                    outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount+ ";"+file_times+";"+url);
                 }
-                
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount+ ";"+times+";"+url); 
             }
-                
-            outputFile.close();
         }
         catch(FileNotFoundException e)
         {
