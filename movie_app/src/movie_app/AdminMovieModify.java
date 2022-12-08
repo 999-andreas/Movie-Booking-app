@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
 public class AdminMovieModify extends javax.swing.JFrame {
 
     private movie aMovieToModify;
-    DefaultListModel listModel;
+    DefaultListModel listModel= new DefaultListModel();
     private ArrayList <String> theTimes= new ArrayList<String>();
     private int nbTimes;
     private static int MAX=8;
@@ -44,9 +44,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
         nbTimes=aMovieToModify.getTimes().length;
         
         
-        listModel= new DefaultListModel();
-        for (int i=0; i<(aMovieToModify.getTimes().length);i++){
+        
+        for (int i=0; i<nbTimes;i++){
             listModel.addElement((aMovieToModify.getTimes())[i]);
+            theTimes.add(aMovieToModify.getTimes()[i]);
         }
          
         
@@ -303,6 +304,8 @@ public class AdminMovieModify extends javax.swing.JFrame {
         else{
             aMovieToModify.setAvailability(false);
         }
+        
+        
         
         String[] times= new String[theTimes.size()];
         
