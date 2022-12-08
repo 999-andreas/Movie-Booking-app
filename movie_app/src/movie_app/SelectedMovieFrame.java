@@ -33,8 +33,8 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         
         jLabel7.setText(theMovie.getTitle());
         jLabel8.setText(theMovie.getGenre());
-        jLabel9.setText(String.valueOf(theMovie.getPrice()));
-        jLabel10.setText(String.valueOf(theMovie.getDuration()));
+        jLabel10.setText(String.valueOf(theMovie.getPrice()+"£"));
+        jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
         jLabel11.setText(String.valueOf(theMovie.getNb_place()));
         
         
@@ -122,28 +122,32 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jnbTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel1))
-                                    .addGap(71, 71, 71)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jLabel11))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel1))
+                                        .addGap(39, 39, 39))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(85, 85, 85)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jnbTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -203,30 +207,35 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
     private void jBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuyActionPerformed
         // TODO add your handling code here:
         String theSelectedTime = "";
-        
+        int nb_ticket = Integer.parseInt(jnbTickets.getValue().toString());
         
         if(jListTimes.isSelectionEmpty()==false){
-            int index= jListTimes.getSelectedIndex();
-            theSelectedTime = theMovie.getTimes()[index];
-            
-            SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
-            Calendar calendar = Calendar.getInstance();
+            if(nb_ticket<theMovie.getNb_place())
+            {
+                int index= jListTimes.getSelectedIndex();
+                theSelectedTime = theMovie.getTimes()[index];
 
-            Date dateObj = calendar.getTime();
-            String formattedDate = dtf.format(dateObj);
-            System.out.println(formattedDate);
+                SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+                Calendar calendar = Calendar.getInstance();
 
-            biling thebill=  new biling(theMovie, theMember, Integer.parseInt(jnbTickets.getValue().toString()), theSelectedTime,formattedDate );
-            thebill.computeBill();
+                Date dateObj = calendar.getTime();
+                String formattedDate = dtf.format(dateObj);
+                System.out.println(formattedDate);
+
+                biling thebill=  new biling(theMovie, theMember, nb_ticket, theSelectedTime,formattedDate );
+                thebill.computeBill();
 
 
-            MovieBilingFrame biling = new MovieBilingFrame(thebill);
-            biling.setVisible(true);
-            this.dispose();
-            
-            theMovie.setNb_place(theMovie.getNb_place()-Integer.parseInt(jnbTickets.getValue().toString()));
-            
-            theMovie.modif_movie();
+                MovieBilingFrame biling = new MovieBilingFrame(thebill);
+                biling.setVisible(true);
+                this.dispose();
+
+                theMovie.setNb_place(theMovie.getNb_place()-nb_ticket);
+
+                theMovie.modif_movie();
+            }
+            else
+                labelWarning.setText("please select less tickets:"+(nb_ticket-theMovie.getNb_place()) );
         }
         else{
             labelWarning.setText("Select a session Please!");
