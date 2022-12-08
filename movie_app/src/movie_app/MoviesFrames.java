@@ -153,7 +153,7 @@ public class MoviesFrames extends javax.swing.JFrame {
         if (!listMovies.isSelectionEmpty()){
             int index= listMovies.getSelectedIndex();
             theChosenMovie= theMovies.get(index);
-            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie);
+            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);
             theMovieFrame.setVisible(true);
             this.dispose();
         }

@@ -13,22 +13,23 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
     /**
      * Creates new form SelectedMovieFrame
      */
-    private static final String title = "title";
-    private static final String genre = "genre";
-    private static final String duration = "duration";
-    private static final String price = "price";
-    private static final String nb_place = "nb_place";
+    private Member theMember;
+    private movie theMovie;
 
-
-    
     public SelectedMovieFrame() {
         initComponents();
+    }
+
+    public SelectedMovieFrame(movie aMovie, Member aMember ) {
+        initComponents();
+        theMember = aMember;
+        theMovie = aMovie;
         
-        jLabel7.setText(title);
-        jLabel8.setText(genre);
-        jLabel9.setText(price);
-        jLabel10.setText(duration);
-        jLabel11.setText(nb_place);
+        jLabel7.setText(theMovie.getTitle());
+        jLabel8.setText(theMovie.getGenre());
+        jLabel9.setText(String.valueOf(theMovie.getPrice()));
+        jLabel10.setText(String.valueOf(theMovie.getDuration()));
+        jLabel11.setText(String.valueOf(theMovie.getNb_place()));
     }
 
     /**
@@ -157,8 +158,17 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
     private void jBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuyActionPerformed
         // TODO add your handling code here:
+        double total = 0.0;
         
-        double total = Double.parseDouble(jnbTickets.getValue().toString())*7.0; // faudra prendre en compte le discount 
+        
+        if(theMember.getId()==-1)
+        {
+            total = Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice();
+        }
+        else
+            total = Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice()-(theMovie.getDiscount()*(Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice()));
+
+          // faudra prendre en compte le discount 
         
         MovieBilingFrame biling = new MovieBilingFrame();
         biling.setVisible(true);
