@@ -19,7 +19,8 @@ import static movie_app.movie.getMovies;
 public class MoviesFrames extends javax.swing.JFrame {
 
     private Member aMember;
-    private ArrayList<movie> theMovies;
+    private ArrayList<movie> theMovies; //the initial Arraylist, containings the basic getMovies() which returns all the movies
+    private ArrayList<movie> theAvailableMovies= new ArrayList<movie>();//the second Arraylist which will be displayed on screen 
     private movie theChosenMovie;
     DefaultListModel listModel= new DefaultListModel();
     
@@ -32,14 +33,17 @@ public class MoviesFrames extends javax.swing.JFrame {
         initComponents();
         aMember= theMember;//Retrieves the user from previous page
         theMovies= getMovies();// Retrieves the list of movies on txt file
-        
+        for (int i=0; i<theMovies.size();i++){//Checks if the movie is available, from the initial Arraylist, and adds it to a second arraylist which will be displayed
+            if (theMovies.get(i).isAvailability()==true){
+                theAvailableMovies.add(theMovies.get(i));
+            }
+        }
         lblWelcome.setText("Welcome "+aMember.first_name+"!"); //Welcomes the user
         
         
-        for (int i=0; i <theMovies.size(); i++){
-            if (theMovies.get(i).isAvailability()==true){
-                listModel.addElement(theMovies.get(i).getGenre()+"   ||    "+theMovies.get(i).getTitle());                            
-            }            
+        for (int i=0; i <theAvailableMovies.size(); i++){
+            listModel.addElement(theAvailableMovies.get(i).getGenre()+"   ||    "+theAvailableMovies.get(i).getTitle());//adds the genre and title to the added element                          
+                        
         }
         
         listMovies.setModel(listModel);
@@ -157,7 +161,7 @@ public class MoviesFrames extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!listMovies.isSelectionEmpty()){
             int index= listMovies.getSelectedIndex();
-            theChosenMovie= theMovies.get(index);
+            theChosenMovie= theAvailableMovies.get(index);
             SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);
             theMovieFrame.setVisible(true);
             this.dispose();
