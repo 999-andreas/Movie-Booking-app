@@ -13,8 +13,19 @@ public class MovieBilingFrame extends javax.swing.JFrame {
     /**
      * Creates new form MovieBilingFrame
      */
+    private movie theMovie;
+    private Member theMember;
+    private int nb_tickets;
+    private double total;
+    
     public MovieBilingFrame() {
         initComponents();
+    }
+    
+    public MovieBilingFrame(movie aMovie, Member aMember, int nb_tickets, double total) {
+        initComponents();
+        theMovie = aMovie;
+        theMember = aMember;
     }
 
     /**

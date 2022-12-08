@@ -170,7 +170,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
           // faudra prendre en compte le discount 
         
-        MovieBilingFrame biling = new MovieBilingFrame();
+        MovieBilingFrame biling = new MovieBilingFrame(theMovie,theMember, Integer.parseInt(jnbTickets.getValue().toString()), total);
         biling.setVisible(true);
         
     }//GEN-LAST:event_jBuyActionPerformed
