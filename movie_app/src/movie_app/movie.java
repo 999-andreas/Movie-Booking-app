@@ -210,6 +210,7 @@ public class movie {
             if(id == list.get(k).id)
             {
                 list.set(id, new movie(genre, title, date, duration, price, availability, nb_place, discount, times, url));
+                list.get(k).setId(k);
             }
         }
         
@@ -229,7 +230,7 @@ public class movie {
                     file_times+=time+",";
                 }
                 
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount+ ";"+times+";"+url); 
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount+ ";"+file_times+";"+url); 
             }
                 
             outputFile.close();

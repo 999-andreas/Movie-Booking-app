@@ -4,6 +4,9 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Antoine
@@ -11,6 +14,10 @@ package movie_app;
 public class AdminMovieModify extends javax.swing.JFrame {
 
     private movie aMovieToModify;
+    DefaultListModel listModel= new DefaultListModel();
+    private ArrayList <String> theTimes= new ArrayList<String>();
+    private int nbTimes;
+    private static int MAX=8;
     /**
      * Creates new form AdminMovieCreation
      * @param theMovie
@@ -33,6 +40,19 @@ public class AdminMovieModify extends javax.swing.JFrame {
         else{
             rbNotAvailable.setSelected(true);
         }
+        
+        nbTimes=aMovieToModify.getTimes().length;
+        
+        
+        
+        for (int i=0; i<nbTimes;i++){
+            listModel.addElement((aMovieToModify.getTimes())[i]);
+            theTimes.add(aMovieToModify.getTimes()[i]);
+        }
+         
+        
+        listTimings.setModel(listModel);
+        
         
     }
     
@@ -72,6 +92,14 @@ public class AdminMovieModify extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         tfImageUrl = new javax.swing.JTextField();
         lblImage = new javax.swing.JLabel();
+        lblTimings = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listTimings = new javax.swing.JList<>();
+        btnAddTime = new javax.swing.JButton();
+        tfDate = new javax.swing.JTextField();
+        cbHour = new javax.swing.JComboBox<>();
+        lbl2Points = new javax.swing.JLabel();
+        cbMinutes = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,12 +143,34 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         lblImage.setText("Image URL :");
 
+        lblTimings.setText("Timings :");
+
+        jScrollPane1.setViewportView(listTimings);
+
+        btnAddTime.setText("Add");
+        btnAddTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTimeActionPerformed(evt);
+            }
+        });
+
+        tfDate.setText("DD/MM/YY");
+
+        cbHour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "16", "17", "18", "19", "20", "21", "22" }));
+
+        lbl2Points.setText(":");
+
+        cbMinutes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "10", "20", "30", "40", "50" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(lblModifyMovie))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -131,10 +181,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addComponent(lblDuration)
                             .addComponent(lblGenre)
                             .addComponent(lblMovieTitle)
+                            .addComponent(lblAvailability)
                             .addComponent(lblImage)
-                            .addComponent(lblAvailability))
+                            .addComponent(lblTimings))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfGenre)
                             .addComponent(tfMovieTitle)
                             .addComponent(tfDuration)
@@ -142,19 +193,31 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addComponent(tfPrice)
                             .addComponent(tfDiscount)
                             .addComponent(tfNumTickets)
-                            .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
-                        .addComponent(lblModifyMovie)))
-                .addContainerGap(199, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbl2Points, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 3, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddTime)
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,15 +256,25 @@ public class AdminMovieModify extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImage))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTimings)
+                    .addComponent(btnAddTime)
+                    .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl2Points)
+                    .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbNotAvailable)
                     .addComponent(rbAvailable)
                     .addComponent(lblAvailability))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -210,10 +283,32 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private void btnModifyMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyMovieActionPerformed
         // TODO add your handling code here:
+        //Set Methods to change the current object with all the parameters
         aMovieToModify.setTitle(tfMovieTitle.getText());
         aMovieToModify.setGenre(tfGenre.getText());
-          
+        aMovieToModify.setDuration(Integer.parseInt(tfDuration.getText()));
+        aMovieToModify.setNb_place(Integer.parseInt(tfNumTickets.getText()));
+        aMovieToModify.setDate(tfReleaseDate.getText());
+        aMovieToModify.setPrice(Double.parseDouble(tfPrice.getText()));
+        aMovieToModify.setDiscount(Double.parseDouble(tfDiscount.getText()));
+        aMovieToModify.setUrl(tfImageUrl.getText());
+        if (rbAvailable.isSelected()==true){
+            aMovieToModify.setAvailability(true);
+        }
+        else{
+            aMovieToModify.setAvailability(false);
+        }
         
+        
+        
+        String[] times= new String[theTimes.size()];
+        
+        for (int i=0; i<theTimes.size();i++){
+            times[i]= theTimes.get(i);
+            System.out.println(times[i]);
+        }
+        
+        aMovieToModify.setTimes(times);
                 
         aMovieToModify.modif_movie();
     }//GEN-LAST:event_btnModifyMovieActionPerformed
@@ -224,6 +319,20 @@ public class AdminMovieModify extends javax.swing.JFrame {
         backToSelect.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTimeActionPerformed
+        // TODO add your handling code here:
+        String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
+        
+        if(nbTimes<MAX)
+        {
+            listModel.addElement(timing);
+            listTimings.setModel(listModel);
+            theTimes.add(timing);
+        }
+            
+        nbTimes++;
+    }//GEN-LAST:event_btnAddTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,9 +371,14 @@ public class AdminMovieModify extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddTime;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnModifyMovie;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbHour;
+    private javax.swing.JComboBox<String> cbMinutes;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl2Points;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblDuration;
@@ -275,8 +389,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumTickets;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblReleaseDate;
+    private javax.swing.JLabel lblTimings;
+    private javax.swing.JList<String> listTimings;
     private javax.swing.JRadioButton rbAvailable;
     private javax.swing.JRadioButton rbNotAvailable;
+    private javax.swing.JTextField tfDate;
     private javax.swing.JTextField tfDiscount;
     private javax.swing.JTextField tfDuration;
     private javax.swing.JTextField tfGenre;
