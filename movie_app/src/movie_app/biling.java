@@ -19,13 +19,15 @@ public class biling {
     private Member theMember;
     private int nb_tickets;
     private String time;
+    private String time_stamp;
     private double total;
     
-    public biling(movie Movie, Member member, int nb_tickets, String time) {
+    public biling(movie Movie, Member member, int nb_tickets, String time, String time_stamp) {
         theMovie = Movie;
         theMember = member;
         this.nb_tickets = nb_tickets;
         this.time = time;
+        this.time_stamp = time_stamp;
     }
 
     public void setId(int id) {
@@ -52,9 +54,9 @@ public class biling {
             outputFile.println((list.length)+1); 
             
             for (String[] a : list)
-                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]); 
+                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]); 
             
-            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total); 
+            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+time_stamp); 
                 
             outputFile.close();
         }
@@ -118,5 +120,9 @@ public class biling {
 
     public double getTotal() {
         return total;
+    }
+
+    public String getTime_stamp() {
+        return time_stamp;
     }
 }
