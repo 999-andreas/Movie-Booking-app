@@ -1,6 +1,6 @@
 5
-0;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;20:00,19:00,;twitter.com
-1;SF;testtest;02/02/2002;120;7.0;true;40;0.2;20:00,19:00,;twitter.com
+0;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;20:00,20:30,;twitter.com
+1;SF;testtest;02/02/2002;120;7.0;true;40;0.2;20:00,20:30,;twitter.com
 2;SF;ce_est_un_test;02/02/2002;120;7.0;false;20;0.2;20:00,20:30,;twitter.com
-3;Adventure;Indiana Johns;02/02/2002;120;7.0;true;40;0.2;20/12/22@15@30,20/10/22@15@40,15/10/22@20@50,;twitter.com
-4;Adventure;TEST;02/02/2002;120;7.0;true;60;0.2;20:00,20:30,;twitter.com
+3;Adventure;Indiana Johns;02/02/2002;120;7.0;true;40;0.2;20:00,20:30,08/12/22@21@00,;twitter.com
+4;Adventure;TEST;02/02/2002;120;7.0;true;60;0.2;20:00,20:30,08/12/22@21@00,;twitter.com

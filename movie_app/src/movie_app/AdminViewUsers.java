@@ -4,17 +4,30 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import static movie_app.Member.deleteMember;
+import static movie_app.superUser.getUsers;
+
 /**
  *
  * @author Antoine
  */
 public class AdminViewUsers extends javax.swing.JFrame {
 
+    private Member selectedMember;
+    private ArrayList<Member> theMembers= getUsers(false);
+    private DefaultListModel listModel= new DefaultListModel();
     /**
      * Creates new form AdminViewUsers
      */
     public AdminViewUsers() {
         initComponents();
+        for (int i=0; i<theMembers.size();i++){
+            listModel.addElement(theMembers.get(i));
+        }
+        listTheUsers.setModel(listModel);
+        
     }
 
     /**
@@ -29,6 +42,10 @@ public class AdminViewUsers extends javax.swing.JFrame {
         lblUsers = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listTheUsers = new javax.swing.JList<>();
+        btnDeleteUser = new javax.swing.JButton();
+        lblWarning = new javax.swing.JLabel();
+        btnCancel = new javax.swing.JButton();
+        btnModifyUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,6 +54,27 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(listTheUsers);
 
+        btnDeleteUser.setText("Delete a User");
+        btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUserActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        btnModifyUser.setText("Modify a Member");
+        btnModifyUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -44,25 +82,72 @@ public class AdminViewUsers extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(lblUsers))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(lblUsers)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(lblUsers)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsers)
+                    .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        // TODO add your handling code here:
+        if (!listTheUsers.isSelectionEmpty()){
+            int index = listTheUsers.getSelectedIndex();
+            deleteMember(index, false);
+        }
+        else{
+            lblWarning.setText("Select a User First!");
+        }
+    }//GEN-LAST:event_btnDeleteUserActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        AdminMenuFrame backToMenuFrame= new AdminMenuFrame();
+        backToMenuFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnModifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyUserActionPerformed
+        // TODO add your handling code here:
+        if(!listTheUsers.isSelectionEmpty()){
+            int index = listTheUsers.getSelectedIndex();
+            selectedMember=theMembers.get(index);
+            AdminModifyUser theModifyFrame= new AdminModifyUser(selectedMember);
+            theModifyFrame.setVisible(true);
+            this.dispose();
+        }
+        else{
+            lblWarning.setText("Select a User First!");
+        }
+    }//GEN-LAST:event_btnModifyUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,8 +185,12 @@ public class AdminViewUsers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDeleteUser;
+    private javax.swing.JButton btnModifyUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblUsers;
+    private javax.swing.JLabel lblWarning;
     private javax.swing.JList<String> listTheUsers;
     // End of variables declaration//GEN-END:variables
 }
