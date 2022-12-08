@@ -14,10 +14,10 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
      * Creates new form SelectedMovieFrame
      */
     private static final String title = "title";
-private static final String genre = "genre";
-private static final String duration = "duration";
-private static final String price = "price";
-private static final String nb_place = "nb_place";
+    private static final String genre = "genre";
+    private static final String duration = "duration";
+    private static final String price = "price";
+    private static final String nb_place = "nb_place";
 
 
     
@@ -46,8 +46,8 @@ private static final String nb_place = "nb_place";
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        jBuy = new javax.swing.JButton();
+        jnbTickets = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -69,12 +69,14 @@ private static final String nb_place = "nb_place";
 
         jLabel5.setText("nb_place: ");
 
-        jButton1.setText("Buy");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBuy.setText("Buy");
+        jBuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBuyActionPerformed(evt);
             }
         });
+
+        jnbTickets.setModel(new javax.swing.SpinnerNumberModel());
 
         jLabel6.setText("number of tickets: ");
 
@@ -97,7 +99,7 @@ private static final String nb_place = "nb_place";
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblChosenMovie)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
@@ -105,7 +107,7 @@ private static final String nb_place = "nb_place";
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jnbTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel9)
                                 .addComponent(jLabel10)
@@ -144,20 +146,24 @@ private static final String nb_place = "nb_place";
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jnbTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuyActionPerformed
         // TODO add your handling code here:
         
+        double total = Double.parseDouble(jnbTickets.getValue().toString())*7.0; // faudra prendre en compte le discount 
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        MovieBilingFrame biling = new MovieBilingFrame();
+        biling.setVisible(true);
+        
+    }//GEN-LAST:event_jBuyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,7 +205,7 @@ private static final String nb_place = "nb_place";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBuy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -211,7 +217,7 @@ private static final String nb_place = "nb_place";
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jnbTickets;
     private javax.swing.JLabel lblChosenMovie;
     // End of variables declaration//GEN-END:variables
 }
