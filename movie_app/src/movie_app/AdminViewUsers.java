@@ -15,18 +15,18 @@ import static movie_app.superUser.getUsers;
  */
 public class AdminViewUsers extends javax.swing.JFrame {
 
-    private Member selectedMember;
-    private ArrayList<Member> theMembers= getUsers(false);
-    private DefaultListModel listModel= new DefaultListModel();
+    private Member selectedMember; //Member variable which we will pass into the next frame for modify user
+    private ArrayList<Member> theMembers= getUsers(false);//takes the list of members which aren't admins
+    private DefaultListModel listModel= new DefaultListModel();//model for data, to insert into the list
     /**
      * Creates new form AdminViewUsers
      */
     public AdminViewUsers() {
         initComponents();
-        for (int i=0; i<theMembers.size();i++){
+        for (int i=0; i<theMembers.size();i++){//fill the data model
             listModel.addElement(theMembers.get(i));
         }
-        listTheUsers.setModel(listModel);
+        listTheUsers.setModel(listModel);// set the model
         
     }
 
@@ -119,9 +119,12 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         // TODO add your handling code here:
-        if (!listTheUsers.isSelectionEmpty()){
-            int index = listTheUsers.getSelectedIndex();
-            deleteMember(index, false);
+        if (!listTheUsers.isSelectionEmpty()){// if the admin has selected a user
+            int index = listTheUsers.getSelectedIndex(); //takes the index of the selected item in the list
+            theMembers.remove(index);//don't think this line is usefull, but i'm still going to write it there
+            listModel.remove(index);//remove from the data model
+            listTheUsers.setModel(listModel);//reajust the visual list
+            deleteMember(index, false); //deletes the member
         }
         else{
             lblWarning.setText("Select a User First!");
@@ -137,10 +140,10 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
     private void btnModifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyUserActionPerformed
         // TODO add your handling code here:
-        if(!listTheUsers.isSelectionEmpty()){
-            int index = listTheUsers.getSelectedIndex();
-            selectedMember=theMembers.get(index);
-            AdminModifyUser theModifyFrame= new AdminModifyUser(selectedMember);
+        if(!listTheUsers.isSelectionEmpty()){ //if the admin has selected a user
+            int index = listTheUsers.getSelectedIndex();//takes the index of the selected item in the list
+            selectedMember=theMembers.get(index);//stocks the member corresponding to the selected index in a Member variable
+            AdminModifyUser theModifyFrame= new AdminModifyUser(selectedMember);//sends the Member variable to the next frame, to be modified
             theModifyFrame.setVisible(true);
             this.dispose();
         }
