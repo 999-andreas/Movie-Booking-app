@@ -4,6 +4,9 @@
  */
 package movie_app;
 
+import javax.swing.JOptionPane;
+import static movie_app.movie.deleteMovie;
+
 /**
  *
  * @author Antoine
@@ -41,6 +44,11 @@ public class AdminDelMovieConfirm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("CANCEL");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +92,14 @@ public class AdminDelMovieConfirm extends javax.swing.JFrame {
         backToFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        deleteMovie(theDeleteMovie.getId());
+        AdminDeleteMovie backToFrame= new AdminDeleteMovie();
+        backToFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
