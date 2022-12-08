@@ -41,13 +41,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
             rbNotAvailable.setSelected(true);
         }
         
-        nbTimes=aMovieToModify.getTimes().length;
+        nbTimes=aMovieToModify.getTimes().length;//gets the number of time strings in the movie
         
         
         
         for (int i=0; i<nbTimes;i++){
-            listModel.addElement((aMovieToModify.getTimes())[i]);
-            theTimes.add(aMovieToModify.getTimes()[i]);
+            listModel.addElement((aMovieToModify.getTimes())[i]);//adds all the string times to the model data
+            theTimes.add(aMovieToModify.getTimes()[i]);//adds all the string times to the ArrayList, which we will use to add more times
         }
          
         
@@ -305,12 +305,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         for (int i=0; i<theTimes.size();i++){
             times[i]= theTimes.get(i);
-            System.out.println(times[i]);
-        }
+            }
         
-        aMovieToModify.setTimes(times);
+        aMovieToModify.setTimes(times);//sets the time strings of the movie
                 
-        aMovieToModify.modif_movie();
+        aMovieToModify.modif_movie();//saves the data of the current movie
     }//GEN-LAST:event_btnModifyMovieActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -324,14 +323,15 @@ public class AdminMovieModify extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
         
-        if(nbTimes<MAX)
+        if(nbTimes<MAX)//caps the number of time strings to 8
         {
-            listModel.addElement(timing);
-            listTimings.setModel(listModel);
-            theTimes.add(timing);
+            listModel.addElement(timing);//adds the string to the model of data
+            listTimings.setModel(listModel);//sets the model of the list with the data which was just added
+            theTimes.add(timing);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+            nbTimes++;//+1 to the number of time strings 
         }
             
-        nbTimes++;
+         
     }//GEN-LAST:event_btnAddTimeActionPerformed
 
     /**
