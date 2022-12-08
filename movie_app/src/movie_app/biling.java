@@ -15,15 +15,15 @@ import java.util.Scanner;
 public class biling {
 
     private int id;
-    private movie Movie;
-    private Member member;
+    private movie theMovie;
+    private Member theMember;
     private int nb_tickets;
     private String time;
     private double total;
     
-    public biling(movie Movie, Member member, int nb_tickets) {
-        this.Movie = Movie;
-        this.member = member;
+    public biling(movie Movie, Member member, int nb_tickets, String time) {
+        theMovie = Movie;
+        theMember = member;
         this.nb_tickets = nb_tickets;
         this.time = time;
     }
@@ -35,12 +35,12 @@ public class biling {
         
     public void computeBill()  
     {
-        if(member.getId()== -1) // -1 as id when its a guest
+        if(theMember.getId()== -1) // -1 as id when its a guest
         {
-            total = Movie.getPrice()*nb_tickets;
+            total = theMovie.getPrice()*nb_tickets;
         }
         else
-            total = (Movie.getPrice()-(Movie.getPrice()*Movie.getDiscount()*nb_tickets));
+            total = (theMovie.getPrice()*nb_tickets-((theMovie.getPrice()*nb_tickets)*theMovie.getDiscount()));
         
         String[][] list = getBills();
         
@@ -54,7 +54,7 @@ public class biling {
             for (String[] a : list)
                 outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]); 
             
-            outputFile.println(list.length + ";" + member.first_name + ";" + member.last_name + ";" +member.username+ ";" + member.pw); 
+            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total); 
                 
             outputFile.close();
         }
@@ -94,5 +94,29 @@ public class biling {
           System.out.println("File not found.");
         }
         return null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public movie getTheMovie() {
+        return theMovie;
+    }
+
+    public Member getTheMember() {
+        return theMember;
+    }
+
+    public int getNb_tickets() {
+        return nb_tickets;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public double getTotal() {
+        return total;
     }
 }

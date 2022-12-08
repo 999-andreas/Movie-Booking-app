@@ -13,27 +13,32 @@ public class MovieBilingFrame extends javax.swing.JFrame {
     /**
      * Creates new form MovieBilingFrame
      */
-    private movie theMovie;
-    private Member theMember;
-    private int nb_tickets;
-    private double total;
+    private biling theBill;
     
     public MovieBilingFrame() {
         initComponents();
         
     }
     
-    public MovieBilingFrame(movie aMovie, Member aMember, int nb_tickets, double total) {
+    public MovieBilingFrame(biling aBill) {
         initComponents();
-        theMovie = aMovie;
-        theMember = aMember;
+        theBill = aBill;
         
-        jLabel3.setText(theMember.getFirst_name());
-        jLabel4.setText(theMember.getLast_name());
-        jLabel11.setText(theMovie.getTitle());
-        jprice.setText(String.valueOf(theMovie.getPrice()));
-        jnb_tickets.setText(String.valueOf(theMovie.getNb_place()));
-        jLabel12.setText(String.valueOf(total)); 
+        jLabel3.setText(theBill.getTheMember().getFirst_name());
+        jLabel4.setText(theBill.getTheMember().getLast_name());
+        jLabel11.setText(theBill.getTheMovie().getTitle());
+        
+        if(theBill.getTheMember().getId()!=-1)
+        {
+            jLabel6.setText(String.valueOf(theBill.getTheMovie().getDiscount()));
+        }
+        else
+        {
+            jLabel6.setText("0");
+        }
+        jprice.setText(String.valueOf(theBill.getTheMovie().getPrice()));
+        jnb_tickets.setText(String.valueOf(theBill.getNb_tickets()));
+        jLabel12.setText(String.valueOf(theBill.getTotal())); 
     }
 
     /**

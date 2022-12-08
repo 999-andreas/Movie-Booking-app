@@ -4,6 +4,10 @@
  */
 package movie_app;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Antoine
@@ -158,20 +162,25 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
     private void jBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuyActionPerformed
         // TODO add your handling code here:
-        double total = 0.0;
         
-        
-        if(theMember.getId()==-1)
-        {
-            total = Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice();
-        }
-        else
-            total = Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice()-(theMovie.getDiscount()*(Double.parseDouble(jnbTickets.getValue().toString())*theMovie.getPrice()));
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar calendar = Calendar.getInstance();
 
-          // faudra prendre en compte le discount 
+        Date dateObj = calendar.getTime();
+        String formattedDate = dtf.format(dateObj);
+        System.out.println(formattedDate);
         
-        MovieBilingFrame biling = new MovieBilingFrame(theMovie,theMember, Integer.parseInt(jnbTickets.getValue().toString()), total);
+        biling thebill=  new biling(theMovie, theMember, Integer.parseInt(jnbTickets.getValue().toString()), formattedDate);
+        thebill.computeBill();
+          
+          
+        MovieBilingFrame biling = new MovieBilingFrame(thebill);
         biling.setVisible(true);
+        this.dispose();
+        
+        
+        
+        
         
     }//GEN-LAST:event_jBuyActionPerformed
 
