@@ -27,7 +27,7 @@ public class AdminDeleteMovie extends javax.swing.JFrame {
     private void initComponents() {
 
         lblDeleteMovie = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbMovies = new javax.swing.JComboBox<>();
         btnDeleteMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
@@ -35,7 +35,7 @@ public class AdminDeleteMovie extends javax.swing.JFrame {
 
         lblDeleteMovie.setText("Delete a Movie");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMovies.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         btnDeleteMovie.setText("Delete the Movie");
 
@@ -49,7 +49,7 @@ public class AdminDeleteMovie extends javax.swing.JFrame {
                 .addGap(155, 155, 155)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDeleteMovie)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbMovies, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
@@ -64,7 +64,7 @@ public class AdminDeleteMovie extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(lblDeleteMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbMovies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeleteMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,7 +113,7 @@ public class AdminDeleteMovie extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDeleteMovie;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbMovies;
     private javax.swing.JLabel lblDeleteMovie;
     // End of variables declaration//GEN-END:variables
 }
