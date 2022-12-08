@@ -15,8 +15,8 @@ import static movie_app.superUser.getUsers;
  */
 public class LoginFrame extends javax.swing.JFrame {
 
-    private ArrayList<Member> theMembers= new ArrayList<Member>();
-    private ArrayList<Member> theAdmins= new ArrayList<Member>();
+    private ArrayList<Member> theMembers;
+    private ArrayList<Member> theAdmins;
     /**
      * Creates new form LoginFrame
      */
