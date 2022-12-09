@@ -1,10 +1,11 @@
-9
-0;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20/12/22@15@30,20/10/22@15@40,;twitter.com
-1;SF;testtest;02/02/2002;120;7.0;true;20;0.2;20/12/22@15@30,20/10/22@15@40,;twitter.com
-2;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;20/12/22@15@30,20/10/22@15@40,;twitter.com
-3;SF;ce_est_un_test;02/02/2002;120;7.0;true;50;0.2;20/12/22@15@30,20/10/22@15@40,;twitter.com
-4;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;20/12/22@15@30,20/10/22@15@40,;twitter.com
-5;SF;ce_est_un_test;02/02/2002;120;7.0;true;20;0.2;20/12/22@15@30,20/10/22@15@40,;images/Avengers.jpg
-6;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;20/12/22@15@30,20/10/22@15@40,;images/Avengers.jpg
-7;Adventure;Indiana Johns;02/02/2002;120;7.0;true;13;0.2;20/12/22@15@30,20/10/22@15@40,15/10/22@20@50,;images/Avengers.jpg
-8;Adventure;TEST;02/02/2002;120;7.0;true;30;0.2;20/12/22@15@30,20/10/22@15@40,;images/Avengers.jpg
+10
+0;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+1;SF;testtest;02/02/2002;120;7.0;true;20;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+2;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+3;SF;ce_est_un_test;02/02/2002;120;7.0;true;50;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+4;SF;ce_est_un_test;02/02/2002;120;7.0;true;30;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+5;SF;ce_est_un_test;02/02/2002;120;7.0;true;20;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+6;SF;ce_est_un_test;02/02/2002;120;7.0;true;40;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+7;Adventure;Indiana Johns;02/02/2002;120;7.0;true;13;0.2;12/01/2023@15@00,12/01/2023@16@00,12/01/2023@17@00,;images/TITANIC.jpg
+8;Adventure;TEST;02/02/2002;120;7.0;true;30;0.2;12/01/2023@15@00,12/01/2023@16@00,;images/TITANIC.jpg
+9;adventure;batman;20/12/2022;200;14.0;true;50;0.25;12/01/2023@15@00,12/01/2023@16@00,12/01/2023@17@00,12/01/2023@18@00,;images/TITANIC.jpg
