@@ -23,6 +23,8 @@ public class AdminMovieCreation extends javax.swing.JFrame {
      */
     public AdminMovieCreation() {
         initComponents();
+        
+        
     }
 
     /**
@@ -67,6 +69,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         tfNumTickets1 = new javax.swing.JTextField();
         jFormattedDiscount = new javax.swing.JFormattedTextField();
         jFormattedPrice = new javax.swing.JFormattedTextField();
+        jWarning = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -202,20 +205,22 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                                     .addComponent(lblMovieTitle)
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfGenre)
-                                    .addComponent(tfMovieTitle)
-                                    .addComponent(tfDuration)
-                                    .addComponent(tfReleaseDate)
-                                    .addComponent(tfNumTickets)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnAddMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22))
-                                    .addComponent(tfNumTickets1)
-                                    .addComponent(jFormattedDiscount)
-                                    .addComponent(jFormattedPrice)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jWarning)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tfGenre)
+                                        .addComponent(tfMovieTitle)
+                                        .addComponent(tfDuration)
+                                        .addComponent(tfReleaseDate)
+                                        .addComponent(tfNumTickets)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnAddMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(47, 47, 47)
+                                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(22, 22, 22))
+                                        .addComponent(tfNumTickets1)
+                                        .addComponent(jFormattedDiscount)
+                                        .addComponent(jFormattedPrice))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -277,7 +282,9 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addGap(33, 33, 33)
+                .addGap(5, 5, 5)
+                .addComponent(jWarning)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAddMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,12 +309,16 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             times[k] = files_times.get(k);
         }
                 
-        
-        movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, tfNumTickets1.getText() );
-        
-        try {
+        try
+        {
+            movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, tfNumTickets1.getText() );
             theMovie.saveMovie();
-        } catch (IOException ex) {
+        }
+        catch(NumberFormatException e )
+        {
+            jWarning.setText("wrong input format!");
+        }
+        catch (IOException ex) {
             Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -403,6 +414,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel jWarning;
     private javax.swing.JLabel lblAvailability;
     private javax.swing.JLabel lblCreateMovie;
     private javax.swing.JLabel lblDiscount;
