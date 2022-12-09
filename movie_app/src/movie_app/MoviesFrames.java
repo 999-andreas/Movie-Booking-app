@@ -88,6 +88,7 @@ public class MoviesFrames extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblWelcome.setText("Welcome Guest!");
 
         jScrollPane1.setViewportView(listMovies);
@@ -134,7 +135,7 @@ public class MoviesFrames extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnChooseMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
