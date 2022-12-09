@@ -4,7 +4,11 @@
  */
 package movie_app;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 import static movie_app.movie.getMovies;
@@ -159,10 +163,15 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnChooseMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseMovieActionPerformed
         // TODO add your handling code here:
-        if (!listMovies.isSelectionEmpty()){//checks if the user selected a movie
-            int index= listMovies.getSelectedIndex(); //gets the index of the selected item in the list
-            theChosenMovie= theAvailableMovies.get(index);
-            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);// sends the movie and the member data to the next frame
+        if (!listMovies.isSelectionEmpty()){
+            int index= listMovies.getSelectedIndex();
+            theChosenMovie= theMovies.get(index);
+            SelectedMovieFrame theMovieFrame = null;
+            try {
+                theMovieFrame = new SelectedMovieFrame(theChosenMovie,aMember);
+            } catch (IOException ex) {
+                Logger.getLogger(MoviesFrames.class.getName()).log(Level.SEVERE, null, ex);
+            }
             theMovieFrame.setVisible(true);
             this.dispose();
         }
