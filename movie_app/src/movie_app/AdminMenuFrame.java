@@ -41,7 +41,7 @@ public class AdminMenuFrame extends javax.swing.JFrame {
         btnDisconnect = new javax.swing.JButton();
         lblWelcomeAdmin = new javax.swing.JLabel();
         btnViewUsers = new javax.swing.JButton();
-        btnViewRecords = new javax.swing.JButton();
+        btnViewBills = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +82,10 @@ public class AdminMenuFrame extends javax.swing.JFrame {
             }
         });
 
-        btnViewRecords.setText("View Film Records");
-        btnViewRecords.addActionListener(new java.awt.event.ActionListener() {
+        btnViewBills.setText("View Bills");
+        btnViewBills.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewRecordsActionPerformed(evt);
+                btnViewBillsActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class AdminMenuFrame extends javax.swing.JFrame {
                             .addComponent(btnModifyMovie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                             .addComponent(btnCreateMovie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnViewUsers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnViewRecords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnViewBills, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 91, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -124,7 +124,7 @@ public class AdminMenuFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnViewUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnViewRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnViewBills, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnDisconnect)
                 .addContainerGap())
@@ -147,13 +147,13 @@ public class AdminMenuFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDeleteMovieActionPerformed
 
-    private void btnViewRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRecordsActionPerformed
+    private void btnViewBillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBillsActionPerformed
         // TODO add your handling code here:
-        AdminViewRecords theViewRecord= new AdminViewRecords();
+        AdminViewBills theViewRecord= new AdminViewBills();
         theViewRecord.setVisible(true);
         this.dispose();
         
-    }//GEN-LAST:event_btnViewRecordsActionPerformed
+    }//GEN-LAST:event_btnViewBillsActionPerformed
 
     private void btnCreateMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMovieActionPerformed
         // TODO add your handling code here:
@@ -216,7 +216,7 @@ public class AdminMenuFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteMovie;
     private javax.swing.JButton btnDisconnect;
     private javax.swing.JButton btnModifyMovie;
-    private javax.swing.JButton btnViewRecords;
+    private javax.swing.JButton btnViewBills;
     private javax.swing.JButton btnViewUsers;
     private javax.swing.JLabel lblWelcomeAdmin;
     // End of variables declaration//GEN-END:variables
