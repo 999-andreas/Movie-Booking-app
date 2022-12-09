@@ -1,11 +1,4 @@
-10
-Andreas;Chatel;ce_est_un_test;7.0;2
-Andreas;Chatel;ce_est_un_test;7.0;2
-2;Andreas;Chatel;bonjour;AAAAAAAAAAAAAA
-3;guest;guest;guest;guest
-4;guest;guest;Indiana Johns;11.2
-5;guest;guest;Indiana Johns;11.2
-6;guest;guest;Indiana Johns;14.0
-7;guest;guest;Indiana Johns;21.0
-8;Andreas;Chatel;testtest;39.2
-9;guest;guest;ce_est_un_test;21.0
+3
+0;A;B;C;D;E
+1;guest;guest;Indiana Johns;70.0;2022/12/08
+2;guest;guest;Indiana Johns;63.0;2022/12/08
