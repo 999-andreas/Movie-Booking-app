@@ -4,7 +4,6 @@
  */
 package movie_app;
 
-import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -18,10 +17,10 @@ import static movie_app.movie.getMovies;
  */
 public class MoviesFrames extends javax.swing.JFrame {
 
-    private Member aMember;
+    private Member aMember; //the member will be passed in the constructor of the next frame to keep the data
     private ArrayList<movie> theMovies; //the initial Arraylist, containings the basic getMovies() which returns all the movies
     private ArrayList<movie> theAvailableMovies= new ArrayList<movie>();//the second Arraylist which will be displayed on screen 
-    private movie theChosenMovie;
+    private movie theChosenMovie;// the chosen movie will be passed in the constructor of the next frame
     DefaultListModel listModel= new DefaultListModel();
     
     /**
@@ -143,7 +142,7 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnGoToLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToLoginActionPerformed
         // TODO add your handling code here:
-        LoginFrame theLoginFrame= new LoginFrame();
+        LoginFrame theLoginFrame= new LoginFrame(); //sends back to a login Frame
         theLoginFrame.setVisible(true);
         
         this.dispose();
@@ -151,7 +150,7 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnDisconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisconnectActionPerformed
         // TODO add your handling code here:
-        MainFrame theMainFrame= new MainFrame();
+        MainFrame theMainFrame= new MainFrame(); //sends back to main menu
         theMainFrame.setVisible(true);
         
         this.dispose();
@@ -159,10 +158,10 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnChooseMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseMovieActionPerformed
         // TODO add your handling code here:
-        if (!listMovies.isSelectionEmpty()){
-            int index= listMovies.getSelectedIndex();
+        if (!listMovies.isSelectionEmpty()){//checks if the user selected a movie
+            int index= listMovies.getSelectedIndex(); //gets the index of the selected item in the list
             theChosenMovie= theAvailableMovies.get(index);
-            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);
+            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);// sends the movie and the member data to the next frame
             theMovieFrame.setVisible(true);
             this.dispose();
         }
