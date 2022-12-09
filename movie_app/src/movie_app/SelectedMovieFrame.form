@@ -63,8 +63,10 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jImage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBuy" min="-2" pref="245" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblChosenMovie" min="-2" max="-2" attributes="0"/>
@@ -82,7 +84,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblChosenMovie" min="-2" pref="63" max="-2" attributes="0"/>
-                  <Component id="labelWarning" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="jImage" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelWarning" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -239,6 +244,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelWarning">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jImage">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new ImageIcon(&quot;images/Avengers.jpg&quot;)" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jLabel13"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

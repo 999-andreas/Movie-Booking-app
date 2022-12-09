@@ -314,7 +314,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, tfNumTickets1.getText() );
             theMovie.saveMovie();
         }
-        catch(NumberFormatException e )
+        catch(IllegalArgumentException  e )
         {
             jWarning.setText("wrong input format!");
         }

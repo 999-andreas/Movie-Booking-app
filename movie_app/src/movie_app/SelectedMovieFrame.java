@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -43,6 +44,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
             listModel.addElement(theMovie.getTimes()[i].split("@")[0]+" "+theMovie.getTimes()[i].split("@")[1]+":"+theMovie.getTimes()[i].split("@")[2]);//gets the id and the title of the movie, adds it to the model             
         }
         jListTimes.setModel(listModel);//set the model to the list of movies we passed to the model
+        
     }
 
     /**
@@ -72,6 +74,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         jListTimes = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         labelWarning = new javax.swing.JLabel();
+        jImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +116,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
         jLabel12.setText("Select a movie session :");
 
+        jImage.setIcon(new ImageIcon("images/Avengers.jpg"));
+        jImage.setText("jLabel13");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +154,10 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
+                        .addComponent(jImage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblChosenMovie)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -162,7 +170,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblChosenMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelWarning))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jImage)
+                        .addComponent(labelWarning)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -210,7 +220,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         int nb_ticket = Integer.parseInt(jnbTickets.getValue().toString());
         
         if(jListTimes.isSelectionEmpty()==false){
-            if(nb_ticket<theMovie.getNb_place())
+            if(nb_ticket<theMovie.getNb_place() && nb_ticket>0)
             {
                 int index= jListTimes.getSelectedIndex();
                 theSelectedTime = theMovie.getTimes()[index];
@@ -290,6 +300,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBuy;
+    private javax.swing.JLabel jImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
