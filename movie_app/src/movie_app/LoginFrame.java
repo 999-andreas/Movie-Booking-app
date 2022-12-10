@@ -5,6 +5,7 @@
 package movie_app;
 
 import java.util.ArrayList;
+import static movie_app.superUser.KEYBOARDSAFETY;
 import static movie_app.superUser.getUsers;
 
 
@@ -24,6 +25,14 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
         theMembers=getUsers(false);
         theAdmins=getUsers(true);
+        
+        
+        
+        //adds safety to username inputs
+        tfUsername.addKeyListener(KEYBOARDSAFETY);
+        //adds safety to password inputs
+        tfPwd.addKeyListener(KEYBOARDSAFETY);
+        
     }
 
     /**
@@ -162,6 +171,7 @@ public class LoginFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConnectActionPerformed
 
+    
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         
