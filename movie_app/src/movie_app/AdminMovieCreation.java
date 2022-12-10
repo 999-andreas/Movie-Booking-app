@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -18,11 +19,14 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private static final int MAX = 8;
     private int nb_times;
     private ArrayList <String> files_times = new ArrayList<String>();
+    private String file_path;
     /**
      * Creates new form AdminMovieCreation
      */
     public AdminMovieCreation() {
         initComponents();
+        
+        
         
         
     }
@@ -71,6 +75,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         jFormattedPrice = new javax.swing.JFormattedTextField();
         jWarning = new javax.swing.JLabel();
         jFileChooser1 = new javax.swing.JFileChooser();
+        imagePath = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -171,6 +176,14 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             }
         });
 
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
+
+        imagePath.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,8 +247,14 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                                         .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(19, 19, 19)
                                         .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(imagePath)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -280,7 +299,8 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbAvailable)
                             .addComponent(rbNotAvailable)
-                            .addComponent(lblAvailability)))
+                            .addComponent(lblAvailability)
+                            .addComponent(imagePath)))
                     .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,28 +330,39 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private void btnAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMovieActionPerformed
         // TODO add your handling code here:
         
-        //String genre, String title, String date, int duration, double price, boolean availability, int nb_place, double discount, String[] times, String url
-        String[] times = new String[files_times.size()];
+         // if the user selects a file
+        if (jFileChooser1.getSelectedFile()!= null)
+        {
+                        
+            String[] times = new String[files_times.size()];
         
-        for(int k=0; k<files_times.size();k++)
-        {
-            times[k] = files_times.get(k);
-        }
-                
-        try
-        {
-            movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, tfNumTickets1.getText() );
-            theMovie.saveMovie();
-        }
-        catch(IllegalArgumentException  e )
-        {
-            jWarning.setText("wrong input format!");
-        }
-        catch (IOException ex) {
-            Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            for(int k=0; k<files_times.size();k++)
+            {
+                times[k] = files_times.get(k);
+            }
 
-        
+            try
+            {
+                movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, file_path );
+                theMovie.saveMovie();
+            }
+            catch(IllegalArgumentException  e )
+            {
+                jWarning.setText("wrong input format!");
+            }
+            catch (IOException ex) {
+                Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            AdminMenuFrame frame = new AdminMenuFrame();
+            frame.setVisible(true);
+            this.dispose();
+        }
+        // if the user cancelled the operation
+        else
+        {
+            jWarning.setText("please select a photo");
+        }
+            
     }//GEN-LAST:event_btnAddMovieActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -371,6 +402,18 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private void jFormattedPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedPriceActionPerformed
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            imagePath.setText(String.valueOf(jFileChooser1.getSelectedFile().getCanonicalPath()));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        file_path = String.valueOf(jFileChooser1.getSelectedFile().getAbsolutePath());
+       
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,6 +456,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> hours;
+    private javax.swing.JLabel imagePath;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
