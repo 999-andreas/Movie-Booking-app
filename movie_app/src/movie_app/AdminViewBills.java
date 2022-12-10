@@ -4,7 +4,6 @@
  */
 package movie_app;
 
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import static movie_app.biling.getBills;
 
@@ -15,7 +14,7 @@ import static movie_app.biling.getBills;
 public class AdminViewBills extends javax.swing.JFrame {
 
     DefaultListModel listModel = new DefaultListModel();
-    String[][] theBills= getBills();
+    String[][] theBills= getBills();//retrieves the bills under 2 dimensional array of strings
     /**
      * Creates new form AdminViewBills
      */
