@@ -412,9 +412,12 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             // TODO add your handling code here:
             imagePath.setText(String.valueOf(jFileChooser1.getSelectedFile().getPath()));
             
+            String sep = String.valueOf(jFileChooser1.getSelectedFile().getPath()).replace("\\", ";");
             file_path = String.valueOf(jFileChooser1.getSelectedFile().getPath());
-            String name = file_path.split("\\" )[1];
-            String file_name = file_path.split("\\" )[(file_path.split("\\" ).length)-1];
+            
+            String name = sep.split(";" )[2];
+            
+            String file_name = jFileChooser1.getSelectedFile().getName();
             
             
             String dest = "C:\\Users\\"+name+"\\Documents\\GitHub\\Movie-Booking-app\\movie_app\\images\\"+file_name;
