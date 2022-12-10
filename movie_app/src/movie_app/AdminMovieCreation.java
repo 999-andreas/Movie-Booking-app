@@ -345,6 +345,10 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             {
                 movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, file_path );
                 theMovie.saveMovie();
+                
+                AdminMenuFrame frame = new AdminMenuFrame();
+                frame.setVisible(true);
+                this.dispose();
             }
             catch(IllegalArgumentException  e )
             {
@@ -353,9 +357,6 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             catch (IOException ex) {
                 Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
             }
-            AdminMenuFrame frame = new AdminMenuFrame();
-            frame.setVisible(true);
-            this.dispose();
         }
         // if the user cancelled the operation
         else
