@@ -5,6 +5,9 @@
 package movie_app;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -407,12 +410,28 @@ public class AdminMovieCreation extends javax.swing.JFrame {
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         try {
             // TODO add your handling code here:
-            imagePath.setText(String.valueOf(jFileChooser1.getSelectedFile().getCanonicalPath()));
+            imagePath.setText(String.valueOf(jFileChooser1.getSelectedFile().getPath()));
+            
+            file_path = String.valueOf(jFileChooser1.getSelectedFile().getPath());
+            String name = file_path.split("\\" )[1];
+            String file_name = file_path.split("\\" )[(file_path.split("\\" ).length)-1];
+            
+            
+            String dest = "C:\\Users\\"+name+"\\Documents\\GitHub\\Movie-Booking-app\\movie_app\\images\\"+file_name;
+            Path tmp = Files.move(Paths.get(file_path), Paths.get(dest));
+            
+            if(tmp != null)
+            {
+                System.out.println("Fichier déplacé avec succès");
+                file_path = "images/"+file_name;
+            }
+            else
+            {
+                System.out.println("Impossible de déplacer le fichier"); 
+            }
         } catch (IOException ex) {
             Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        file_path = String.valueOf(jFileChooser1.getSelectedFile().getAbsolutePath());
        
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
