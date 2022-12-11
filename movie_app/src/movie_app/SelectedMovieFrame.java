@@ -49,14 +49,15 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         
         jLabel7.setText(theMovie.getTitle());
         jLabel8.setText(theMovie.getGenre());
-        jLabel10.setText(String.valueOf(theMovie.getPrice()+"£"));
+        jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
         jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
-        jLabel11.setText(String.valueOf(theMovie.getNb_place()));
+        jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
         jImage.setIcon(new ImageIcon(theMovie.getUrl()));
         
         listModel= new DefaultListModel(); //new model for the list
-        for (int i=0; i<theMovie.getTimes().length;i++){
-            listModel.addElement(theMovie.getTimes()[i].split("@")[0]+" "+theMovie.getTimes()[i].split("@")[1]+":"+theMovie.getTimes()[i].split("@")[2]);//gets the id and the title of the movie, adds it to the model             
+        for (int i=0; i<theMovie.getSessions().length;i++){
+            
+            listModel.addElement(theMovie.getSessions()[i].getTime().split("@")[0]+" "+theMovie.getSessions()[i].getTime().split("@")[1]+":"+theMovie.getSessions()[i].getTime().split("@")[2]);//gets the date and time of the session             
         }
         jListTimes.setModel(listModel);//set the model to the list of movies we passed to the model
         
@@ -250,10 +251,10 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         int nb_ticket = Integer.parseInt(jnbTickets.getValue().toString());
         
         if(jListTimes.isSelectionEmpty()==false){
-            if(nb_ticket<theMovie.getNb_place() && nb_ticket>0)
+            if(nb_ticket<theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place() && nb_ticket>0)
             {
                 int index= jListTimes.getSelectedIndex();
-                theSelectedTime = theMovie.getTimes()[index];
+                theSelectedTime = theMovie.getSessions()[index].getTime();
 
                 SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
                 Calendar calendar = Calendar.getInstance();
@@ -270,23 +271,16 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 biling.setVisible(true);
                 this.dispose();
 
-                theMovie.setNb_place(theMovie.getNb_place()-nb_ticket);
+                theMovie.getSessions()[jListTimes.getSelectedIndex()].setNb_place(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()-nb_ticket);
 
                 theMovie.modif_movie();
             }
             else
-                labelWarning.setText("please select less tickets:"+(nb_ticket-theMovie.getNb_place()) );
+                labelWarning.setText("please select less tickets:"+(nb_ticket-theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()) );
         }
         else{
             labelWarning.setText("Select a session Please!");
-        }
-        
-        
-        //c'est le path absolue ptn de merde, rip
-        //https://waytolearnx.com/2020/03/deplacer-le-fichier-vers-un-autre-repertoire-en-java.html
-        
-        
-        
+        }        
     }//GEN-LAST:event_jBuyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
