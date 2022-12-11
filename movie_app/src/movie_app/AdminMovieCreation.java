@@ -21,7 +21,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
     private static final int MAX = 8;
     private int nb_times;
-    private ArrayList <String> files_times = new ArrayList<String>();
+    private ArrayList <session> files_times = new ArrayList<session>();
     private String file_path;
     /**
      * Creates new form AdminMovieCreation
@@ -372,16 +372,16 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         if (jFileChooser1.getSelectedFile()!= null)
         {
                         
-            String[] times = new String[files_times.size()];
+            session[] tab_sessions = new session[files_times.size()];
         
             for(int k=0; k<files_times.size();k++)
             {
-                times[k] = files_times.get(k);
+                tab_sessions[k] = files_times.get(k);
             }
 
             try
             {
-                movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()),Double.parseDouble(jFormattedPrice.getText()), rbAvailable.isSelected(), Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedDiscount.getText()),times, file_path );
+                movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()), rbAvailable.isSelected(), Double.parseDouble(jFormattedDiscount.getText()),tab_sessions, file_path );
                 theMovie.saveMovie();
                 
                 AdminMenuFrame frame = new AdminMenuFrame();
@@ -422,12 +422,16 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
         String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();
         
         if(nb_times<MAX)
         {
-            System.out.println(timing);
-            files_times.add(timing);
+            session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedPrice.getText()) );
+            
+            System.out.println(aSession);
+            files_times.add(aSession);
         }
             
         nb_times++;

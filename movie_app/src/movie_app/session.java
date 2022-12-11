@@ -18,6 +18,11 @@ public class session {
         this.nb_place = nb_place;
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "session{" + "time=" + time + ", nb_place=" + nb_place + ", price=" + price + '}';
+    }
     
     public String getTime() {
         return time;
