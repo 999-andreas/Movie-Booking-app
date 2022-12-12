@@ -47,21 +47,20 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         // Reading input file
         //image = ImageIO.read(input_file);
         
-        jLabel7.setText(theMovie.getTitle());
-        jLabel8.setText(theMovie.getGenre());
-        jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
-        jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
-        jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
-        jImage.setIcon(new ImageIcon(theMovie.getUrl()));
-        
         listModel= new DefaultListModel(); //new model for the list
         for (int i=0; i<theMovie.getSessions().length;i++){
             
+            System.out.println(theMovie.getSessions()[i]);
             listModel.addElement(theMovie.getSessions()[i].getTime().split("@")[0]+" "+theMovie.getSessions()[i].getTime().split("@")[1]+":"+theMovie.getSessions()[i].getTime().split("@")[2]);//gets the date and time of the session             
         }
         jListTimes.setModel(listModel);//set the model to the list of movies we passed to the model
         
-        
+        jLabel7.setText(theMovie.getTitle());
+        jLabel8.setText(theMovie.getGenre());
+        jLabel10.setText(String.valueOf(theMovie.getSessions()[0].getPrice()+"£"));
+        jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
+        jLabel11.setText(String.valueOf(theMovie.getSessions()[0].getNb_place()));
+        jImage.setIcon(new ImageIcon(theMovie.getUrl()));
         
     }
 
@@ -75,6 +74,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jSeparator1 = new javax.swing.JSeparator();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jComboBox1 = new javax.swing.JComboBox<>();
         lblChosenMovie = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -95,6 +97,11 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         labelWarning = new javax.swing.JLabel();
         jImage = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +139,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
         jLabel11.setText("jLabel11");
 
+        jListTimes.setSelectedIndex(0);
         jScrollPane1.setViewportView(jListTimes);
 
         jLabel12.setText("Select a movie session :");
@@ -140,6 +148,13 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("choose");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -157,10 +172,6 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                         .addGap(131, 131, 131))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -181,7 +192,13 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10)
-                                    .addComponent(jLabel11))))
+                                    .addComponent(jLabel11)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBuy, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
@@ -232,7 +249,10 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                                 .addGap(87, 87, 87))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -263,7 +283,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 String formattedDate = dtf.format(dateObj);
                 System.out.println(formattedDate);
 
-                biling thebill=  new biling(theMovie, theMember, nb_ticket, theSelectedTime,formattedDate );
+                biling thebill=  new biling(theMovie, theMember, nb_ticket, jListTimes.getSelectedIndex(),formattedDate );
                 thebill.computeBill();
 
 
@@ -289,6 +309,13 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
+        jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,7 +358,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jBuy;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jImage;
     private javax.swing.JLabel jLabel1;
@@ -347,7 +376,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListTimes;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jnbTickets;
     private javax.swing.JLabel labelWarning;
     private javax.swing.JLabel lblChosenMovie;

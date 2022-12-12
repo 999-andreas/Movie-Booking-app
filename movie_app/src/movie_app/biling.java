@@ -18,15 +18,15 @@ public class biling {
     private movie theMovie;
     private Member theMember;
     private int nb_tickets;
-    private String time;
+    private int session_index;
     private String time_stamp;
     private double total;
     
-    public biling(movie Movie, Member member, int nb_tickets, String time, String time_stamp) {
+    public biling(movie Movie, Member member, int nb_tickets, int index, String time_stamp) {
         theMovie = Movie;
         theMember = member;
         this.nb_tickets = nb_tickets;
-        this.time = time;
+        this.session_index = index;
         this.time_stamp = time_stamp;
     }
 
@@ -39,10 +39,10 @@ public class biling {
     {
         if(theMember.getId()== -1) // -1 as id when its a guest
         {
-            total = theMovie.getPrice()*nb_tickets;
+            total = theMovie.getSessions()[session_index].getPrice()*nb_tickets;
         }
         else
-            total = (theMovie.getPrice()*nb_tickets-((theMovie.getPrice()*nb_tickets)*theMovie.getDiscount()));
+            total = (theMovie.getSessions()[session_index].getPrice()*nb_tickets-((theMovie.getSessions()[session_index].getPrice()*nb_tickets)*theMovie.getDiscount()));
         
         String[][] list = getBills();
         
@@ -114,8 +114,8 @@ public class biling {
         return nb_tickets;
     }
 
-    public String getTime() {
-        return time;
+    public int getSession_index() {
+        return session_index;
     }
 
     public double getTotal() {

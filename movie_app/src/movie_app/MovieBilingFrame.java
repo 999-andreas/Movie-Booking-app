@@ -24,12 +24,11 @@ public class MovieBilingFrame extends javax.swing.JFrame {
         initComponents();
         theBill = aBill;
         
-        
         jLabel7.setText(theBill.getTime_stamp());
         jLabel3.setText(theBill.getTheMember().getFirst_name());
         jLabel4.setText(theBill.getTheMember().getLast_name());
-        jLabel13.setText(theBill.getTime().split("@")[0]);
-        jLabel16.setText(theBill.getTime().split("@")[1]+":"+theBill.getTime().split("@")[2]);
+        jLabel13.setText(theBill.getTheMovie().getSessions()[theBill.getSession_index()].getTime().split("@")[0]);
+        jLabel16.setText(theBill.getTheMovie().getSessions()[theBill.getSession_index()].getTime().split("@")[1]+":"+theBill.getTheMovie().getSessions()[theBill.getSession_index()].getTime().split("@")[2]);
         jLabel11.setText(theBill.getTheMovie().getTitle());
         
         if(theBill.getTheMember().getId()!=-1)
@@ -40,7 +39,7 @@ public class MovieBilingFrame extends javax.swing.JFrame {
         {
             jLabel6.setText("0");
         }
-        jprice.setText(String.valueOf(theBill.getTheMovie().getPrice()));
+        jprice.setText(String.valueOf(theBill.getTheMovie().getSessions()[theBill.getSession_index()].getPrice()));
         jnb_tickets.setText(String.valueOf(theBill.getNb_tickets()));
         jLabel12.setText(String.valueOf(theBill.getTotal())); 
     }
