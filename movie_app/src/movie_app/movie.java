@@ -132,7 +132,7 @@ public class movie {
                for(int j=0;j<str_sessions.length;j++)
                {
                    String[] str_session = str_sessions[j].split("@");
-                   System.out.println(str_session[4]);
+                   System.out.println(str_session[4]); /*beug ici out of range, mais ça s'affiche quand meme*/
                    tab_sessions[j] = new session(str_session[0]+"@"+str_session[1]+"@"+str_session[2],Integer.parseInt(str_session[4]), Double.parseDouble(str_session[3]));
                }
                
