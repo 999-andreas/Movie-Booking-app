@@ -127,7 +127,7 @@ public class movie {
                System.out.println(line);  
 
                String[] info = line.split(";");
-               String[] str_sessions = info[9].split(",");
+               String[] str_sessions = info[8].split(",");
                session[] tab_sessions = new session[str_sessions.length];
                for(int j=0;j<str_sessions.length;j++)
                {

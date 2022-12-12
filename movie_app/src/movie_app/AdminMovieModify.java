@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -30,10 +31,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
         tfGenre.setText(aMovieToModify.getGenre());
         tfDuration.setText(Integer.toString(aMovieToModify.getDuration()));
         tfReleaseDate.setText(aMovieToModify.getDate());
-        tfPrice.setText(Double.toString(aMovieToModify.getPrice()));
+        // not compatible anymore tfPrice.setText(Double.toString(aMovieToModify.getPrice()));
         tfDiscount.setText(Double.toString(aMovieToModify.getDiscount()));
-        tfNumTickets.setText(Integer.toString(aMovieToModify.getNb_place()));
-        tfImageUrl.setText(aMovieToModify.getUrl());
+        // not compatible anymore tfNumTickets.setText(Integer.toString(aMovieToModify.getNb_place()));
+        
         if(aMovieToModify.isAvailability()==true){
             rbAvailable.setSelected(true);
         }
@@ -41,13 +42,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
             rbNotAvailable.setSelected(true);
         }
         
-        nbTimes=aMovieToModify.getTimes().length;//gets the number of time strings in the movie
+        nbTimes=aMovieToModify.getSessions().length;//gets the number of time strings in the movie
         
         
         
         for (int i=0; i<nbTimes;i++){
-            listModel.addElement((aMovieToModify.getTimes())[i]);//adds all the string times to the model data
-            theTimes.add(aMovieToModify.getTimes()[i]);//adds all the string times to the ArrayList, which we will use to add more times
+            listModel.addElement((aMovieToModify.getSessions())[i]);//adds all the string times to the model data
+            theTimes.add(aMovieToModify.getSessions()[i].toString());//adds all the string times to the ArrayList, which we will use to add more times
         }
          
         
@@ -90,8 +91,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
         lblAvailability = new javax.swing.JLabel();
         btnModifyMovie = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        tfImageUrl = new javax.swing.JTextField();
-        lblImage = new javax.swing.JLabel();
         lblTimings = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listTimings = new javax.swing.JList<>();
@@ -141,8 +140,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
             }
         });
 
-        lblImage.setText("Image URL :");
-
         lblTimings.setText("Timings :");
 
         jScrollPane1.setViewportView(listTimings);
@@ -166,7 +163,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(372, 372, 372)
@@ -182,7 +179,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addComponent(lblGenre)
                             .addComponent(lblMovieTitle)
                             .addComponent(lblAvailability)
-                            .addComponent(lblImage)
                             .addComponent(lblTimings))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,22 +196,20 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
                                         .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lbl2Points, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 3, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(9, 9, 9)
                 .addComponent(btnAddTime)
                 .addGap(122, 122, 122))
         );
@@ -240,41 +234,41 @@ public class AdminMovieModify extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tfDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addComponent(rbAvailable)
+                    .addComponent(lblAvailability)
+                    .addComponent(rbNotAvailable))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfImageUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblImage))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTimings)
-                    .addComponent(btnAddTime)
-                    .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl2Points)
-                    .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbNotAvailable)
-                    .addComponent(rbAvailable)
-                    .addComponent(lblAvailability))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblTimings)
+                                .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAddTime)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl2Points))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -287,11 +281,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
         aMovieToModify.setTitle(tfMovieTitle.getText());
         aMovieToModify.setGenre(tfGenre.getText());
         aMovieToModify.setDuration(Integer.parseInt(tfDuration.getText()));
-        aMovieToModify.setNb_place(Integer.parseInt(tfNumTickets.getText()));
+        //aMovieToModify.setNb_place(Integer.parseInt(tfNumTickets.getText()));
         aMovieToModify.setDate(tfReleaseDate.getText());
-        aMovieToModify.setPrice(Double.parseDouble(tfPrice.getText()));
+        //aMovieToModify.setPrice(Double.parseDouble(tfPrice.getText()));
         aMovieToModify.setDiscount(Double.parseDouble(tfDiscount.getText()));
-        aMovieToModify.setUrl(tfImageUrl.getText());
+        //aMovieToModify.setUrl(tfImageUrl.getText());
         if (rbAvailable.isSelected()==true){
             aMovieToModify.setAvailability(true);
         }
@@ -307,7 +301,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
             times[i]= theTimes.get(i);
             }
         
-        aMovieToModify.setTimes(times);//sets the time strings of the movie
+        aMovieToModify.setSessions(times);//sets the time strings of the movie
                 
         aMovieToModify.modif_movie();//saves the data of the current movie
     }//GEN-LAST:event_btnModifyMovieActionPerformed
@@ -383,7 +377,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblGenre;
-    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblModifyMovie;
     private javax.swing.JLabel lblMovieTitle;
     private javax.swing.JLabel lblNumTickets;
@@ -397,7 +390,6 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JTextField tfDiscount;
     private javax.swing.JTextField tfDuration;
     private javax.swing.JTextField tfGenre;
-    private javax.swing.JTextField tfImageUrl;
     private javax.swing.JTextField tfMovieTitle;
     private javax.swing.JTextField tfNumTickets;
     private javax.swing.JTextField tfPrice;

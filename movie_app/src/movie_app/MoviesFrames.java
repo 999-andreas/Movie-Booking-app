@@ -4,7 +4,6 @@
  */
 package movie_app;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;

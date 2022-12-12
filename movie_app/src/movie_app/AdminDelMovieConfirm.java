@@ -4,7 +4,6 @@
  */
 package movie_app;
 
-import javax.swing.JOptionPane;
 import static movie_app.movie.deleteMovie;
 
 /**

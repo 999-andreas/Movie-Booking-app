@@ -49,9 +49,9 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         
         jLabel7.setText(theMovie.getTitle());
         jLabel8.setText(theMovie.getGenre());
-        jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
+        // code moved to line 300 jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
         jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
-        jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
+        // code moved to line 301 jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
         jImage.setIcon(new ImageIcon(theMovie.getUrl()));
         
         listModel= new DefaultListModel(); //new model for the list
@@ -132,6 +132,11 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
         jLabel11.setText("jLabel11");
 
+        jListTimes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListTimesValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListTimes);
 
         jLabel12.setText("Select a movie session :");
@@ -289,6 +294,12 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jListTimesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListTimesValueChanged
+        // TODO add your handling code here:
+        jLabel10.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getPrice()+"£"));
+        jLabel11.setText(String.valueOf(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
+    }//GEN-LAST:event_jListTimesValueChanged
 
     /**
      * @param args the command line arguments
