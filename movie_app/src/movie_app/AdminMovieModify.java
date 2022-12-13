@@ -367,6 +367,9 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private void listTimingsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listTimingsValueChanged
         // TODO add your handling code here:
+        int index =listTimings.getSelectedIndex();
+        tfPrice.setText(Double.toString(aMovieToModify.getSessions()[index].getPrice()));
+        tfNumTickets.setText(Integer.toString(aMovieToModify.getSessions()[index].getNb_place()));
         
     }//GEN-LAST:event_listTimingsValueChanged
 
