@@ -96,7 +96,7 @@ public class movie {
             {
                 file_sessions+=sessions[k].getTime()+"@"+sessions[k].getPrice()+"@"+sessions[k].getNb_place()+",";
             }
-            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";" + ";" + discount + ";" + file_sessions+";"+url); 
+            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";"+ discount + ";" + file_sessions+";"+url); 
                 
             outputFile.close();
         }
@@ -132,6 +132,7 @@ public class movie {
                for(int j=0;j<str_sessions.length;j++)
                {
                    String[] str_session = str_sessions[j].split("@");
+                   System.out.println("tset");
                    tab_sessions[j] = new session(str_session[0]+"@"+str_session[1]+"@"+str_session[2],Integer.parseInt(str_session[4]), Double.parseDouble(str_session[3]));
                }
                
