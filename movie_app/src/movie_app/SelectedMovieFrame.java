@@ -274,7 +274,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 int index= jListTimes.getSelectedIndex();
                 theSelectedTime = theMovie.getSessions()[index].getTime();
 
-                SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
                 Calendar calendar = Calendar.getInstance();
 
                 Date dateObj = calendar.getTime();

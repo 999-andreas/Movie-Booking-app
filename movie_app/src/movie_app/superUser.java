@@ -148,14 +148,17 @@ public class superUser{
                 }
              };
         
-        public static KeyAdapter KEYBOARDDATE=new KeyAdapter() {
+        public static KeyAdapter KEYBOARDDATE=new KeyAdapter() 
+        {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e) 
+            {
                 char c = e.getKeyChar();
-                if ( ((c ==';') || (c==',') || (c=='@') || (c==' ')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                if ( ((c ==';') || (c==',') || (c=='@') || (c==' ')) && (c != KeyEvent.VK_BACK_SPACE)) 
+                {
                    e.consume();  // ignore event
                 }
-                }
-             };
+            }
+        };
 
 }
