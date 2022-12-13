@@ -109,7 +109,6 @@ public class movie {
     // get all the movies from the text file
     public static ArrayList<movie> getMovies() 
     {
-        // vaq chercher tout les films dans le fichier
         
         try
         {
@@ -187,12 +186,6 @@ public class movie {
         this.url = url;
     }
     
-    /*
-    public movie getMovie(int id)
-    {
-        //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
-    }*/
-    
     // modification of a movie in the text file
     public void modif_movie()
     {   
@@ -239,6 +232,7 @@ public class movie {
         }     
     }
 
+    //deletes a movie in function of its id
     public static void deleteMovie(int id)
     {
         ArrayList<movie> list = getMovies();

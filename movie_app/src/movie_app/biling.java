@@ -34,7 +34,7 @@ public class biling {
         this.id = id;
     }
 
-        
+    // calculates the total and putes it a text file
     public void computeBill()  
     {
         if(theMember.getId()== -1) // -1 as id when its a guest
@@ -66,6 +66,7 @@ public class biling {
         }
     }
     
+    //retrives all the bills in form of a 2 dimentions list
     public static String[][] getBills()
     {
         try
