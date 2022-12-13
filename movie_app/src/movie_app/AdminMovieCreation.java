@@ -439,9 +439,10 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             
             System.out.println(aSession);
             files_times.add(aSession);
+            nb_times++;
         }
             
-        nb_times++;
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

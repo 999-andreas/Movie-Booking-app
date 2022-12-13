@@ -16,7 +16,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private movie aMovieToModify;
     DefaultListModel listModel= new DefaultListModel();
-    private ArrayList <String> theTimes= new ArrayList<String>();
+    private ArrayList <session> theTimes= new ArrayList<session>();
     private int nbTimes;
     private static int MAX=8;
     /**
@@ -48,7 +48,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         for (int i=0; i<nbTimes;i++){
             listModel.addElement((aMovieToModify.getSessions())[i]);//adds all the string times to the model data
-            theTimes.add(aMovieToModify.getSessions()[i].toString());//adds all the string times to the ArrayList, which we will use to add more times
+            theTimes.add(aMovieToModify.getSessions()[i]);//adds all the string times to the ArrayList, which we will use to add more times
         }
          
         
@@ -99,6 +99,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         cbHour = new javax.swing.JComboBox<>();
         lbl2Points = new javax.swing.JLabel();
         cbMinutes = new javax.swing.JComboBox<>();
+        lblWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +143,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         lblTimings.setText("Timings :");
 
+        listTimings.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listTimingsValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listTimings);
 
         btnAddTime.setText("Add");
@@ -194,7 +200,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -207,7 +213,8 @@ public class AdminMovieModify extends javax.swing.JFrame {
                                         .addComponent(lbl2Points, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(9, 9, 9)
                 .addComponent(btnAddTime)
@@ -243,7 +250,9 @@ public class AdminMovieModify extends javax.swing.JFrame {
                     .addComponent(rbAvailable)
                     .addComponent(lblAvailability)
                     .addComponent(rbNotAvailable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(lblWarning)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,10 +304,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         
         
-        String[] times= new String[theTimes.size()];
+        session[] times= new session[theTimes.size()];
         
         for (int i=0; i<theTimes.size();i++){
-            times[i]= theTimes.get(i);
+                times[i]=theTimes.get(i);
             }
         
         aMovieToModify.setSessions(times);//sets the time strings of the movie
@@ -316,17 +325,33 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private void btnAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTimeActionPerformed
         // TODO add your handling code here:
         String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
-        
-        if(nbTimes<MAX)//caps the number of time strings to 8
-        {
-            listModel.addElement(timing);//adds the string to the model of data
-            listTimings.setModel(listModel);//sets the model of the list with the data which was just added
-            theTimes.add(timing);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
-            nbTimes++;//+1 to the number of time strings 
+        if(!tfNumTickets.getText().isBlank()){
+            if (!tfPrice.getText().isBlank()){
+                if(nbTimes<MAX)//caps the number of time strings to 8
+                {
+                    session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(tfPrice.getText()) );
+                    listModel.addElement(timing);//adds the string to the model of data
+
+                    listTimings.setModel(listModel);//sets the model of the list with the data which was just added
+                    theTimes.add(aSession);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+                    nbTimes++;//+1 to the number of time strings 
+                }
+            }
+            else{
+                lblWarning.setText("Set a price for the session");
+            }
+        }
+        else{
+            lblWarning.setText("You need to enter a number of tickets!");
         }
             
          
     }//GEN-LAST:event_btnAddTimeActionPerformed
+
+    private void listTimingsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listTimingsValueChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_listTimingsValueChanged
 
     /**
      * @param args the command line arguments
@@ -383,6 +408,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblReleaseDate;
     private javax.swing.JLabel lblTimings;
+    private javax.swing.JLabel lblWarning;
     private javax.swing.JList<String> listTimings;
     private javax.swing.JRadioButton rbAvailable;
     private javax.swing.JRadioButton rbNotAvailable;

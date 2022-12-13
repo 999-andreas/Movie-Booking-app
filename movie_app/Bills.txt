@@ -1,8 +1,0 @@
-7
-0;A;B;C;D;E
-1;guest;guest;Indiana Johns;70.0;2022/12/08
-2;guest;guest;Indiana Johns;63.0;2022/12/08
-3;guest;guest;Indiana Johns;-7.0;2022/12/09
-4;guest;guest;Indiana Johns;-7.0;2022/12/09
-5;guest;guest;Indiana Johns;5.0;2022/12/12
-6;guest;guest;Indiana Johns;5.0;2022/12/12
