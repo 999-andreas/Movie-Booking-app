@@ -86,17 +86,17 @@ public class movie {
                 file_sessions = "";
                 for(int k=0;k<a.sessions.length;k++)
                 {
-                    file_sessions+=a.sessions[k].getTime()+","+a.sessions[k].getPrice()+","+a.sessions[k].getNb_place();
+                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
                 }
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + ";" + a.availability + ";" + ";" + a.discount + ";" + file_sessions+";"+a.url); 
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
             }
             
             file_sessions = "";
             for(int k=0;k<sessions.length;k++)
             {
-                file_sessions+=sessions[k].getTime()+","+sessions[k].getPrice()+","+sessions[k].getNb_place();
+                file_sessions+=sessions[k].getTime()+"@"+sessions[k].getPrice()+"@"+sessions[k].getNb_place()+",";
             }
-            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";" + ";" + availability + ";" + ";" + discount + ";" + file_sessions+";"+url); 
+            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";" + ";" + discount + ";" + file_sessions+";"+url); 
                 
             outputFile.close();
         }
@@ -219,7 +219,7 @@ public class movie {
                     file_sessions = "";
                     for(int k=0;k<a.sessions.length;k++)
                     {
-                        file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place();
+                        file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
                     }
                     outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
                 }
@@ -257,7 +257,7 @@ public class movie {
                 file_sessions = "";
                 for(int k=0;k<a.sessions.length;k++)
                 {
-                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place();
+                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
                 }
                 outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";"+ a.discount + ";" + file_sessions+";"+a.url); 
             }
