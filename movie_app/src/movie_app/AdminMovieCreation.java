@@ -436,33 +436,36 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DateActionPerformed
 
+//action when the add a session is clicked
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
         SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
 
         Date dateObj = calendar.getTime();
         String formattedDate = dtf.format(dateObj);
-        System.out.println(formattedDate);
+        System.out.println(formattedDate);// gives the actual date
         
-        String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();
+        if(formattedDate.compareTo(Date.getText())>0 || formattedDate.compareTo(tfReleaseDate.getText())<0) //checks if the date is correct
+        {
+            jWarning.setText("session not added, wrong date");
+            return;
+        }
+        
+        String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();// retrives the inputs for the session
         
         if(nb_times<MAX)
         {
-            session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedPrice.getText()) );
-            for(int k=0;k<files_times.size();k++)
+            session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedPrice.getText()) ); 
+            for(int k=0;k<files_times.size();k++) // loop to check if the session is valid
             {
-                if(formattedDate.compareTo(Date.getText())>0 || formattedDate.compareTo(tfReleaseDate.getText())<0)
+                if(files_times.get(k).getNb_place()==aSession.getNb_place() && files_times.get(k).getPrice()== aSession.getPrice() && files_times.get(k).getTime()==aSession.getTime())
                 {
-                    jWarning.setText("session not added, wrong date");
+                    jWarning.setText("session not added, already present");
                     return;
                 }
-
-            }
-            if(files_times.contains(aSession)==true)
-            {
-                jWarning.setText("session not added, already present");
-                return;
             }
             System.out.println(aSession);
             files_times.add(aSession);
