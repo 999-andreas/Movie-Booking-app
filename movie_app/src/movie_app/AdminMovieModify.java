@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import static movie_app.superUser.KEYBOARDDATE;
+import static movie_app.superUser.KEYBOARDSAFETY;
 
 /**
  *
@@ -67,7 +69,15 @@ public class AdminMovieModify extends javax.swing.JFrame {
         file_path= aMovieToModify.getUrl();
         lblThePath.setText(aMovieToModify.getUrl());
         
-        
+        //Now come the input safeties
+       tfMovieTitle.addKeyListener(KEYBOARDSAFETY);
+       tfGenre.addKeyListener(KEYBOARDSAFETY);
+       tfDuration.addKeyListener(KEYBOARDSAFETY);
+       tfReleaseDate.addKeyListener(KEYBOARDSAFETY);
+       tfDiscount.addKeyListener(KEYBOARDSAFETY);
+       tfNumTickets.addKeyListener(KEYBOARDSAFETY);
+       tfPrice.addKeyListener(KEYBOARDSAFETY);
+       tfDate.addKeyListener(KEYBOARDDATE);
     }
     
     public AdminMovieModify(){

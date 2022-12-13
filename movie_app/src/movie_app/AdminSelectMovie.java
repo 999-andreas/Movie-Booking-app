@@ -6,7 +6,6 @@ package movie_app;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import static movie_app.movie.getMovies;
 
 /**
