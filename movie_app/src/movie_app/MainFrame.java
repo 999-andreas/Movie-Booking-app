@@ -93,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnContinueGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueGuestActionPerformed
         // TODO add your handling code here:
         Member theGuest= new Member("guest","guest","guest","guest");
-        theGuest.setId(-1);
+        theGuest.setId(-1); //sets the guest's id to -1
         MoviesFrames theMovies= new MoviesFrames(theGuest); //Creates the frame for the movies
         
         theMovies.setVisible(true);//sets visible the frame to load the movies
@@ -110,9 +110,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         // TODO add your handling code here:
-        LoginFrame theLoginFrame= new LoginFrame();
-        theLoginFrame.setVisible(true);
-        this.dispose();
+        LoginFrame theLoginFrame= new LoginFrame(); //create the login Frame
+        theLoginFrame.setVisible(true);//sets it visible
+        this.dispose();//disposes of main frame
     }//GEN-LAST:event_btnLogInActionPerformed
 
     /**

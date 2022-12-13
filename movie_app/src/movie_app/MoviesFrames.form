@@ -62,7 +62,7 @@
                   <Component id="btnChooseMovie" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" pref="297" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,6 +86,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblWelcome">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Welcome Guest!"/>
       </Properties>
     </Component>

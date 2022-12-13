@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import static movie_app.superUser.KEYBOARDDATE;
+import static movie_app.superUser.KEYBOARDSAFETY;
 
 /**
  *
@@ -28,7 +30,12 @@ public class AdminMovieCreation extends javax.swing.JFrame {
      */
     public AdminMovieCreation() {
         initComponents();
+        tfMovieTitle.addKeyListener(KEYBOARDSAFETY);
+        tfGenre.addKeyListener(KEYBOARDSAFETY);
+        tfDuration.addKeyListener(KEYBOARDSAFETY);
+        tfReleaseDate.addKeyListener(KEYBOARDSAFETY);
         
+        Date.addKeyListener(KEYBOARDDATE);
         
         
         

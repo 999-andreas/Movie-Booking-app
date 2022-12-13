@@ -5,6 +5,7 @@
 package movie_app;
 
 import java.util.ArrayList;
+import static movie_app.superUser.KEYBOARDSAFETY;
 import static movie_app.superUser.getUsers;
 
 
@@ -15,8 +16,8 @@ import static movie_app.superUser.getUsers;
  */
 public class LoginFrame extends javax.swing.JFrame {
 
-    private ArrayList<Member> theMembers= new ArrayList<Member>();
-    private ArrayList<Member> theAdmins= new ArrayList<Member>();
+    private ArrayList<Member> theMembers;
+    private ArrayList<Member> theAdmins;
     /**
      * Creates new form LoginFrame
      */
@@ -24,6 +25,14 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
         theMembers=getUsers(false);
         theAdmins=getUsers(true);
+        
+        
+        
+        //adds safety to username inputs
+        tfUsername.addKeyListener(KEYBOARDSAFETY);
+        //adds safety to password inputs
+        tfPwd.addKeyListener(KEYBOARDSAFETY);
+        
     }
 
     /**
@@ -121,20 +130,23 @@ public class LoginFrame extends javax.swing.JFrame {
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         // TODO add your handling code here:
         
-        String theUsername= tfUsername.getText();
-        String thePwd= tfPwd.getText();
+        String theUsername= tfUsername.getText();//retrieves the entered text for username
+        String thePwd= tfPwd.getText();//retrieves the text for password
         
         for (int i=0; i<theMembers.size();i++){
             if (theUsername.equals(theMembers.get(i).username)){
-                if (thePwd.equalsIgnoreCase(theMembers.get(i).pw)){
+                if (thePwd.equals(theMembers.get(i).pw)){//checks password
                     MoviesFrames theMovies= new MoviesFrames(theMembers.get(i)); //Creates the frame for the movies
         
                     theMovies.setVisible(true);//sets visible the frame to load the movies
                     this.dispose(); //disposes of the actual frame
                 }
                 else{
-                    lblCheck.setText("Username or Password doesn't match");
+                    lblCheck.setText("Password doesn't match");
                 }
+            }
+            else{
+                lblCheck.setText("Username unknown");
             }
             
         }
@@ -159,6 +171,7 @@ public class LoginFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConnectActionPerformed
 
+    
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         

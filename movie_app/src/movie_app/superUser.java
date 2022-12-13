@@ -4,6 +4,8 @@
  */
 package movie_app;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -134,5 +136,26 @@ public class superUser{
     public void setId(int id) {
         this.id = id;
     }
+    
+    // keyboard safety in order to check the user's input, so that he can't "break" the text files
+        public static KeyAdapter KEYBOARDSAFETY=new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c ==';') || (c=='@')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                   e.consume();  // ignore event
+                }
+                }
+             };
+        
+        public static KeyAdapter KEYBOARDDATE=new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c ==';') || (c==',') || (c=='@') || (c==' ')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                   e.consume();  // ignore event
+                }
+                }
+             };
 
 }
