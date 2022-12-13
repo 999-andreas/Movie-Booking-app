@@ -46,13 +46,13 @@ public class Movie_app {
         
         //System.out.println(list.get(0)); // to have juste one movie select using the index==id
       
-        String[] file = {"20:00","20:30"};
+        //String[] file = {"20:00","20:30"};
         
-        movie M1 = new movie("Adventure", "TEST2", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
+        //movie M1 = new movie("Adventure", "TEST2", "02/02/2002", 120, 7.0, true, 40, 0.2, file,"twitter.com");
         
-        M1.setId(7);
+        //M1.setId(7);
         
-        M1.modif_movie();
+        //M1.modif_movie();
         
         //getMovies();
 

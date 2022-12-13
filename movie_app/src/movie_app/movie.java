@@ -127,12 +127,12 @@ public class movie {
                System.out.println(line);  
 
                String[] info = line.split(";");
-               String[] str_sessions = info[8].split(",");
+               String[] str_sessions = info[7].split(",");
                session[] tab_sessions = new session[str_sessions.length];
                for(int j=0;j<str_sessions.length;j++)
                {
                    String[] str_session = str_sessions[j].split("@");
-                   tab_sessions[j] = new session(str_session[0],Integer.parseInt(str_session[1]), Double.parseDouble(str_session[2]));
+                   tab_sessions[j] = new session(str_session[0]+"@"+str_session[1]+"@"+str_session[2],Integer.parseInt(str_session[4]), Double.parseDouble(str_session[3]));
                }
                
                
@@ -219,9 +219,9 @@ public class movie {
                     file_sessions = "";
                     for(int k=0;k<a.sessions.length;k++)
                     {
-                        file_sessions+=a.sessions[k].getTime()+","+a.sessions[k].getPrice()+","+a.sessions[k].getNb_place();
+                        file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place();
                     }
-                    outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + ";" + a.availability + ";" + ";" + a.discount + ";" + file_sessions+";"+a.url); 
+                    outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
                 }
             }
         }
@@ -257,9 +257,9 @@ public class movie {
                 file_sessions = "";
                 for(int k=0;k<a.sessions.length;k++)
                 {
-                    file_sessions+=a.sessions[k].getTime()+","+a.sessions[k].getPrice()+","+a.sessions[k].getNb_place();
+                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place();
                 }
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + ";" + a.availability + ";" + ";" + a.discount + ";" + file_sessions+";"+a.url); 
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";"+ a.discount + ";" + file_sessions+";"+a.url); 
             }
                 
             outputFile.close();
