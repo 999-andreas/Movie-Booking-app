@@ -5,6 +5,12 @@
  */
 package movie_app;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -16,9 +22,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private movie aMovieToModify;
     DefaultListModel listModel= new DefaultListModel();
-    private ArrayList <String> theTimes= new ArrayList<String>();
+    private ArrayList <session> theTimes= new ArrayList<session>();
     private int nbTimes;
     private static int MAX=8;
+    private String file_path;
     /**
      * Creates new form AdminMovieCreation
      * @param theMovie
@@ -48,11 +55,17 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         for (int i=0; i<nbTimes;i++){
             listModel.addElement((aMovieToModify.getSessions())[i]);//adds all the string times to the model data
-            theTimes.add(aMovieToModify.getSessions()[i].toString());//adds all the string times to the ArrayList, which we will use to add more times
+            theTimes.add(aMovieToModify.getSessions()[i]);//adds all the string times to the ArrayList, which we will use to add more times
         }
          
         
         listTimings.setModel(listModel);
+        
+        listTimings.setSelectedIndex(0);
+        
+        
+        file_path= aMovieToModify.getUrl();
+        lblThePath.setText(aMovieToModify.getUrl());
         
         
     }
@@ -71,6 +84,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jFileChooser1 = new javax.swing.JFileChooser();
         lblMovieTitle = new javax.swing.JLabel();
         tfMovieTitle = new javax.swing.JTextField();
         lblGenre = new javax.swing.JLabel();
@@ -99,6 +113,18 @@ public class AdminMovieModify extends javax.swing.JFrame {
         cbHour = new javax.swing.JComboBox<>();
         lbl2Points = new javax.swing.JLabel();
         cbMinutes = new javax.swing.JComboBox<>();
+        lblWarning = new javax.swing.JLabel();
+        btnRemoveTime = new javax.swing.JButton();
+        btnModifySession = new javax.swing.JButton();
+        fileChooserImage = new javax.swing.JFileChooser();
+        jLabel1 = new javax.swing.JLabel();
+        lblThePath = new javax.swing.JLabel();
+
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,9 +168,14 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         lblTimings.setText("Timings :");
 
+        listTimings.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listTimingsValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listTimings);
 
-        btnAddTime.setText("Add");
+        btnAddTime.setText("Add a Session");
         btnAddTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddTimeActionPerformed(evt);
@@ -159,98 +190,134 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         cbMinutes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "10", "20", "30", "40", "50" }));
 
+        btnRemoveTime.setText("Remove a Session");
+        btnRemoveTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveTimeActionPerformed(evt);
+            }
+        });
+
+        btnModifySession.setText("Modify a Session");
+
+        fileChooserImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileChooserImageActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Image Path: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDiscount)
+                    .addComponent(lblNumTickets)
+                    .addComponent(lblPrice)
+                    .addComponent(lblReleaseDate)
+                    .addComponent(lblDuration)
+                    .addComponent(lblGenre)
+                    .addComponent(lblMovieTitle)
+                    .addComponent(lblAvailability)
+                    .addComponent(lblTimings))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
-                        .addComponent(lblModifyMovie))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDiscount)
-                            .addComponent(lblNumTickets)
-                            .addComponent(lblPrice)
-                            .addComponent(lblReleaseDate)
-                            .addComponent(lblDuration)
-                            .addComponent(lblGenre)
-                            .addComponent(lblMovieTitle)
-                            .addComponent(lblAvailability)
-                            .addComponent(lblTimings))
+                        .addComponent(btnModifyMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfGenre)
-                            .addComponent(tfMovieTitle)
-                            .addComponent(tfDuration)
-                            .addComponent(tfReleaseDate)
-                            .addComponent(tfPrice)
-                            .addComponent(tfDiscount)
-                            .addComponent(tfNumTickets)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lbl2Points, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblModifyMovie)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfMovieTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                .addComponent(tfDuration, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfReleaseDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tfPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                                    .addComponent(tfNumTickets, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(tfDiscount, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfGenre)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rbNotAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbHour, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbl2Points, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(9, 9, 9)
-                .addComponent(btnAddTime)
-                .addGap(122, 122, 122))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnRemoveTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAddTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnModifySession, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblThePath, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fileChooserImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(120, 120, 120))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblModifyMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfMovieTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfReleaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbAvailable)
+                            .addComponent(lblAvailability)
+                            .addComponent(rbNotAvailable))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblWarning)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(fileChooserImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbAvailable)
-                    .addComponent(lblAvailability)
-                    .addComponent(rbNotAvailable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(lblThePath)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -262,8 +329,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnAddTime)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRemoveTime)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnModifySession))))
                     .addComponent(lbl2Points))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -295,13 +367,16 @@ public class AdminMovieModify extends javax.swing.JFrame {
         
         
         
-        String[] times= new String[theTimes.size()];
+        session[] times= new session[theTimes.size()];
         
         for (int i=0; i<theTimes.size();i++){
-            times[i]= theTimes.get(i);
+                times[i]=theTimes.get(i);
             }
+        listTimings.setModel(listModel);
         
-        aMovieToModify.setSessions(times);//sets the time strings of the movie
+        aMovieToModify.setSessions(times);//saves the sessions' data
+        
+        
                 
         aMovieToModify.modif_movie();//saves the data of the current movie
     }//GEN-LAST:event_btnModifyMovieActionPerformed
@@ -316,17 +391,87 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private void btnAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTimeActionPerformed
         // TODO add your handling code here:
         String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
-        
-        if(nbTimes<MAX)//caps the number of time strings to 8
-        {
-            listModel.addElement(timing);//adds the string to the model of data
-            listTimings.setModel(listModel);//sets the model of the list with the data which was just added
-            theTimes.add(timing);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
-            nbTimes++;//+1 to the number of time strings 
+        if(!tfNumTickets.getText().isBlank()){
+            if (!tfPrice.getText().isBlank()){
+                if(nbTimes<MAX)//caps the number of time strings to 8
+                {
+                    session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(tfPrice.getText()) );
+                    theTimes.add(aSession);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+                    listModel.addElement(aSession);//adds the string to the model of data
+
+                    listTimings.setModel(listModel);//sets the model of the list with the data which was just added
+                    
+                    nbTimes++;//+1 to the number of time strings 
+                }
+            }
+            else{
+                lblWarning.setText("Set a price for the session");
+            }
+        }
+        else{
+            lblWarning.setText("You need to enter a number of tickets!");
         }
             
          
     }//GEN-LAST:event_btnAddTimeActionPerformed
+
+    private void listTimingsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listTimingsValueChanged
+        // TODO add your handling code here:
+        
+        if (!listTimings.isSelectionEmpty()){
+        int index= listTimings.getSelectedIndex();
+        tfPrice.setText(Double.toString(aMovieToModify.getSessions()[index].getPrice()));
+        tfNumTickets.setText(Integer.toString(aMovieToModify.getSessions()[index].getNb_place()));
+        }
+        else{
+            tfPrice.setText(Double.toString(aMovieToModify.getSessions()[0].getPrice()));
+            tfNumTickets.setText(Integer.toString(aMovieToModify.getSessions()[0].getNb_place())); 
+        }
+    }//GEN-LAST:event_listTimingsValueChanged
+
+    private void btnRemoveTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTimeActionPerformed
+        // TODO add your handling code here:
+        if (!listTimings.isSelectionEmpty()){
+            int index = listTimings.getSelectedIndex();
+            theTimes.remove(theTimes.get(index));
+            listModel.remove(index);
+            listTimings.setModel(listModel);
+            nbTimes--; // -1 to the number of times
+            
+        }
+        else{
+            lblWarning.setText("Select a session");
+        }
+    }//GEN-LAST:event_btnRemoveTimeActionPerformed
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
+
+    private void fileChooserImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserImageActionPerformed
+        try {
+            // TODO add your handling code here:
+            lblThePath.setText(String.valueOf(fileChooserImage.getSelectedFile().getPath()));
+            String sep = String.valueOf(fileChooserImage.getSelectedFile().getPath()).replace("\\", ";");
+            file_path = String.valueOf(fileChooserImage.getSelectedFile().getPath());
+            String name = sep.split(";" )[2];
+            String file_name = fileChooserImage.getSelectedFile().getName();
+            String dest = "C:\\Users\\"+name+"\\Documents\\GitHub\\Movie-Booking-app\\movie_app\\images\\"+file_name;
+            Path tmp = Files.move(Paths.get(file_path), Paths.get(dest));
+            if(tmp != null)
+            {
+                System.out.println("Fichier déplacé avec succès");
+                file_path = "images/"+file_name;
+                aMovieToModify.setUrl(file_path);
+            }
+            else
+            {
+                System.out.println("Impossible de déplacer le fichier");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(AdminMovieModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_fileChooserImageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,9 +513,14 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JButton btnAddTime;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnModifyMovie;
+    private javax.swing.JButton btnModifySession;
+    private javax.swing.JButton btnRemoveTime;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbHour;
     private javax.swing.JComboBox<String> cbMinutes;
+    private javax.swing.JFileChooser fileChooserImage;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl2Points;
     private javax.swing.JLabel lblAvailability;
@@ -382,7 +532,9 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumTickets;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblReleaseDate;
+    private javax.swing.JLabel lblThePath;
     private javax.swing.JLabel lblTimings;
+    private javax.swing.JLabel lblWarning;
     private javax.swing.JList<String> listTimings;
     private javax.swing.JRadioButton rbAvailable;
     private javax.swing.JRadioButton rbNotAvailable;
