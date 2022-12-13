@@ -198,6 +198,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
         });
 
         btnModifySession.setText("Modify a Session");
+        btnModifySession.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifySessionActionPerformed(evt);
+            }
+        });
 
         fileChooserImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,23 +257,22 @@ public class AdminMovieModify extends javax.swing.JFrame {
                                 .addComponent(tfMovieTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                                 .addComponent(tfDuration, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(tfReleaseDate, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tfPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                                    .addComponent(tfNumTickets, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(tfPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                .addComponent(tfNumTickets, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(tfDiscount, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(tfGenre)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRemoveTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAddTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnModifySession, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRemoveTime, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAddTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnModifySession, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblThePath, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fileChooserImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(120, 120, 120))))
+                            .addComponent(fileChooserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(88, 88, 88))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +313,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addComponent(tfNumTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(fileChooserImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(fileChooserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -472,6 +476,18 @@ public class AdminMovieModify extends javax.swing.JFrame {
             Logger.getLogger(AdminMovieModify.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_fileChooserImageActionPerformed
+
+    private void btnModifySessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifySessionActionPerformed
+        // TODO add your handling code here:
+        if (!listTimings.isSelectionEmpty()){
+            int index = listTimings.getSelectedIndex();
+            aMovieToModify.getSessions()[index].setNb_place(Integer.parseInt(tfNumTickets.getText()));
+            aMovieToModify.getSessions()[index].setPrice(Double.parseDouble(tfPrice.getText()));
+        }
+        else{
+            lblWarning.setText("Select a session to modify please!");
+        }
+    }//GEN-LAST:event_btnModifySessionActionPerformed
 
     /**
      * @param args the command line arguments
