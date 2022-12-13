@@ -100,6 +100,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         lbl2Points = new javax.swing.JLabel();
         cbMinutes = new javax.swing.JComboBox<>();
         lblWarning = new javax.swing.JLabel();
+        btnRemoveTime = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +166,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
         cbMinutes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "10", "20", "30", "40", "50" }));
 
+        btnRemoveTime.setText("Remove");
+        btnRemoveTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveTimeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,8 +225,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
                                     .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(9, 9, 9)
-                .addComponent(btnAddTime)
-                .addGap(122, 122, 122))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddTime)
+                    .addComponent(btnRemoveTime))
+                .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,8 +281,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cbMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnAddTime)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(btnRemoveTime))))
                     .addComponent(lbl2Points))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -331,11 +346,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
                 if(nbTimes<MAX)//caps the number of time strings to 8
                 {
                     session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(tfPrice.getText()) );
-                    theTimes.add(aSession);
+                    theTimes.add(aSession);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
                     listModel.addElement(aSession);//adds the string to the model of data
 
                     listTimings.setModel(listModel);//sets the model of the list with the data which was just added
-                    //adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+                    
                     nbTimes++;//+1 to the number of time strings 
                 }
             }
@@ -354,6 +369,21 @@ public class AdminMovieModify extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_listTimingsValueChanged
+
+    private void btnRemoveTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTimeActionPerformed
+        // TODO add your handling code here:
+        if (!listTimings.isSelectionEmpty()){
+            int index = listTimings.getSelectedIndex();
+            theTimes.remove(theTimes.get(index));
+            listModel.remove(index);
+            listTimings.setModel(listModel);
+            nbTimes--; // -1 to the number of times
+            
+        }
+        else{
+            lblWarning.setText("Select a session");
+        }
+    }//GEN-LAST:event_btnRemoveTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,6 +425,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
     private javax.swing.JButton btnAddTime;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnModifyMovie;
+    private javax.swing.JButton btnRemoveTime;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbHour;
     private javax.swing.JComboBox<String> cbMinutes;
