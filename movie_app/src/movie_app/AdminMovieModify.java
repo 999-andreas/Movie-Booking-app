@@ -309,6 +309,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
         for (int i=0; i<theTimes.size();i++){
                 times[i]=theTimes.get(i);
             }
+        listTimings.setModel(listModel);
         
         aMovieToModify.setSessions(times);//sets the time strings of the movie
                 
@@ -330,10 +331,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
                 if(nbTimes<MAX)//caps the number of time strings to 8
                 {
                     session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(tfPrice.getText()) );
-                    listModel.addElement(timing);//adds the string to the model of data
+                    theTimes.add(aSession);
+                    listModel.addElement(aSession);//adds the string to the model of data
 
                     listTimings.setModel(listModel);//sets the model of the list with the data which was just added
-                    theTimes.add(aSession);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+                    //adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
                     nbTimes++;//+1 to the number of time strings 
                 }
             }

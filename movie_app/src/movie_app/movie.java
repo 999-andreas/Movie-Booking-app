@@ -217,9 +217,16 @@ public class movie {
                 for (movie a : list)
                 {
                     file_sessions = "";
-                    for(int k=0;k<a.sessions.length;k++)
-                    {
-                        file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
+                    if (a.sessions.length>0){
+                        for(int k=0;k<a.sessions.length;k++)
+                        {
+                            if(a.sessions[k].getNb_place()>=1){
+                            file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
+                            }
+                        }
+                    }
+                    else{
+                        a.availability=false;
                     }
                     outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
                 }
