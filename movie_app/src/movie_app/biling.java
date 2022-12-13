@@ -21,6 +21,7 @@ public class biling {
     private int session_index;
     private String time_stamp;
     private double total;
+    private String time;
     
     public biling(movie Movie, Member member, int nb_tickets, int index, String time_stamp) {
         theMovie = Movie;
@@ -43,6 +44,8 @@ public class biling {
         }
         else
             total = (theMovie.getSessions()[session_index].getPrice()*nb_tickets-((theMovie.getSessions()[session_index].getPrice()*nb_tickets)*theMovie.getDiscount()));
+        
+        time= theMovie.getSessions()[session_index].getTime();
         
         String[][] list = getBills();
         
