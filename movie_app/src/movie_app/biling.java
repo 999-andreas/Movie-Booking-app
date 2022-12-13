@@ -56,7 +56,7 @@ public class biling {
             for (String[] a : list)
                 outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]); 
             
-            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+time_stamp); 
+            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
                 
             outputFile.close();
         }
@@ -76,7 +76,7 @@ public class biling {
             String str_nb = inputFile.nextLine();
             int nb_line = Integer.parseInt(str_nb);
         
-            String[][] list = new String[nb_line][6];
+            String[][] list = new String[nb_line][7];
             for(int k=0;k<nb_line;k++)
             {
                String line = inputFile.nextLine();
