@@ -439,45 +439,48 @@ public class AdminMovieCreation extends javax.swing.JFrame {
 
 //action when the add a session is clicked
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar calendar = Calendar.getInstance();
+        try {
+            // TODO add your handling code here:
+            
+            
+            SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar calendar = Calendar.getInstance();
+            
+            Date dateObj = calendar.getTime();
+            String formattedDate = dtf.format(dateObj);
+            System.out.println(formattedDate);// gives the actual date
 
-        Date dateObj = calendar.getTime();
-        String formattedDate = dtf.format(dateObj);
-        System.out.println(formattedDate);// gives the actual date
-        
-        try 
-        {
+            
             if(dateObj.after(dtf.parse(Date.getText())) || dtf.parse(Date.getText()).before(dtf.parse(tfReleaseDate.getText())))//checks if the date is correct
             {
                 jWarning.setText("session not added, wrong date");
                 return;
             }
-        } 
-        catch (ParseException ex) 
-        {
-            jWarning.setText("Parse exception");
-        }
-        
-        String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();// retrives the inputs for the session
-        
-        if(nb_times<MAX)
-        {
-            session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedPrice.getText()) ); 
-            for(int k=0;k<files_times.size();k++) // loop to check if the session is valid
+            
+            String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();// retrives the inputs for the session
+            
+            if(nb_times<MAX)
             {
-                if((files_times.get(k).getNb_place()==aSession.getNb_place()) && (files_times.get(k).getPrice()== aSession.getPrice()) && (files_times.get(k).getTime().compareTo(aSession.getTime())==0))
+                session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(jFormattedPrice.getText()) );
+                for(int k=0;k<files_times.size();k++) // loop to check if the session is valid
                 {
-                    jWarning.setText("session not added, already present");
-                    return;
+                    if((files_times.get(k).getNb_place()==aSession.getNb_place()) && (files_times.get(k).getPrice()== aSession.getPrice()) && (files_times.get(k).getTime().compareTo(aSession.getTime())==0))
+                    {
+                        jWarning.setText("session not added, already present");
+                        return;
+                    }
                 }
+                System.out.println(aSession);
+                files_times.add(aSession);
+                nb_times++;
             }
-            System.out.println(aSession);
-            files_times.add(aSession);
-            nb_times++;
+        } catch (ParseException ex) 
+        {
+            jWarning.setText("wrong date format!");
+        }
+        catch(IllegalArgumentException  e )
+        {
+            jWarning.setText("wrong input format!");
         }
             
         
