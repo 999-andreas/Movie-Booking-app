@@ -21,8 +21,7 @@ public class AdminViewBills extends javax.swing.JFrame {
     public AdminViewBills() {
         initComponents();
         for (int i=0; i<theBills.length;i++){
-            listModel.addElement(theBills[i][0]+"  |  "+theBills[i][1]
-                    +"  |  "+theBills[i][2]+"  |  "+theBills[i][3]+"  |  "+theBills[i][4]+"  |  "+theBills[i][5]+"  |  "+theBills[i][6]);//adds the element with all the bilings data
+            listModel.addElement(theBills[i][0]+"  |  "+theBills[i][1]+"  |  "+theBills[i][2]+"  |  "+theBills[i][3]+"  |  "+theBills[i][4]+"  |  "+theBills[i][5]+"  |  "+theBills[i][6]);//adds the element with all the bilings data
         }
         listBills.setModel(listModel);//sets the list's data model with all the bilings
         

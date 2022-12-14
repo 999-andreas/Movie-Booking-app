@@ -54,7 +54,7 @@ public class biling {
             outputFile.println((list.length)+1); 
             
             for (String[] a : list)
-                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]); 
+                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]+";"+a[6]); 
             
             outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
                 
