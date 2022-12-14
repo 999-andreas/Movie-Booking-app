@@ -56,7 +56,7 @@ public class biling {
             for (String[] a : list)
                 outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]+";"+a[6]); 
             
-            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
+            outputFile.println(list.length + ";" + theMember.username + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
                 
             outputFile.close();
         }
@@ -81,7 +81,6 @@ public class biling {
             for(int k=0;k<nb_line;k++)
             {
                String line = inputFile.nextLine();
-               //System.out.println(line);  
 
                String[] info = line.split(";");
                
