@@ -22,7 +22,7 @@ public class AdminViewBills extends javax.swing.JFrame {
         initComponents();
         for (int i=0; i<theBills.length;i++){
             listModel.addElement(theBills[i][0]+"  |  "+theBills[i][1]
-                    +"  |  "+theBills[i][2]+"  |  "+theBills[i][3]+"  |  "+theBills[i][4]+"  |  "+theBills[i][5]);//adds the element with all the bilings data
+                    +"  |  "+theBills[i][2]+"  |  "+theBills[i][3]+"  |  "+theBills[i][4]+"  |  "+theBills[i][5]+"  |  "+theBills[i][6]);//adds the element with all the bilings data
         }
         listBills.setModel(listModel);//sets the list's data model with all the bilings
         
@@ -64,14 +64,14 @@ public class AdminViewBills extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(lblTheBills))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                            .addComponent(btnBackToMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                            .addComponent(btnBackToMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(lblTheBills)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -96,7 +96,7 @@ public class movie {
             {
                 file_sessions+=sessions[k].getTime()+"@"+sessions[k].getPrice()+"@"+sessions[k].getNb_place()+",";
             }
-            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";" + ";" + discount + ";" + file_sessions+";"+url); 
+            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";"+ discount + ";" + file_sessions+";"+url); 
                 
             outputFile.close();
         }
@@ -109,7 +109,6 @@ public class movie {
     // get all the movies from the text file
     public static ArrayList<movie> getMovies() 
     {
-        // vaq chercher tout les films dans le fichier
         
         try
         {
@@ -132,6 +131,7 @@ public class movie {
                for(int j=0;j<str_sessions.length;j++)
                {
                    String[] str_session = str_sessions[j].split("@");
+                   System.out.println("tset");
                    tab_sessions[j] = new session(str_session[0]+"@"+str_session[1]+"@"+str_session[2],Integer.parseInt(str_session[4]), Double.parseDouble(str_session[3]));
                }
                
@@ -186,12 +186,6 @@ public class movie {
         this.url = url;
     }
     
-    /*
-    public movie getMovie(int id)
-    {
-        //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
-    }*/
-    
     // modification of a movie in the text file
     public void modif_movie()
     {   
@@ -238,6 +232,7 @@ public class movie {
         }     
     }
 
+    //deletes a movie in function of its id
     public static void deleteMovie(int id)
     {
         ArrayList<movie> list = getMovies();

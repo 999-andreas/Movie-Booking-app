@@ -4,6 +4,7 @@
  */
 package movie_app;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,17 +36,14 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         initComponents();
         theMember = aMember;
         theMovie = aMovie;
-        
-        //this.setSize(WIDTH, HEIGHT);
-        
+                
         String imagePath = theMovie.getUrl();
         System.out.println(imagePath);
-        
-        //BufferedImage image = null;
-        //image = new BufferedImage(500, height, BufferedImage.TYPE_INT_ARGB);
-  
-        // Reading input file
-        //image = ImageIO.read(input_file);
+       
+        ImageIcon imageIcon = new ImageIcon(imagePath); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(500, 375,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);
         
         listModel= new DefaultListModel(); //new model for the list
         for (int i=0; i<theMovie.getSessions().length;i++){
@@ -60,7 +58,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         jLabel10.setText(String.valueOf(theMovie.getSessions()[0].getPrice()+"£"));
         jLabel9.setText(String.valueOf(theMovie.getDuration()+"min"));
         jLabel11.setText(String.valueOf(theMovie.getSessions()[0].getNb_place()));
-        jImage.setIcon(new ImageIcon(theMovie.getUrl()));
+        jImage.setIcon(imageIcon);
         
     }
 
@@ -276,7 +274,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 int index= jListTimes.getSelectedIndex();
                 theSelectedTime = theMovie.getSessions()[index].getTime();
 
-                SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
                 Calendar calendar = Calendar.getInstance();
 
                 Date dateObj = calendar.getTime();

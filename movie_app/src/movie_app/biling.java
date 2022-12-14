@@ -21,7 +21,6 @@ public class biling {
     private int session_index;
     private String time_stamp;
     private double total;
-    private String time;
     
     public biling(movie Movie, Member member, int nb_tickets, int index, String time_stamp) {
         theMovie = Movie;
@@ -35,7 +34,7 @@ public class biling {
         this.id = id;
     }
 
-        
+    // calculates the total and putes it a text file
     public void computeBill()  
     {
         if(theMember.getId()== -1) // -1 as id when its a guest
@@ -44,8 +43,6 @@ public class biling {
         }
         else
             total = (theMovie.getSessions()[session_index].getPrice()*nb_tickets-((theMovie.getSessions()[session_index].getPrice()*nb_tickets)*theMovie.getDiscount()));
-        
-        time= theMovie.getSessions()[session_index].getTime();
         
         String[][] list = getBills();
         
@@ -57,9 +54,9 @@ public class biling {
             outputFile.println((list.length)+1); 
             
             for (String[] a : list)
-                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]+";"+a[6]); 
+                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]); 
             
-            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+time_stamp+";"+time); 
+            outputFile.println(list.length + ";" + theMember.first_name + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
                 
             outputFile.close();
         }
@@ -69,6 +66,7 @@ public class biling {
         }
     }
     
+    //retrives all the bills in form of a 2 dimentions list
     public static String[][] getBills()
     {
         try
