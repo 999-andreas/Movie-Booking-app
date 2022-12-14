@@ -44,9 +44,9 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tfUsername" max="32767" attributes="0"/>
-                                  <Component id="tfPwd" pref="178" max="32767" attributes="0"/>
+                                  <Component id="tfUsername" pref="178" max="32767" attributes="0"/>
                                   <Component id="lblCheck" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="tfPwd" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -71,14 +71,14 @@
                   <Component id="lblPwd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfPwd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="lblCheck" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancel" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="btnConnect" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,8 +101,6 @@
         <Property name="text" type="java.lang.String" value="Password :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfPwd">
-    </Component>
     <Component class="javax.swing.JButton" name="btnConnect">
       <Properties>
         <Property name="text" type="java.lang.String" value="Connect"/>
@@ -120,6 +118,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCheck">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tfPwd">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPwdActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
