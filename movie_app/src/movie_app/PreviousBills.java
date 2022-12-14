@@ -24,7 +24,8 @@ public class PreviousBills extends javax.swing.JFrame {
      */
     public PreviousBills(Member aMember) {
         initComponents();
-        theMember=aMember;
+        theMember=aMember;//retrieves the connected member
+        //add the columns to the Table Model
         theModel.addColumn("Bill id");
         theModel.addColumn("Username");
         theModel.addColumn("Client LastName");
@@ -32,14 +33,14 @@ public class PreviousBills extends javax.swing.JFrame {
         theModel.addColumn("Total Price");
         theModel.addColumn("Booked Session");
         theModel.addColumn("Booking Date");
+       
         
-        System.out.println(theModel.getColumnCount());
         for (int i=0; i<theBills.length;i++){
-            if (theBills[i][1].equals(theMember.getUsername())){
-                theModel.addRow(theBills[i]);
+            if (theBills[i][1].equals(theMember.getUsername())){//checks if the member is concerned with the bill
+                theModel.addRow(theBills[i]); //adds a row in the table with the bill 
             }
         }
-        tablePreviousBills.setModel(theModel);
+        tablePreviousBills.setModel(theModel);//sets the table with all the rows 
         
         
         

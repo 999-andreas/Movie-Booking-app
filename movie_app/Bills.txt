@@ -1,5 +1,5 @@
-14
-0;A;B;C;D;E;F
+11
+0;guest;guest;Indiana Johns;70.0;2022/12/08@15@00;2022/12/12
 1;guest;guest;Indiana Johns;70.0;2022/12/08@15@00;2022/12/12
 2;guest;guest;Indiana Johns;63.0;2022/12/08@15@00;2022/12/12
 3;guest;guest;Indiana Johns;-7.0;2022/12/08@15@00;2022/12/12
@@ -9,7 +9,4 @@
 7;guest;guest;batman;100.0;20/12/2022@15@00;2022/12/12
 8;guest;guest;batman;50.0;20/12/2022@15@00;2022/12/13
 9;guest;guest;batman;10.0;20/12/2022@15@00;14/12/2022
-10;guest;guest;batman;10.0;20/12/2022@15@00;14/12/2022
-11;guest;guest;batman;10.0;20/12/2022@17@00;14/12/2022
-12;AndreasC;Chatel;batman;8.0;20/12/2022@17@00;14/12/2022
-13;AndreasC;Chatel;batman;8.0;20/12/2022@17@00;14/12/2022
+10;AndreasC;Chatel;batman;40.0;20/12/2022@17@00;14/12/2022

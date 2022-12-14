@@ -5,6 +5,7 @@
 package movie_app;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import static movie_app.biling.getBills;
 
 /**
@@ -13,17 +14,26 @@ import static movie_app.biling.getBills;
  */
 public class AdminViewBills extends javax.swing.JFrame {
 
-    DefaultListModel listModel = new DefaultListModel();
+    private DefaultTableModel theModel = new DefaultTableModel();
     String[][] theBills= getBills();//retrieves the bills under 2 dimensional array of strings
     /**
      * Creates new form AdminViewBills
      */
     public AdminViewBills() {
         initComponents();
+        theModel.addColumn("Bill id");
+        theModel.addColumn("Username");
+        theModel.addColumn("Client LastName");
+        theModel.addColumn("Movie Title");
+        theModel.addColumn("Total Price");
+        theModel.addColumn("Booked Session");
+        theModel.addColumn("Booking Date");
+       
+        
         for (int i=0; i<theBills.length;i++){
-            listModel.addElement(theBills[i][0]+"  |  "+theBills[i][1]+"  |  "+theBills[i][2]+"  |  "+theBills[i][3]+"  |  "+theBills[i][4]+"  |  "+theBills[i][5]+"  |  "+theBills[i][6]);//adds the element with all the bilings data
+            theModel.addRow(theBills[i]); //adds a row in the table with the bill 
         }
-        listBills.setModel(listModel);//sets the list's data model with all the bilings
+        tableBills.setModel(theModel);//sets the table with all the rows
         
         
     }
@@ -37,14 +47,12 @@ public class AdminViewBills extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listBills = new javax.swing.JList<>();
         lblTheBills = new javax.swing.JLabel();
         btnBackToMenu = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableBills = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jScrollPane1.setViewportView(listBills);
 
         lblTheBills.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         lblTheBills.setText("The Bills :");
@@ -56,6 +64,19 @@ public class AdminViewBills extends javax.swing.JFrame {
             }
         });
 
+        tableBills.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableBills);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,24 +84,24 @@ public class AdminViewBills extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
                             .addComponent(btnBackToMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
+                        .addGap(417, 417, 417)
                         .addComponent(lblTheBills)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(lblTheBills, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBackToMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(btnBackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -133,6 +154,6 @@ public class AdminViewBills extends javax.swing.JFrame {
     private javax.swing.JButton btnBackToMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTheBills;
-    private javax.swing.JList<String> listBills;
+    private javax.swing.JTable tableBills;
     // End of variables declaration//GEN-END:variables
 }

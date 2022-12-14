@@ -6,6 +6,7 @@ package movie_app;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import static movie_app.Member.deleteMember;
 import static movie_app.superUser.getUsers;
 
@@ -17,16 +18,33 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
     private Member selectedMember; //Member variable which we will pass into the next frame for modify user
     private ArrayList<Member> theMembers= getUsers(false);//takes the list of members which aren't admins
-    private DefaultListModel listModel= new DefaultListModel();//model for data, to insert into the list
+    private DefaultTableModel tableModel= new DefaultTableModel();//model for data, to insert into the table
+    private Object[][] theTable;
     /**
      * Creates new form AdminViewUsers
      */
     public AdminViewUsers() {
         initComponents();
-        for (int i=0; i<theMembers.size();i++){//fill the data model
-            listModel.addElement(theMembers.get(i));
+        tableModel.addColumn("id");
+        tableModel.addColumn("First Name");
+        tableModel.addColumn("Last Name");
+        tableModel.addColumn("Username");
+        tableModel.addColumn("Password");
+        
+        
+        theTable= new Object[theMembers.size()][5];
+        for (int j=0;j<theMembers.size();j++){
+            theTable[j][0]=theMembers.get(j).getId();
+            theTable[j][1]=theMembers.get(j).getFirst_name();
+            theTable[j][2]=theMembers.get(j).getLast_name();
+            theTable[j][3]=theMembers.get(j).getUsername();
+            theTable[j][4]=theMembers.get(j).getPw();
         }
-        listTheUsers.setModel(listModel);// set the model
+        
+        for (int i=0; i<theMembers.size();i++){//fill the data model
+            tableModel.addRow(theTable[i]);
+        }
+        tableTheUsers.setModel(tableModel);// set the model
         
     }
 
@@ -40,19 +58,17 @@ public class AdminViewUsers extends javax.swing.JFrame {
     private void initComponents() {
 
         lblUsers = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listTheUsers = new javax.swing.JList<>();
         btnDeleteUser = new javax.swing.JButton();
         lblWarning = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         btnModifyUser = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableTheUsers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblUsers.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         lblUsers.setText("The Users:");
-
-        jScrollPane1.setViewportView(listTheUsers);
 
         btnDeleteUser.setText("Delete a User");
         btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
@@ -75,25 +91,38 @@ public class AdminViewUsers extends javax.swing.JFrame {
             }
         });
 
+        tableTheUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tableTheUsers);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(lblUsers)))
+                .addGap(230, 230, 230)
+                .addComponent(lblUsers)
+                .addGap(108, 108, 108)
+                .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModifyUser)
+                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,15 +132,15 @@ public class AdminViewUsers extends javax.swing.JFrame {
                     .addComponent(lblUsers)
                     .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnModifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnModifyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,11 +148,11 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         // TODO add your handling code here:
-        if (!listTheUsers.isSelectionEmpty()){// if the admin has selected a user
-            int index = listTheUsers.getSelectedIndex(); //takes the index of the selected item in the list
+        if (!tableTheUsers.getSelectionModel().isSelectionEmpty()){// if the admin has selected a user
+            int index = tableTheUsers.getSelectedRow(); //takes the index of the selected item in the list
             theMembers.remove(index);//don't think this line is usefull, but i'm still going to write it there
-            listModel.remove(index);//remove from the data model
-            listTheUsers.setModel(listModel);//reajust the visual list
+            tableModel.removeRow(index);//remove from the data model
+            tableTheUsers.setModel(tableModel);//reajust the visual list
             deleteMember(index, false); //deletes the member
         }
         else{
@@ -140,8 +169,8 @@ public class AdminViewUsers extends javax.swing.JFrame {
 
     private void btnModifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyUserActionPerformed
         // TODO add your handling code here:
-        if(!listTheUsers.isSelectionEmpty()){ //if the admin has selected a user
-            int index = listTheUsers.getSelectedIndex();//takes the index of the selected item in the list
+        if(!tableTheUsers.getSelectionModel().isSelectionEmpty()){ //if the admin has selected a user
+            int index = tableTheUsers.getSelectedRow();//takes the index of the selected item in the list
             selectedMember=theMembers.get(index);//stocks the member corresponding to the selected index in a Member variable
             AdminModifyUser theModifyFrame= new AdminModifyUser(selectedMember);//sends the Member variable to the next frame, to be modified
             theModifyFrame.setVisible(true);
@@ -191,9 +220,9 @@ public class AdminViewUsers extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDeleteUser;
     private javax.swing.JButton btnModifyUser;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblWarning;
-    private javax.swing.JList<String> listTheUsers;
+    private javax.swing.JTable tableTheUsers;
     // End of variables declaration//GEN-END:variables
 }

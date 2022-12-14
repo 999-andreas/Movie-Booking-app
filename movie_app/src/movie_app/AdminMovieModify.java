@@ -61,13 +61,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
         }
          
         
-        listTimings.setModel(listModel);
+        listTimings.setModel(listModel);//uses the model we added to build the list
         
-        listTimings.setSelectedIndex(0);
+        listTimings.setSelectedIndex(0);//defines default index to avoid bug
         
         
         file_path= aMovieToModify.getUrl();
-        lblThePath.setText(aMovieToModify.getUrl());
+        lblThePath.setText(aMovieToModify.getUrl());//sets the path label to the current path
         
         //Now come the input safeties
        tfMovieTitle.addKeyListener(KEYBOARDSAFETY);
@@ -407,10 +407,10 @@ public class AdminMovieModify extends javax.swing.JFrame {
         String timing =tfDate.getText()+"@"+(String)cbHour.getSelectedItem()+"@"+(String)cbMinutes.getSelectedItem();
         if(!tfNumTickets.getText().isBlank()){
             if (!tfPrice.getText().isBlank()){
-                if(nbTimes<MAX)//caps the number of time strings to 8
+                if(nbTimes<MAX)//caps the number of time sessions to 8
                 {
                     session aSession = new session(timing,Integer.parseInt(tfNumTickets.getText()), Double.parseDouble(tfPrice.getText()) );
-                    theTimes.add(aSession);//adds the string to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
+                    theTimes.add(aSession);//adds the session to the ArrayList theTimes, which will be converted to simple array later in MovieModifyButton
                     listModel.addElement(aSession);//adds the string to the model of data
 
                     listTimings.setModel(listModel);//sets the model of the list with the data which was just added
@@ -451,6 +451,7 @@ public class AdminMovieModify extends javax.swing.JFrame {
             listModel.remove(index);
             listTimings.setModel(listModel);
             nbTimes--; // -1 to the number of times
+            lblWarning.setText("The Session has been removed.");
             
         }
         else{
@@ -474,13 +475,13 @@ public class AdminMovieModify extends javax.swing.JFrame {
             Path tmp = Files.move(Paths.get(file_path), Paths.get(dest));
             if(tmp != null)
             {
-                System.out.println("Fichier déplacé avec succès");
+                System.out.println("File moved with success");
                 file_path = "images/"+file_name;
                 aMovieToModify.setUrl(file_path);
             }
             else
             {
-                System.out.println("Impossible de déplacer le fichier");
+                System.out.println("Could not move the file!");
             }
         } catch (IOException ex) {
             Logger.getLogger(AdminMovieModify.class.getName()).log(Level.SEVERE, null, ex);
@@ -489,10 +490,11 @@ public class AdminMovieModify extends javax.swing.JFrame {
 
     private void btnModifySessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifySessionActionPerformed
         // TODO add your handling code here:
-        if (!listTimings.isSelectionEmpty()){
+        if (!listTimings.isSelectionEmpty()){//checks if the selection is empty (for the Sessions' list
             int index = listTimings.getSelectedIndex();
             aMovieToModify.getSessions()[index].setNb_place(Integer.parseInt(tfNumTickets.getText()));
             aMovieToModify.getSessions()[index].setPrice(Double.parseDouble(tfPrice.getText()));
+            lblWarning.setText("Session Modified!");
         }
         else{
             lblWarning.setText("Select a session to modify please!");

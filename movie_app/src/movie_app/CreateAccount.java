@@ -62,7 +62,7 @@ public class CreateAccount extends javax.swing.JFrame {
 
         lblPwdFirst.setText("Password :");
 
-        jLabel1.setText("Confirm Pwd:");
+        jLabel1.setText("Confirm Password:");
 
         btnOK.setText("OK");
         btnOK.addActionListener(new java.awt.event.ActionListener() {
