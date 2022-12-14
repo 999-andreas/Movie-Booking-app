@@ -128,6 +128,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Previous Bills"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreviousBillsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

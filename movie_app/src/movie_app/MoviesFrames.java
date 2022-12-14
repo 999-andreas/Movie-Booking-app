@@ -111,6 +111,11 @@ public class MoviesFrames extends javax.swing.JFrame {
         });
 
         btnPreviousBills.setText("Previous Bills");
+        btnPreviousBills.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousBillsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +195,13 @@ public class MoviesFrames extends javax.swing.JFrame {
             lblWarning.setText("Please choose a movie!");
         }
     }//GEN-LAST:event_btnChooseMovieActionPerformed
+
+    private void btnPreviousBillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousBillsActionPerformed
+        // TODO add your handling code here:
+        PreviousBills billFrame= new PreviousBills(aMember);
+        billFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPreviousBillsActionPerformed
 
     /**
      * @param args the command line arguments
