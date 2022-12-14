@@ -269,7 +269,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         int nb_ticket = Integer.parseInt(jnbTickets.getValue().toString());
         
         if(jListTimes.isSelectionEmpty()==false){
-            if(nb_ticket<theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place() && nb_ticket>0)
+            if(nb_ticket<=theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place() && nb_ticket>0)
             {
                 int index= jListTimes.getSelectedIndex();
                 theSelectedTime = theMovie.getSessions()[index].getTime();
