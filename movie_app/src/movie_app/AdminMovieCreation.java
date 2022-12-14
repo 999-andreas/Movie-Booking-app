@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -448,10 +449,17 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         String formattedDate = dtf.format(dateObj);
         System.out.println(formattedDate);// gives the actual date
         
-        if(formattedDate.compareTo(Date.getText())>0 || Date.getText().compareTo(tfReleaseDate.getText())>0) //checks if the date is correct
+        try 
         {
-            jWarning.setText("session not added, wrong date");
-            return;
+            if(dateObj.after(dtf.parse(Date.getText())) || dtf.parse(Date.getText()).before(dtf.parse(tfReleaseDate.getText())))//checks if the date is correct
+            {
+                jWarning.setText("session not added, wrong date");
+                return;
+            }
+        } 
+        catch (ParseException ex) 
+        {
+            jWarning.setText("Parse exception");
         }
         
         String timing =Date.getText()+"@"+(String)hours.getSelectedItem()+"@"+(String)minutes.getSelectedItem();// retrives the inputs for the session
