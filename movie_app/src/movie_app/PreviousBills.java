@@ -4,6 +4,8 @@
  */
 package movie_app;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import static movie_app.biling.getBills;
 
 /**
@@ -14,7 +16,8 @@ public class PreviousBills extends javax.swing.JFrame {
 
     private Member theMember;
     private String[][] theBills= getBills();
-    private String[][] theMemberBills;
+    private ArrayList<String> theMemberBills= new ArrayList<>();
+    private DefaultTableModel theModel= new DefaultTableModel();
     
     /**
      * Creates new form PreviousBills
@@ -23,9 +26,22 @@ public class PreviousBills extends javax.swing.JFrame {
     public PreviousBills(Member aMember) {
         initComponents();
         theMember=aMember;
+        theModel.addColumn("Bill id");
+        theModel.addColumn("Username");
+        theModel.addColumn("Client LastName");
+        theModel.addColumn("Movie Title");
+        theModel.addColumn("Total Price");
+        theModel.addColumn("Booked Session");
+        theModel.addColumn("Booking Date");
+        
+        System.out.println(theModel.getColumnCount());
         for (int i=0; i<theBills.length;i++){
-            if (theBills[i][2])
+            if (theBills[i][1].equals(theMember.getUsername())){
+                theMemberBills.add(theBills[i][1]+theBills[i][2]+theBills[i][3]+theBills[i][4]+theBills[i][5]+theBills[i][6]);
+                theModel.addRow(theBills[i]);
+            }
         }
+        tablePreviousBills.setModel(theModel);
         
         
         
@@ -46,6 +62,7 @@ public class PreviousBills extends javax.swing.JFrame {
         lblPreviousBills = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePreviousBills = new javax.swing.JTable();
+        btnGoBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,16 +71,23 @@ public class PreviousBills extends javax.swing.JFrame {
 
         tablePreviousBills.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Movie Title", "Session", "Day of booking"
+
             }
         ));
         jScrollPane1.setViewportView(tablePreviousBills);
+
+        btnGoBack.setText("Go Back");
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,25 +96,37 @@ public class PreviousBills extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(356, 356, 356)
                         .addComponent(lblPreviousBills))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                        .addGap(316, 316, 316)
+                        .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(lblPreviousBills, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(btnGoBack, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+        // TODO add your handling code here:
+        MoviesFrames backToFrame= new MoviesFrames(theMember);
+        backToFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGoBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +164,7 @@ public class PreviousBills extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGoBack;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPreviousBills;
     private javax.swing.JTable tablePreviousBills;
