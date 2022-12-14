@@ -8,3 +8,14 @@
 ### UML diagram
 
 ![SCHEMA](/archi2.png?raw=true "schema")
+
+## Frabriqué avec
+
+- [Apache NetBeans IDE 15] - Editeur de code
+- [GitHub Desktop](https://desktop.github.com/) - Extensions Git
+
+## Auteurs
+
+- Andreas Chatel alias [@999-andreas](https://github.com/999-andreas)
+- Antoine Wellers alias [@antoinewellers](https://github.com/antoinewellers)
+
