@@ -34,6 +34,14 @@ public class Member extends superUser
         return last_name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
     // modification to the text file
     public void modifMember(boolean admin)
     {

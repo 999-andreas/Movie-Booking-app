@@ -284,9 +284,16 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 biling thebill=  new biling(theMovie, theMember, nb_ticket, jListTimes.getSelectedIndex(),formattedDate );
                 thebill.computeBill();
 
-
-                MovieBilingFrame biling = new MovieBilingFrame(thebill);
-                biling.setVisible(true);
+                if(theMember.id == -1)
+                {
+                    PaymentGuest biling = new PaymentGuest(thebill);
+                    biling.setVisible(true);
+                }
+                else
+                {
+                    PaymentMember biling = new PaymentMember(thebill);
+                    biling.setVisible(true);
+                }
                 this.dispose();
 
                 theMovie.getSessions()[jListTimes.getSelectedIndex()].setNb_place(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()-nb_ticket);
