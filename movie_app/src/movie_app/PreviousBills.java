@@ -16,7 +16,6 @@ public class PreviousBills extends javax.swing.JFrame {
 
     private Member theMember;
     private String[][] theBills= getBills();
-    private ArrayList<String> theMemberBills= new ArrayList<>();
     private DefaultTableModel theModel= new DefaultTableModel();
     
     /**
@@ -37,7 +36,6 @@ public class PreviousBills extends javax.swing.JFrame {
         System.out.println(theModel.getColumnCount());
         for (int i=0; i<theBills.length;i++){
             if (theBills[i][1].equals(theMember.getUsername())){
-                theMemberBills.add(theBills[i][1]+theBills[i][2]+theBills[i][3]+theBills[i][4]+theBills[i][5]+theBills[i][6]);
                 theModel.addRow(theBills[i]);
             }
         }
