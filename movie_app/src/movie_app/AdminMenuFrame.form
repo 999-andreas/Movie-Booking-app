@@ -32,12 +32,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lblWelcomeAdmin" alignment="1" min="-2" pref="189" max="-2" attributes="0"/>
                           <Component id="btnDeleteMovie" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnModifyMovie" alignment="0" pref="209" max="32767" attributes="0"/>
                           <Component id="btnCreateMovie" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnViewUsers" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnViewBills" max="32767" attributes="0"/>
+                          <Component id="lblWelcomeAdmin" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
                   </Group>
@@ -103,6 +103,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblWelcomeAdmin">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Welcome admin!"/>
       </Properties>
     </Component>

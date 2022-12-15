@@ -54,6 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         lblWelcome.setText("Welcome to our Cinema! Come book a ticket!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -69,9 +70,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
+                        .addGap(161, 161, 161)
                         .addComponent(lblWelcome)))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
