@@ -15,8 +15,7 @@ import java.util.logging.Logger;
 public class PaymentGuest extends javax.swing.JFrame {
 
     private biling theBill;
-    private Member theMember;
-    private movie theMovie;
+
     
     /**
      * Creates new form PaymentGuest
@@ -28,8 +27,6 @@ public class PaymentGuest extends javax.swing.JFrame {
     public PaymentGuest(biling aBill) {
         initComponents();
         theBill = aBill;
-        theMovie=theBill.getTheMovie();
-        theMember=theBill.getTheMember();
     }
 
     /**
@@ -169,6 +166,10 @@ public class PaymentGuest extends javax.swing.JFrame {
             MovieBilingFrame biling = new MovieBilingFrame(theBill);
             biling.setVisible(true);
             this.dispose();
+            
+            theBill.getTheMovie().getSessions()[theBill.getSession_index()].setNb_place(theBill.getTheMovie().getSessions()[theBill.getSession_index()].getNb_place()-theBill.getNb_tickets());
+
+            theBill.getTheMovie().modif_movie();;
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -180,7 +181,7 @@ public class PaymentGuest extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         try {
             // TODO add your handling code here:
-            SelectedMovieFrame cancelFrame= new SelectedMovieFrame(theMovie, theMember);
+            SelectedMovieFrame cancelFrame= new SelectedMovieFrame(theBill.getTheMovie(),theBill.getTheMember());
             cancelFrame.setVisible(true);
             this.dispose();
         } catch (IOException ex) {

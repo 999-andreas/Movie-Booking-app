@@ -294,10 +294,6 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                     biling.setVisible(true);
                 }
                 this.dispose();
-
-                theMovie.getSessions()[jListTimes.getSelectedIndex()].setNb_place(theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()-nb_ticket);
-
-                theMovie.modif_movie();
             }
             else
             {

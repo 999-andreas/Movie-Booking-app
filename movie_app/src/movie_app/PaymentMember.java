@@ -116,6 +116,10 @@ public class PaymentMember extends javax.swing.JFrame {
             MovieBilingFrame biling = new MovieBilingFrame(theBill);
             biling.setVisible(true);
             this.dispose();
+            
+            theBill.getTheMovie().getSessions()[theBill.getSession_index()].setNb_place(theBill.getTheMovie().getSessions()[theBill.getSession_index()].getNb_place()-theBill.getNb_tickets());
+
+            theBill.getTheMovie().modif_movie();
         }
         else
             warning.setText("wrong password");
