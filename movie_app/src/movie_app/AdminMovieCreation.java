@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import static movie_app.superUser.KEYBOARDDATE;
 import static movie_app.superUser.KEYBOARDSAFETY;
 
@@ -470,6 +472,8 @@ public class AdminMovieCreation extends javax.swing.JFrame {
                         return;
                     }
                 }
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "session added!");
                 System.out.println(aSession);
                 files_times.add(aSession);
                 nb_times++;

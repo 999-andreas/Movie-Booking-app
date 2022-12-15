@@ -56,6 +56,12 @@ public class PaymentGuest extends javax.swing.JFrame {
 
         jLabel5.setText("expiration date:");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -135,10 +141,20 @@ public class PaymentGuest extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MovieBilingFrame biling = new MovieBilingFrame(theBill);
-        biling.setVisible(true);
-        this.dispose();
+        if(!jTextField1.getText().isBlank() && !jTextField2.getText().isBlank() && !jTextField3.getText().isBlank() && !jTextField4.getText().isBlank())
+        {
+            
+            System.out.println(jTextField1.getText());
+            MovieBilingFrame biling = new MovieBilingFrame(theBill);
+            biling.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
