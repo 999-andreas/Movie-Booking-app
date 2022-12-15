@@ -5,7 +5,7 @@
 
 ### UML diagram
 
-![SCHEMA](/archi2.png?raw=true "schema")
+![SCHEMA](/archi.png?raw=true "schema")
 
 ## How to
 
