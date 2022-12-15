@@ -1,7 +1,6 @@
-6
+5
 0;Andreas;Chatel;AndreasC;pass
 1;testingFirst name;the last name;blabla;simplepw
 2;testing1;testingLN;test;testpwd
 3;Bob;Dupuis;Bobby;Dup
 4;Antoine;Wellers;AntoineW;password
-5;Antoine;wellers;yess;password

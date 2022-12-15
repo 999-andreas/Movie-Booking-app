@@ -1,9 +1,14 @@
+<<<<<<< Updated upstream
 33
 0;A;B;C;D;E;F
+=======
+30
+1;guest;guest;Indiana Johns;70.0;2022/12/08@15@00;2022/12/12
+>>>>>>> Stashed changes
 1;guest;guest;Indiana Johns;70.0;2022/12/08@15@00;2022/12/12
 2;guest;guest;Indiana Johns;63.0;2022/12/08@15@00;2022/12/12
-3;guest;guest;Indiana Johns;-7.0;2022/12/08@15@00;2022/12/12
-4;guest;guest;Indiana Johns;-7.0;2022/12/08@15@00;2022/12/12
+3;guest;guest;Indiana Johns;63.0;2022/12/08@15@00;2022/12/12
+4;guest;guest;Indiana Johns;70.0;2022/12/08@15@00;2022/12/12
 5;guest;guest;Indiana Johns;5.0;2022/12/08@15@00;2022/12/12
 6;guest;guest;Indiana Johns;5.0;2022/12/08@15@00;2022/12/12
 7;guest;guest;batman;100.0;20/12/2022@15@00;2022/12/12
@@ -28,7 +33,11 @@
 26;guest;guest;Indiana Johns;10.0;12/01/2023@16@00;15/12/2022
 27;yess;wellers;batman;38.4;20/20/50@20@00;15/12/2022
 28;yess;wellers;batman;48.0;20/20/50@20@00;15/12/2022
+<<<<<<< Updated upstream
 29;guest;guest;batman;10.0;20/12/2022@20@00;15/12/2022
 30;guest;guest;batman;60.0;20/12/2022@20@00;15/12/2022
 31;guest;guest;batman;10.0;20/12/2022@20@00;15/12/2022
 32;guest;guest;batman;10.0;20/12/2022@20@00;15/12/2022
+=======
+29;AndreasC;Chatel;Indiana Johns;352.0;12/01/2023@16@00;15/12/2022
+>>>>>>> Stashed changes

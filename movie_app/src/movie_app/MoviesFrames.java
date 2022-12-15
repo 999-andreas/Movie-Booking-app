@@ -184,7 +184,7 @@ public class MoviesFrames extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!listMovies.isSelectionEmpty()){
             int index= listMovies.getSelectedIndex();
-            theChosenMovie= theMovies.get(index);
+            theChosenMovie= theAvailableMovies.get(index);
             SelectedMovieFrame theMovieFrame = null;
             try {
                 theMovieFrame = new SelectedMovieFrame(theChosenMovie,aMember);

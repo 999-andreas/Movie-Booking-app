@@ -39,9 +39,10 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         tfMovieTitle.addKeyListener(KEYBOARDSAFETY);
         tfGenre.addKeyListener(KEYBOARDSAFETY);
         tfDuration.addKeyListener(KEYBOARDSAFETY);
-        tfReleaseDate.addKeyListener(KEYBOARDSAFETY);
+        tfReleaseDate.addKeyListener(KEYBOARDDATE);
         
         Date.addKeyListener(KEYBOARDDATE);
+        
         
         
         
@@ -199,7 +200,7 @@ public class AdminMovieCreation extends javax.swing.JFrame {
             }
         });
 
-        Date.setText("DD/MM/YY");
+        Date.setText("DD/MM/YYYY");
         Date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DateActionPerformed(evt);
@@ -389,36 +390,43 @@ public class AdminMovieCreation extends javax.swing.JFrame {
         // TODO add your handling code here:
 
          // if the user selects a file
-        if (jFileChooser1.getSelectedFile()!= null)
-        {
-            session[] tab_sessions = new session[files_times.size()];
-        
-            for(int k=0; k<files_times.size();k++)
+        if(rbAvailable.isSelected() || rbNotAvailable.isSelected()){
+         
+            if (jFileChooser1.getSelectedFile()!= null)
             {
-                tab_sessions[k] = files_times.get(k);
-            }
+                session[] tab_sessions = new session[files_times.size()];
 
-            try
+                for(int k=0; k<files_times.size();k++)
+                {
+                    tab_sessions[k] = files_times.get(k);
+                }
+
+                try
+                {
+                    movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()), rbAvailable.isSelected(), Double.parseDouble(jFormattedDiscount.getText()),tab_sessions, file_path );
+                    theMovie.saveMovie();
+
+                    AdminMenuFrame frame = new AdminMenuFrame();
+                    frame.setVisible(true);
+                    this.dispose();
+                }
+                catch(IllegalArgumentException  e )
+                {
+                    jWarning.setText("wrong input format!");
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            // if the user cancelled the operation
+            else
             {
-                movie theMovie = new movie(tfGenre.getText(),tfMovieTitle.getText(),tfReleaseDate.getText(),Integer.parseInt(tfDuration.getText()), rbAvailable.isSelected(), Double.parseDouble(jFormattedDiscount.getText()),tab_sessions, file_path );
-                theMovie.saveMovie();
-                
-                AdminMenuFrame frame = new AdminMenuFrame();
-                frame.setVisible(true);
-                this.dispose();
+                jWarning.setText("please select a photo");
             }
-            catch(IllegalArgumentException  e )
-            {
-                jWarning.setText("wrong input format!");
-            }
-            catch (IOException ex) {
-                Logger.getLogger(AdminMovieCreation.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
         }
-        // if the user cancelled the operation
-        else
-        {
-            jWarning.setText("please select a photo");
+        else{
+            jWarning.setText("Please select the availability");
         }
             
     }//GEN-LAST:event_btnAddMovieActionPerformed
