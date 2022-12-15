@@ -38,7 +38,6 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         theMovie = aMovie;
                 
         String imagePath = theMovie.getUrl();
-        System.out.println(imagePath);
        
         ImageIcon imageIcon = new ImageIcon(imagePath); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
@@ -48,7 +47,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
         listModel= new DefaultListModel(); //new model for the list
         for (int i=0; i<theMovie.getSessions().length;i++){
             
-            System.out.println(theMovie.getSessions()[i]);
+            
             listModel.addElement(theMovie.getSessions()[i].getTime().split("@")[0]+" "+theMovie.getSessions()[i].getTime().split("@")[1]+":"+theMovie.getSessions()[i].getTime().split("@")[2]);//gets the date and time of the session             
         }
         jListTimes.setModel(listModel);//set the model to the list of movies we passed to the model
@@ -279,7 +278,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
 
                 Date dateObj = calendar.getTime();
                 String formattedDate = dtf.format(dateObj);
-                System.out.println(formattedDate);
+                
 
                 biling thebill=  new biling(theMovie, theMember, nb_ticket, jListTimes.getSelectedIndex(),formattedDate );
                 thebill.computeBill();
@@ -302,7 +301,7 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
             }
             else
             {
-                if(nb_ticket<0)
+                if(nb_ticket<=0)
                 {
                     labelWarning.setText("please select a positive number");
                 }
