@@ -34,6 +34,14 @@ public class Member extends superUser
         return last_name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
     // modification to the text file
     public void modifMember(boolean admin)
     {
@@ -55,7 +63,7 @@ public class Member extends superUser
             outputFile.println(list.size()); 
             
             for (Member a : list)
-                outputFile.println(a.id + ";" + a.first_name + ";" + a.last_name + ";" + a.pw); 
+                outputFile.println(a.id + ";" + a.first_name + ";" + a.last_name + ";"+ a.username+ ";" + a.pw); 
                 
             outputFile.close();
         }
@@ -63,6 +71,10 @@ public class Member extends superUser
         {
             System.out.println("File not found.");
         } 
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     // delete a member from the text file
@@ -86,7 +98,7 @@ public class Member extends superUser
             outputFile.println(list.size()); 
             
             for(int k=0;k<list.size();k++)
-                outputFile.println(k + ";" + list.get(k).first_name + ";" + list.get(k).last_name + ";" + list.get(k).pw); 
+                outputFile.println(k + ";" + list.get(k).first_name + ";" + list.get(k).last_name + ";"+ list.get(k).username+";" + list.get(k).pw); 
                 
             outputFile.close();
         }

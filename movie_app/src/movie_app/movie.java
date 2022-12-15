@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -19,23 +19,19 @@ public class movie {
     private String title;
     private String date;
     private int duration;
-    private double price;
     private boolean availability;
-    private int nb_place;
     private double discount;
-    private String[] times;
+    private session[] sessions;
     private String url;
 
-    public movie(String genre, String title, String date, int duration, double price, boolean availability, int nb_place, double discount, String[] times, String url) {
+    public movie(String genre, String title, String date, int duration, boolean availability, double discount, session[] sessions, String url) {
         this.genre = genre;
         this.title = title;
         this.date = date;
         this.duration = duration;
-        this.price = price;
         this.availability = availability;
-        this.nb_place = nb_place;
         this.discount = discount;
-        this.times = times;
+        this.sessions = sessions;
         this.url = url;
     }
 
@@ -59,16 +55,12 @@ public class movie {
         return duration;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public boolean isAvailability() {
         return availability;
     }
 
-    public int getNb_place() {
-        return nb_place;
+    public session[] getSessions() {
+        return sessions;
     }
 
     public double getDiscount() {
@@ -87,24 +79,24 @@ public class movie {
             PrintWriter outputFile = new PrintWriter(pw);
             
             outputFile.println(list.size()+1);
-            String file_times;
+            String file_sessions;
             
             for (movie a : list)
             {
-                file_times = "";
-                for(String time :a.times)
+                file_sessions = "";
+                for(int k=0;k<a.sessions.length;k++)
                 {
-                    file_times+=time+",";
+                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
                 }
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount + ";" + file_times+";"+a.url); 
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
             }
             
-            file_times = "";
-            for(String time :times)
+            file_sessions = "";
+            for(int k=0;k<sessions.length;k++)
             {
-                file_times+=time+",";
+                file_sessions+=sessions[k].getTime()+"@"+sessions[k].getPrice()+"@"+sessions[k].getNb_place()+",";
             }
-            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";" + price + ";" + availability + ";" + nb_place + ";" + discount+";"+ file_times+";"+url); 
+            outputFile.println(list.size() + ";" + genre + ";" + title + ";" + date + ";" + duration + ";"+ availability + ";"+ discount + ";" + file_sessions+";"+url); 
                 
             outputFile.close();
         }
@@ -117,7 +109,6 @@ public class movie {
     // get all the movies from the text file
     public static ArrayList<movie> getMovies() 
     {
-        // vaq chercher tout les films dans le fichier
         
         try
         {
@@ -135,9 +126,17 @@ public class movie {
                System.out.println(line);  
 
                String[] info = line.split(";");
-               String[] tab_times = info[9].split(",");
-
-               list.add(new movie(info[1], info[2], info[3], Integer.parseInt(info[4]), Double.parseDouble(info[5]), Boolean.parseBoolean(info[6]), Integer.parseInt(info[7]), Double.parseDouble(info[8]), tab_times, info[10]));
+               String[] str_sessions = info[7].split(",");
+               session[] tab_sessions = new session[str_sessions.length];
+               for(int j=0;j<str_sessions.length;j++)
+               {
+                   String[] str_session = str_sessions[j].split("@");
+                   System.out.println("tset");
+                   tab_sessions[j] = new session(str_session[0]+"@"+str_session[1]+"@"+str_session[2],Integer.parseInt(str_session[4]), Double.parseDouble(str_session[3]));
+               }
+               
+               
+               list.add(new movie(info[1], info[2], info[3], Integer.parseInt(info[4]), Boolean.parseBoolean(info[5]), Double.parseDouble(info[6]), tab_sessions, info[8]));
 
                 
                list.get(k).setId(k);
@@ -170,35 +169,22 @@ public class movie {
         this.duration = duration;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setSessions(session[] sessions) {
+        this.sessions = sessions;
     }
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
     }
 
-    public void setNb_place(int nb_place) {
-        this.nb_place = nb_place;
-    }
-
     public void setDiscount(double discount) {
         this.discount = discount;
     }
 
-    public void setTimes(String[] times) {
-        this.times = times;
-    }
 
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    /*
-    public movie getMovie(int id)
-    {
-        //vas chercher un filme en particulier en fonction de l'id (la ligne quoi)
-    }*/
     
     // modification of a movie in the text file
     public void modif_movie()
@@ -209,7 +195,7 @@ public class movie {
         {
             if(id == list.get(k).id)
             {
-                list.set(id, new movie(genre, title, date, duration, price, availability, nb_place, discount, times, url));
+                list.set(id, new movie(genre, title, date, duration, availability, discount, sessions, url));
                 list.get(k).setId(k);
             }
         }
@@ -217,23 +203,28 @@ public class movie {
         try
         {
             PrintWriter pw = new PrintWriter("Movies.txt");
-            PrintWriter outputFile = new PrintWriter(pw);
-            
-            outputFile.println(list.size()); 
-            String file_times;
-            
-            for (movie a : list)
-            {
-                file_times = "";
-                for(String time :a.times)
+            try (PrintWriter outputFile = new PrintWriter(pw)) {
+                outputFile.println(list.size());
+                String file_sessions;
+                
+                
+                for (movie a : list)
                 {
-                    file_times+=time+",";
+                    file_sessions = "";
+                    if (a.sessions.length>0){
+                        for(int k=0;k<a.sessions.length;k++)
+                        {
+                            if(a.sessions[k].getNb_place()>=1){
+                            file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
+                            }
+                        }
+                    }
+                    else{
+                        a.availability=false;
+                    }
+                    outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";" + a.discount + ";" + file_sessions+";"+a.url); 
                 }
-                
-                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";" + a.price + ";" + a.availability + ";" + a.nb_place + ";" + a.discount+ ";"+file_times+";"+url); 
             }
-                
-            outputFile.close();
         }
         catch(FileNotFoundException e)
         {
@@ -241,6 +232,7 @@ public class movie {
         }     
     }
 
+    //deletes a movie in function of its id
     public static void deleteMovie(int id)
     {
         ArrayList<movie> list = getMovies();
@@ -259,19 +251,17 @@ public class movie {
             PrintWriter outputFile = new PrintWriter(pw);
             
             outputFile.println(list.size()); 
-            String file_times;
-            
-            for(int k=0;k<list.size();k++)
+            String file_sessions;
+                
+                
+            for (movie a : list)
             {
-                file_times = "";
-            
-                for(String time :list.get(k).times)
+                file_sessions = "";
+                for(int k=0;k<a.sessions.length;k++)
                 {
-                    file_times+=time+",";
+                    file_sessions+=a.sessions[k].getTime()+"@"+a.sessions[k].getPrice()+"@"+a.sessions[k].getNb_place()+",";
                 }
-                
-                outputFile.println(k + ";" + list.get(k).genre + ";" + list.get(k).title + ";" + list.get(k).date+";" + list.get(k).duration+";" + list.get(k).price+";" + list.get(k).availability+";" + list.get(k).discount+";" + file_times+";" + list.get(k).url); 
-                
+                outputFile.println(a.id + ";" + a.genre + ";" + a.title + ";" + a.date + ";" + a.duration + ";"+ a.availability + ";"+ a.discount + ";" + file_sessions+";"+a.url); 
             }
                 
             outputFile.close();
@@ -287,18 +277,9 @@ public class movie {
     }
     
     /*
-    faire une method de tri des films 
+    faire une method update movie, beaucoup de repetitions  
     
     */
-
-    @Override
-    public String toString() {
-        return "movie{" + "id=" + id + ", genre=" + genre + ", title=" + title + ", date=" + date + ", duration=" + duration + ", price=" + price + ", availability=" + availability + ", nb_place=" + nb_place + ", discount=" + discount + ", times=" + times + ", url=" + url + '}';
-    }
-
-    public String[] getTimes() {
-        return times;
-    }
 
     public String getUrl() {
         return url;

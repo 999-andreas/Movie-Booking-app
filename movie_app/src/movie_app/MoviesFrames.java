@@ -4,8 +4,10 @@
  */
 package movie_app;
 
-import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 import static movie_app.movie.getMovies;
@@ -18,9 +20,10 @@ import static movie_app.movie.getMovies;
  */
 public class MoviesFrames extends javax.swing.JFrame {
 
-    private Member aMember;
-    private ArrayList<movie> theMovies;
-    private movie theChosenMovie;
+    private Member aMember; //the member will be passed in the constructor of the next frame to keep the data
+    private ArrayList<movie> theMovies; //the initial Arraylist, containings the basic getMovies() which returns all the movies
+    private ArrayList<movie> theAvailableMovies= new ArrayList<movie>();//the second Arraylist which will be displayed on screen 
+    private movie theChosenMovie;// the chosen movie will be passed in the constructor of the next frame
     DefaultListModel listModel= new DefaultListModel();
     
     /**
@@ -32,18 +35,27 @@ public class MoviesFrames extends javax.swing.JFrame {
         initComponents();
         aMember= theMember;//Retrieves the user from previous page
         theMovies= getMovies();// Retrieves the list of movies on txt file
-        
+        for (int i=0; i<theMovies.size();i++){//Checks if the movie is available, from the initial Arraylist, and adds it to a second arraylist which will be displayed
+            if (theMovies.get(i).isAvailability()==true){
+                theAvailableMovies.add(theMovies.get(i));
+            }
+        }
         lblWelcome.setText("Welcome "+aMember.first_name+"!"); //Welcomes the user
         
         
-        for (int i=0; i <theMovies.size(); i++){
-            if (theMovies.get(i).isAvailability()==true){
-                listModel.addElement(theMovies.get(i).getGenre()+"   ||    "+theMovies.get(i).getTitle());                            
-            }            
+        for (int i=0; i <theAvailableMovies.size(); i++){
+            listModel.addElement(theAvailableMovies.get(i).getGenre()+"   ||    "+theAvailableMovies.get(i).getTitle());//adds the genre and title to the added element                          
+                        
         }
         
         listMovies.setModel(listModel);
         
+        if(aMember.getId()!=-1){
+            btnPreviousBills.setVisible(true);
+        }
+        else{
+            btnPreviousBills.setVisible(false);
+        }
         
     }
     
@@ -68,6 +80,7 @@ public class MoviesFrames extends javax.swing.JFrame {
         listMovies = new javax.swing.JList<>();
         btnChooseMovie = new javax.swing.JButton();
         lblWarning = new javax.swing.JLabel();
+        btnPreviousBills = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +98,7 @@ public class MoviesFrames extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblWelcome.setText("Welcome Guest!");
 
         jScrollPane1.setViewportView(listMovies);
@@ -96,42 +110,55 @@ public class MoviesFrames extends javax.swing.JFrame {
             }
         });
 
+        btnPreviousBills.setText("Previous Bills");
+        btnPreviousBills.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousBillsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnDisconnect))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnChooseMovie))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDisconnect)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnChooseMovie)
+                    .addComponent(btnPreviousBills, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDisconnect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGoToLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDisconnect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPreviousBills, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnGoToLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnChooseMovie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                    .addComponent(btnChooseMovie, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,7 +166,7 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnGoToLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToLoginActionPerformed
         // TODO add your handling code here:
-        LoginFrame theLoginFrame= new LoginFrame();
+        LoginFrame theLoginFrame= new LoginFrame(); //sends back to a login Frame
         theLoginFrame.setVisible(true);
         
         this.dispose();
@@ -147,7 +174,7 @@ public class MoviesFrames extends javax.swing.JFrame {
 
     private void btnDisconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisconnectActionPerformed
         // TODO add your handling code here:
-        MainFrame theMainFrame= new MainFrame();
+        MainFrame theMainFrame= new MainFrame(); //sends back to main menu
         theMainFrame.setVisible(true);
         
         this.dispose();
@@ -158,7 +185,12 @@ public class MoviesFrames extends javax.swing.JFrame {
         if (!listMovies.isSelectionEmpty()){
             int index= listMovies.getSelectedIndex();
             theChosenMovie= theMovies.get(index);
-            SelectedMovieFrame theMovieFrame= new SelectedMovieFrame(theChosenMovie,aMember);
+            SelectedMovieFrame theMovieFrame = null;
+            try {
+                theMovieFrame = new SelectedMovieFrame(theChosenMovie,aMember);
+            } catch (IOException ex) {
+                Logger.getLogger(MoviesFrames.class.getName()).log(Level.SEVERE, null, ex);
+            }
             theMovieFrame.setVisible(true);
             this.dispose();
         }
@@ -166,6 +198,13 @@ public class MoviesFrames extends javax.swing.JFrame {
             lblWarning.setText("Please choose a movie!");
         }
     }//GEN-LAST:event_btnChooseMovieActionPerformed
+
+    private void btnPreviousBillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousBillsActionPerformed
+        // TODO add your handling code here:
+        PreviousBills billFrame= new PreviousBills(aMember);
+        billFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPreviousBillsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +245,7 @@ public class MoviesFrames extends javax.swing.JFrame {
     private javax.swing.JButton btnChooseMovie;
     private javax.swing.JButton btnDisconnect;
     private javax.swing.JButton btnGoToLogin;
+    private javax.swing.JButton btnPreviousBills;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblWarning;
     private javax.swing.JLabel lblWelcome;

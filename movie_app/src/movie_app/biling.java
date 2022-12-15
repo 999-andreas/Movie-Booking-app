@@ -15,32 +15,34 @@ import java.util.Scanner;
 public class biling {
 
     private int id;
-    private movie Movie;
-    private Member member;
+    private movie theMovie;
+    private Member theMember;
     private int nb_tickets;
-    private String time;
+    private int session_index;
+    private String time_stamp;
     private double total;
     
-    public biling(movie Movie, Member member, int nb_tickets) {
-        this.Movie = Movie;
-        this.member = member;
+    public biling(movie Movie, Member member, int nb_tickets, int index, String time_stamp) {
+        theMovie = Movie;
+        theMember = member;
         this.nb_tickets = nb_tickets;
-        this.time = time;
+        this.session_index = index;
+        this.time_stamp = time_stamp;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-        
+    // calculates the total and putes it a text file
     public void computeBill()  
     {
-        if(member.getId()== -1) // -1 as id when its a guest
+        if(theMember.getId()== -1) // -1 as id when its a guest
         {
-            total = Movie.getPrice()*nb_tickets;
+            total = theMovie.getSessions()[session_index].getPrice()*nb_tickets;
         }
         else
-            total = (Movie.getPrice()-(Movie.getPrice()*Movie.getDiscount()*nb_tickets));
+            total = (theMovie.getSessions()[session_index].getPrice()*nb_tickets-((theMovie.getSessions()[session_index].getPrice()*nb_tickets)*theMovie.getDiscount()));
         
         String[][] list = getBills();
         
@@ -52,9 +54,9 @@ public class biling {
             outputFile.println((list.length)+1); 
             
             for (String[] a : list)
-                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]); 
+                outputFile.println(a[0] + ";" + a[1] + ";" + a[2] + ";" +a[3]+";" +a[4]+";"+a[5]+";"+a[6]); 
             
-            outputFile.println(list.length + ";" + member.first_name + ";" + member.last_name + ";" +member.username+ ";" + member.pw); 
+            outputFile.println(list.length + ";" + theMember.username + ";" + theMember.last_name + ";" +theMovie.getTitle()+ ";" + total+";"+theMovie.getSessions()[session_index].getTime()+";"+time_stamp); 
                 
             outputFile.close();
         }
@@ -64,6 +66,7 @@ public class biling {
         }
     }
     
+    //retrives all the bills in form of a 2 dimentions list
     public static String[][] getBills()
     {
         try
@@ -74,11 +77,10 @@ public class biling {
             String str_nb = inputFile.nextLine();
             int nb_line = Integer.parseInt(str_nb);
         
-            String[][] list = new String[nb_line][6];
+            String[][] list = new String[nb_line][7];
             for(int k=0;k<nb_line;k++)
             {
                String line = inputFile.nextLine();
-               //System.out.println(line);  
 
                String[] info = line.split(";");
                
@@ -94,5 +96,33 @@ public class biling {
           System.out.println("File not found.");
         }
         return null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public movie getTheMovie() {
+        return theMovie;
+    }
+
+    public Member getTheMember() {
+        return theMember;
+    }
+
+    public int getNb_tickets() {
+        return nb_tickets;
+    }
+
+    public int getSession_index() {
+        return session_index;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public String getTime_stamp() {
+        return time_stamp;
     }
 }

@@ -54,6 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         lblWelcome.setText("Welcome to our Cinema! Come book a ticket!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -69,9 +70,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
+                        .addGap(161, 161, 161)
                         .addComponent(lblWelcome)))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnContinueGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueGuestActionPerformed
         // TODO add your handling code here:
         Member theGuest= new Member("guest","guest","guest","guest");
-        theGuest.setId(-1);
+        theGuest.setId(-1); //sets the guest's id to -1
         MoviesFrames theMovies= new MoviesFrames(theGuest); //Creates the frame for the movies
         
         theMovies.setVisible(true);//sets visible the frame to load the movies
@@ -110,9 +111,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         // TODO add your handling code here:
-        LoginFrame theLoginFrame= new LoginFrame();
-        theLoginFrame.setVisible(true);
-        this.dispose();
+        LoginFrame theLoginFrame= new LoginFrame(); //create the login Frame
+        theLoginFrame.setVisible(true);//sets it visible
+        this.dispose();//disposes of main frame
     }//GEN-LAST:event_btnLogInActionPerformed
 
     /**
