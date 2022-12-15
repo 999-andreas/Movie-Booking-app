@@ -1,4 +1,5 @@
-3
+4
 0;Adventure;Indiana Johns;02/02/2002;120;false;0.2;12/01/2023@15@00@7.0@20,12/01/2023@17@00@5.0@8,DD/MM/YY@15@00@10.0@44,;images/pub de 1h.png
 1;adventure;batman;20/20/50;120;true;0.2;20/20/50@15@00@12.0@50,20/20/50@17@00@12.0@50,20/20/50@20@00@12.0@41,;images/clio2.jpg
 2;Animals;The Penguin;22/12/22;30;false;0.1;23/12/2022@15@00@9.2@20,;images/962967_5d77e.jpg
+3;Action;Forest Gump;13/08/2008;130;true;0.15;17/12/2022@15@00@10.15@40,17/12/2022@18@00@60.0@60,;images/Forest gump.jpg
