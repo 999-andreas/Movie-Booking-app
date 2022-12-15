@@ -22,8 +22,10 @@
 ## How to
 
 > To run our project clone the repository and run the file MainFrame.java
+
 ![tuto1](/tuto1.png?raw=true "tuto1")
 
 > To run as admin/employee just log in as usual with the username **admin** and password **admin**
+
 ![tuto2](/tuto2.png?raw=true "tuto2")
 
