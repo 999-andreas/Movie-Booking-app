@@ -13,7 +13,7 @@
 
 ![tuto1](/tuto1.png?raw=true "tuto1")
 
-> To run as memeber just log in with the username **AndreasC** and password **pass**
+> To run as member just log in with the username **AndreasC** and password **pass**
 
 ![tuto3](/tuto3.png?raw=true "tuto3")
 
