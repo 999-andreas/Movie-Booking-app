@@ -13,9 +13,14 @@
 
 ![tuto1](/tuto1.png?raw=true "tuto1")
 
+> To run as memeber just log in with the username **AndreasC** and password **pass**
+
+![tuto3](/tuto3.png?raw=true "tuto3")
+
 > To run as admin/employee just log in as usual and put the username **admin** and password **admin**
 
 ![tuto2](/tuto2.png?raw=true "tuto2")
+
 
 ## Made with
 
