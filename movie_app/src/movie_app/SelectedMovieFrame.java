@@ -301,7 +301,17 @@ public class SelectedMovieFrame extends javax.swing.JFrame {
                 theMovie.modif_movie();
             }
             else
-                labelWarning.setText("please select less tickets:"+(nb_ticket-theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()) );
+            {
+                if(nb_ticket<0)
+                {
+                    labelWarning.setText("please select a positive number");
+                }
+                else
+                {
+                    labelWarning.setText("please select less tickets:"+(nb_ticket-theMovie.getSessions()[jListTimes.getSelectedIndex()].getNb_place()));
+                }
+                    
+            }
         }
         else{
             labelWarning.setText("Select a session Please!");
